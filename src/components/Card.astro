@@ -1,0 +1,151 @@
+---
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<astro-card class="block aspect-[3.375/2.125] max-w-md">
+	<div class="rotator overflow-hidden shadow-2xl rounded-xl size-full p-5">
+		<div class="shine absolute size-full top-0 left-0 z-30 pointer-events-none">
+		</div>
+		<div
+			class="texture absolute size-full top-0 left-0 z-20 pointer-events-none opacity-15"
+		>
+		</div>
+		<div
+			class="background size-full absolute top-0 left-0 z-0 opacity-15 pointer-events-none"
+		>
+		</div>
+		<div class:list={["relative z-10", className]}>
+			<slot />
+		</div>
+	</div>
+	<div class="back 1 size-full absolute top-0 left-0 rounded-xl"></div>
+	<div class="back 2 size-full absolute top-0 left-0 rounded-xl"></div>
+</astro-card>
+
+<script>
+	// Define the behaviour for our new type of HTML element.
+	class AstroCard extends HTMLElement {
+		constructor() {
+			super();
+		}
+
+		#onPointerLeave() {
+			// Reset the card's rotation when the pointer leaves the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", "0deg");
+				this.style.setProperty("--rotate-y", "0deg");
+			});
+
+			// slowly transition the shine back to the center of the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--pointer-x", `${this.offsetWidth / 2}px`);
+				this.style.setProperty("--pointer-y", `${this.offsetHeight / 2}px`);
+			});
+		}
+
+		#onPointerMove(event: PointerEvent) {
+			const cursorPosX = event.clientX - this.offsetLeft;
+			const cursorPosY = event.clientY - this.offsetTop;
+
+			// Calculate the rotation of the card based on the pointer's position.
+			const x = (cursorPosX - this.offsetWidth / 2) / 15;
+			const y = (cursorPosY - this.offsetHeight / 2) / 15;
+
+			// Update the CSS custom properties to rotate the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", `${-x}deg`);
+				this.style.setProperty("--rotate-y", `${y}deg`);
+				this.style.setProperty("--pointer-x", `${cursorPosX}px`);
+				this.style.setProperty("--pointer-y", `${cursorPosY}px`);
+			});
+		}
+
+		connectedCallback() {
+			this.addEventListener("pointermove", this.#onPointerMove);
+			this.addEventListener("pointerleave", this.#onPointerLeave);
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("pointermove", this.#onPointerMove);
+			this.removeEventListener("pointerleave", this.#onPointerLeave);
+		}
+	}
+
+	// Tell the browser to use our AstroHeart class for <astro-heart> elements.
+	customElements.define("astro-card", AstroCard);
+</script>
+
+<style>
+	:root {
+		--pointer-x: 0px;
+		--pointer-y: 0px;
+		--rotate-x: 0deg;
+		--rotate-y: 0deg;
+		--translate-x: 0px;
+		--translate-y: 0px;
+	}
+
+	astro-card .back {
+		background: linear-gradient(
+			180deg,
+			hsla(0, 0%, 80%, 0.45),
+			hsla(0, 0%, 80%, 0.5)
+		);
+		transform-origin: center;
+		transform-style: preserve-3d;
+		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
+			translateZ(-10px);
+		z-index: -10;
+	}
+
+	astro-card .back.2 {
+		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
+			translateZ(-20px);
+		z-index: -20;
+	}
+
+	astro-card .rotator {
+		transform-origin: center;
+		transform-style: preserve-3d;
+		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+	}
+
+	astro-card {
+		perspective: 900px;
+		transform-origin: center;
+		transform: translate3d(var(--translate-x), var(--translate-y), 0);
+	}
+
+	astro-card .shine {
+		background-image: radial-gradient(
+			farthest-corner circle at var(--pointer-x) var(--pointer-y),
+			hsla(50, 20%, 90%, 0.45) 0%,
+			hsla(150, 20%, 30%, 0.45) 45%,
+			hsla(0, 0%, 0%, 0.9) 120%
+		);
+		mix-blend-mode: overlay;
+		transition: opacity 0.1s ease-in-out;
+		filter: brightness(0.9) contrast(2);
+		opacity: 0.25;
+	}
+
+	astro-card .background {
+		background-image: url("/bg/1.avif");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		filter: blur(1px) brightness(1.33);
+	}
+
+	astro-card .texture {
+		background-image: url("/bg/texture.avif");
+		background-size: cover;
+		background-position: center;
+		background-repeat: repeat;
+		mix-blend-mode: hard-light;
+	}
+</style>

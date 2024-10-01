@@ -1,0 +1,106 @@
+---
+import Mailbox from "~icons/ph/envelope-duotone";
+import GitHub from "~icons/ph/github-logo-duotone";
+import Instagram from "~icons/ph/instagram-logo-duotone";
+import LinkedIn from "~icons/ph/linkedin-logo-duotone";
+import MapPin from "~icons/ph/map-pin-duotone";
+import ShirtFolded from "~icons/ph/shirt-folded-duotone";
+import Threads from "~icons/ph/threads-logo-duotone";
+
+import Card from "../components/Card.astro";
+import Default from "../layouts/Default.astro";
+---
+
+<Default>
+	<Card class="text-black/90">
+		<figure class="flex gap-5 justify-between">
+			<figcaption>
+				<h1 class="text-3xl font-bold leading-3">
+					<span class="text-4xl block">Austin</span>
+					<span class="block">Raey</span>
+				</h1>
+			</figcaption>
+			<img
+				alt="Portrait of Austin Raey"
+				class="size-20 rounded-[40%]"
+				loading="eager"
+				src="/portrait.avif"
+			/>
+		</figure>
+
+		<div class="mb-2">
+			<div class="flex items-center gap-0.5">
+				<MapPin />
+				<span>North Carolina</span>
+			</div>
+			<div class="flex items-center gap-0.5">
+				<ShirtFolded />
+				<span>Software Engineer</span>
+			</div>
+			<ul class="ml-5 flex text-xs gap-0.5 mb-0.5 tracking-tight">
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">Frontend</li>
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">Full-Stack</li>
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">DevOps</li>
+			</ul>
+			<ul class="ml-5 flex text-xs gap-0.5 tracking-tight">
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">JavaScript</li>
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">TypeScript</li>
+				<li class="bg-white/20 rounded-xl p-0.5 px-1">Frameworks</li>
+			</ul>
+		</div>
+
+		<ul class="flex flex-wrap gap-2 gap-y-1">
+			<li class="p-0.5 px-1">
+				<a
+					class="flex items-center gap-0.5"
+					href="#"
+					rel="external noopener noreferrer"
+					target="_blank"
+				>
+					<Threads /> austin-raey
+				</a>
+			</li>
+			<li class="p-0.5 px-1">
+				<a
+					class="flex items-center gap-0.5"
+					href="#"
+					rel="external noopener noreferrer"
+					target="_blank"
+				>
+					<Instagram /> austin-raey
+				</a>
+			</li>
+			<li class="p-0.5 px-1">
+				<a
+					class="flex items-center gap-0.5"
+					href="#"
+					rel="external noopener noreferrer"
+					target="_blank"
+				>
+					<GitHub /> austin-raey
+				</a>
+			</li>
+			<li class="p-0.5 px-1">
+				<a
+					class="flex items-center gap-0.5"
+					href="#"
+					rel="external noopener noreferrer"
+					target="_blank"
+				>
+					<LinkedIn /> ausmdw
+				</a>
+			</li>
+			<li class="p-0.5 px-1">
+				<a
+					class="flex items-center gap-0.5"
+					href="#"
+					rel="external noopener noreferrer"
+					target="_blank"
+				>
+					<Mailbox />
+					Email
+				</a>
+			</li>
+		</ul>
+	</Card>
+</Default>
