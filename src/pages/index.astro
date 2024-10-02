@@ -6,7 +6,7 @@ import Default from "../layouts/Default.astro";
 
 <Default>
 	<Card
-		class="-right-[20%] top-1/2 w-[158.824%] origin-top rotate-90 space-y-3 font-semibold text-[#242424] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0"
+		class="right-[-20%] top-1/2 w-[158.824%] origin-top rotate-90 space-y-3 font-semibold text-[#242424]/90 sm:right-auto sm:top-auto sm:w-auto sm:rotate-0"
 	>
 		<figure>
 			<figcaption>
@@ -112,3 +112,15 @@ import Default from "../layouts/Default.astro";
 		</ul>
 	</Card>
 </Default>
+
+<style>
+	h1,
+	span,
+	a,
+	li {
+		text-shadow:
+			0 0.5px 0 rgba(255, 255, 255, 0.45),
+			0 -0.5px 0 rgba(255, 255, 255, 0.33),
+			1px 0 0 rgba(255, 255, 255, 0.33);
+	}
+</style>
