@@ -10,15 +10,32 @@ const { class: className } = Astro.props;
 	class="block aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
 >
 	<div class="rotator size-full overflow-hidden rounded-xl p-5 shadow-2xl">
-		<div class="shine pointer-events-none absolute left-0 top-0 z-30 size-full">
-		</div>
 		<div
-			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15"
+			aria-hidden="true"
+			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25"
 		>
 		</div>
 		<div
-			class="background pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25"
+			aria-hidden="true"
+			class="pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15 mix-blend-multiply"
 		>
+			<img
+				alt=""
+				class="size-full object-cover"
+				loading="eager"
+				src="/bg/texture.avif"
+			/>
+		</div>
+		<div
+			aria-hidden="true"
+			class="pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+		>
+			<img
+				alt=""
+				class="size-full object-cover"
+				loading="eager"
+				src="/bg/1.avif"
+			/>
 		</div>
 		<div class:list={["relative z-10", className]}>
 			<slot />
@@ -129,23 +146,6 @@ const { class: className } = Astro.props;
 		);
 		filter: brightness(0.9) contrast(2);
 		mix-blend-mode: overlay;
-		opacity: 0.25;
 		transition: opacity 0.1s ease-in-out;
-	}
-
-	astro-card .background {
-		background-image: url("/bg/1.avif");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		filter: saturate(1.5) blur(4px) brightness(0.75) contrast(1.1);
-	}
-
-	astro-card .texture {
-		background-image: url("/bg/texture.avif");
-		background-size: cover;
-		background-position: center;
-		background-repeat: repeat;
-		mix-blend-mode: multiply;
 	}
 </style>
