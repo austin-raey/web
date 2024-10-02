@@ -41,8 +41,10 @@ const { class: className } = Astro.props;
 			<slot />
 		</div>
 	</div>
-	<div class="back 1 absolute left-0 top-0 -z-10 size-full rounded-xl"></div>
-	<div class="back 2 absolute left-0 top-0 -z-20 size-full rounded-xl"></div>
+	<div class="back layer-1 absolute left-0 top-0 -z-10 size-full rounded-xl">
+	</div>
+	<div class="back layer-2 absolute left-0 top-0 -z-20 size-full rounded-xl">
+	</div>
 </astro-card>
 
 <script>
@@ -120,7 +122,7 @@ const { class: className } = Astro.props;
 			translateZ(-10px);
 	}
 
-	astro-card .back.2 {
+	astro-card .back.layer-2 {
 		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
 			translateZ(-20px);
 	}
