@@ -15,28 +15,20 @@ const { class: className } = Astro.props;
 			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25"
 		>
 		</div>
-		<div
+		<img
+			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15 mix-blend-multiply"
-		>
-			<img
-				alt=""
-				class="size-full object-cover"
-				loading="eager"
-				src="/bg/texture.avif"
-			/>
-		</div>
-		<div
+			class="pointer-events-none absolute left-0 top-0 z-20 size-full object-cover opacity-15 mix-blend-multiply"
+			loading="eager"
+			src="/bg/texture.avif"
+		/>
+		<img
+			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
-		>
-			<img
-				alt=""
-				class="size-full object-cover"
-				loading="eager"
-				src="/bg/1.avif"
-			/>
-		</div>
+			class="pointer-events-none absolute left-0 top-0 z-0 size-full object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+			loading="eager"
+			src="/bg/1.avif"
+		/>
 		<div class:list={["relative z-10", className]}>
 			<slot />
 		</div>
