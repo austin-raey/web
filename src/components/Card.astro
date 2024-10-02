@@ -6,7 +6,9 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<astro-card class="block aspect-[3.375/2.125] max-w-md">
+<astro-card
+	class="block aspect-[2.125/3.375] sm:aspect-[3.375/2.125] max-w-[20rem] sm:max-w-[30rem]"
+>
 	<div class="rotator overflow-hidden shadow-2xl rounded-xl size-full p-5">
 		<div class="shine absolute size-full top-0 left-0 z-30 pointer-events-none">
 		</div>
@@ -15,15 +17,15 @@ const { class: className } = Astro.props;
 		>
 		</div>
 		<div
-			class="background size-full absolute top-0 left-0 z-0 opacity-15 pointer-events-none"
+			class="background size-full absolute top-0 left-0 z-0 opacity-25 pointer-events-none"
 		>
 		</div>
 		<div class:list={["relative z-10", className]}>
 			<slot />
 		</div>
 	</div>
-	<div class="back 1 size-full absolute top-0 left-0 rounded-xl"></div>
-	<div class="back 2 size-full absolute top-0 left-0 rounded-xl"></div>
+	<div class="back 1 size-full absolute top-0 left-0 rounded-xl -z-10"></div>
+	<div class="back 2 size-full absolute top-0 left-0 rounded-xl -z-20"></div>
 </astro-card>
 
 <script>
@@ -92,20 +94,18 @@ const { class: className } = Astro.props;
 	astro-card .back {
 		background: linear-gradient(
 			180deg,
-			hsla(0, 0%, 80%, 0.45),
-			hsla(0, 0%, 80%, 0.5)
+			hsla(0, 0%, 90%, 0.45),
+			hsla(0, 0%, 90%, 0.5)
 		);
 		transform-origin: center;
 		transform-style: preserve-3d;
 		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
 			translateZ(-10px);
-		z-index: -10;
 	}
 
 	astro-card .back.2 {
 		transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
 			translateZ(-20px);
-		z-index: -20;
 	}
 
 	astro-card .rotator {
@@ -138,7 +138,7 @@ const { class: className } = Astro.props;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		filter: blur(1px) brightness(1.33);
+		filter: saturate(1.5) blur(4px) brightness(0.75) contrast(1.1);
 	}
 
 	astro-card .texture {
@@ -146,6 +146,6 @@ const { class: className } = Astro.props;
 		background-size: cover;
 		background-position: center;
 		background-repeat: repeat;
-		mix-blend-mode: hard-light;
+		mix-blend-mode: multiply;
 	}
 </style>

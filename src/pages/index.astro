@@ -12,23 +12,23 @@ import Default from "../layouts/Default.astro";
 ---
 
 <Default>
-	<Card class="text-black/90">
-		<figure class="flex gap-5 justify-between">
+	<Card class="text-[#242424] space-y-3 font-semibold">
+		<figure>
 			<figcaption>
-				<h1 class="text-3xl font-bold leading-3">
-					<span class="text-4xl block">Austin</span>
-					<span class="block">Raey</span>
+				<h1 class="text-3xl font-extrabold">
+					<span class="text-4xl block leading-8">Austin</span>
+					<span class="inline-block">Raey</span>
 				</h1>
 			</figcaption>
 			<img
 				alt="Portrait of Austin Raey"
-				class="size-20 rounded-[40%]"
+				class="size-24 rounded-[40%] absolute top-0 right-0"
 				loading="eager"
 				src="/portrait.avif"
 			/>
 		</figure>
 
-		<div class="mb-2">
+		<div>
 			<div class="flex items-center gap-0.5">
 				<MapPin />
 				<span>North Carolina</span>
@@ -37,22 +37,30 @@ import Default from "../layouts/Default.astro";
 				<ShirtFolded />
 				<span>Software Engineer</span>
 			</div>
-			<ul class="ml-5 flex text-xs gap-0.5 mb-0.5 tracking-tight">
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">Frontend</li>
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">Full-Stack</li>
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">DevOps</li>
-			</ul>
-			<ul class="ml-5 flex text-xs gap-0.5 tracking-tight">
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">JavaScript</li>
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">TypeScript</li>
-				<li class="bg-white/20 rounded-xl p-0.5 px-1">Frameworks</li>
+			<ul class="ml-5 text-xs tracking-tight font-normal space-y-0.5">
+				<li>
+					<span class="sr-only">Specializing in:</span>
+					<ul class="flex gap-0.5">
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">Frontend</li>
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">Full-Stack</li>
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">DevOps</li>
+					</ul>
+				</li>
+				<li>
+					<span class="sr-only">Proficient in:</span>
+					<ul class="flex gap-0.5">
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">JavaScript</li>
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">TypeScript</li>
+						<li class="bg-white/30 rounded-xl p-0.5 px-1">Frameworks</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 
-		<ul class="flex flex-wrap gap-2 gap-y-1">
+		<ul class="flex flex-wrap gap-0.5">
 			<li class="p-0.5 px-1">
 				<a
-					class="flex items-center gap-0.5"
+					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
 					href="#"
 					rel="external noopener noreferrer"
 					target="_blank"
@@ -62,7 +70,7 @@ import Default from "../layouts/Default.astro";
 			</li>
 			<li class="p-0.5 px-1">
 				<a
-					class="flex items-center gap-0.5"
+					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
 					href="#"
 					rel="external noopener noreferrer"
 					target="_blank"
@@ -72,7 +80,7 @@ import Default from "../layouts/Default.astro";
 			</li>
 			<li class="p-0.5 px-1">
 				<a
-					class="flex items-center gap-0.5"
+					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
 					href="#"
 					rel="external noopener noreferrer"
 					target="_blank"
@@ -82,7 +90,7 @@ import Default from "../layouts/Default.astro";
 			</li>
 			<li class="p-0.5 px-1">
 				<a
-					class="flex items-center gap-0.5"
+					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
 					href="#"
 					rel="external noopener noreferrer"
 					target="_blank"
@@ -92,7 +100,7 @@ import Default from "../layouts/Default.astro";
 			</li>
 			<li class="p-0.5 px-1">
 				<a
-					class="flex items-center gap-0.5"
+					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
 					href="#"
 					rel="external noopener noreferrer"
 					target="_blank"
