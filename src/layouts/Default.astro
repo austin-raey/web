@@ -2,8 +2,10 @@
 
 ---
 
-<html class="contents dark:bg-[#242424]" lang="en">
+<html class="dark:bg-[#242424]" lang="en">
 	<head>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta charset="utf-8" />
 		<link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
 		<link
 			as="font"
@@ -14,11 +16,6 @@
 		/>
 		<link as="image" href="/portrait.avif" rel="preload" />
 		<link as="image" href="/bg/1.avif" rel="preload" />
-
-		<meta charset="utf-8" />
-		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-		<meta content="width=device-width" name="viewport" />
-		<title>Austin Raey</title>
 		<style>
 			@font-face {
 				font-family: "Schibsted Grotesk";
@@ -36,8 +33,14 @@
 				font-family: "Schibsted Grotesk", sans-serif;
 			}
 		</style>
+
+		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+		<title>Austin Raey</title>
+		<meta content="Austin Raey" name="author" />
+		<meta content="Austin Raey's contact card" name="description" />
+		<meta content="light dark" name="color-scheme" />
 	</head>
-	<body class="h-screen flex justify-center items-center dark:bg-[#242424]">
+	<body class="flex h-screen items-center justify-center dark:bg-[#242424]">
 		<slot />
 	</body>
 </html>

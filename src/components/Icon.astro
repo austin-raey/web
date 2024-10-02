@@ -1,0 +1,15 @@
+---
+interface Props {
+	class?: string;
+	name: string;
+}
+
+const { class: className, name } = Astro.props;
+---
+
+<span
+	aria-hidden="true"
+	class:list={["i", name, "pointer-events-none", className]}
+	role="presentation"
+>
+</span>

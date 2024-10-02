@@ -7,25 +7,25 @@ const { class: className } = Astro.props;
 ---
 
 <astro-card
-	class="block aspect-[2.125/3.375] sm:aspect-[3.375/2.125] max-w-[302px] sm:max-w-[30rem]"
+	class="block aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
 >
-	<div class="rotator overflow-hidden shadow-2xl rounded-xl size-full p-5">
-		<div class="shine absolute size-full top-0 left-0 z-30 pointer-events-none">
+	<div class="rotator size-full overflow-hidden rounded-xl p-5 shadow-2xl">
+		<div class="shine pointer-events-none absolute left-0 top-0 z-30 size-full">
 		</div>
 		<div
-			class="texture absolute size-full top-0 left-0 z-20 pointer-events-none opacity-15"
+			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15"
 		>
 		</div>
 		<div
-			class="background size-full absolute top-0 left-0 z-0 opacity-25 pointer-events-none"
+			class="background pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25"
 		>
 		</div>
 		<div class:list={["relative z-10", className]}>
 			<slot />
 		</div>
 	</div>
-	<div class="back 1 size-full absolute top-0 left-0 rounded-xl -z-10"></div>
-	<div class="back 2 size-full absolute top-0 left-0 rounded-xl -z-20"></div>
+	<div class="back 1 absolute left-0 top-0 -z-10 size-full rounded-xl"></div>
+	<div class="back 2 absolute left-0 top-0 -z-20 size-full rounded-xl"></div>
 </astro-card>
 
 <script>
@@ -124,13 +124,13 @@ const { class: className } = Astro.props;
 		background-image: radial-gradient(
 			farthest-corner circle at var(--pointer-x) var(--pointer-y),
 			hsla(50, 20%, 90%, 0.45) 0%,
-			hsla(150, 20%, 30%, 0.45) 45%,
-			hsla(0, 0%, 0%, 0.9) 120%
+			hsla(150, 20%, 30%, 0.45) 100%,
+			hsla(0, 0%, 0%, 0.9) 175%
 		);
-		mix-blend-mode: overlay;
-		transition: opacity 0.1s ease-in-out;
 		filter: brightness(0.9) contrast(2);
+		mix-blend-mode: overlay;
 		opacity: 0.25;
+		transition: opacity 0.1s ease-in-out;
 	}
 
 	astro-card .background {

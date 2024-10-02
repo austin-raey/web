@@ -1,7 +1,6 @@
 // @ts-check
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
-import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,12 +12,5 @@ export default defineConfig({
 	security: {
 		checkOrigin: true
 	},
-	site: "https://raey.link",
-	vite: {
-		plugins: [
-			Icons({
-				compiler: "astro"
-			})
-		]
-	}
+	site: "https://raey.link"
 });

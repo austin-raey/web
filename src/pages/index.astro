@@ -1,113 +1,111 @@
 ---
-import Mailbox from "~icons/ph/envelope-duotone";
-import GitHub from "~icons/ph/github-logo-duotone";
-import Instagram from "~icons/ph/instagram-logo-duotone";
-import LinkedIn from "~icons/ph/linkedin-logo-duotone";
-import MapPin from "~icons/ph/map-pin-duotone";
-import ShirtFolded from "~icons/ph/shirt-folded-duotone";
-import Threads from "~icons/ph/threads-logo-duotone";
-
 import Card from "../components/Card.astro";
+import Icon from "../components/Icon.astro";
 import Default from "../layouts/Default.astro";
 ---
 
 <Default>
 	<Card
-		class="text-[#242424] space-y-3 font-semibold rotate-90 sm:rotate-0 w-[158.8235294117647%] right-1/4 top-1/4 sm:right-auto sm:top-auto sm:w-auto"
+		class="-right-[20%] top-1/2 w-[158.824%] origin-top rotate-90 space-y-3 font-semibold text-[#242424] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0"
 	>
 		<figure>
 			<figcaption>
 				<h1 class="text-3xl font-extrabold">
-					<span class="text-4xl block leading-8">Austin</span>
+					<span class="block text-4xl leading-8">Austin</span>
 					<span class="inline-block">Raey</span>
 				</h1>
 			</figcaption>
 			<img
 				alt="Portrait of Austin Raey"
-				class="size-24 rounded-[40%] absolute top-0 right-0"
+				class="absolute right-0 top-0 size-24 rounded-[40%]"
 				loading="eager"
 				src="/portrait.avif"
 			/>
 		</figure>
 
 		<div>
-			<div class="flex items-center gap-0.5">
-				<MapPin />
+			<div>
+				<Icon name="ph/map-pin-duotone" />
 				<span>North Carolina</span>
 			</div>
-			<div class="flex items-center gap-0.5">
-				<ShirtFolded />
+			<div>
+				<Icon name="ph/shirt-folded-duotone" />
 				<span>Software Engineer</span>
 			</div>
-			<ul class="ml-5 text-xs tracking-tight font-normal space-y-0.5">
+			<ul class="ml-5 space-y-0.5 text-xs font-normal tracking-tight">
 				<li>
 					<span class="sr-only">Specializing in:</span>
 					<ul class="flex gap-0.5">
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">Frontend</li>
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">Full-Stack</li>
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">DevOps</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">Frontend</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">Full-Stack</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">DevOps</li>
 					</ul>
 				</li>
 				<li>
 					<span class="sr-only">Proficient in:</span>
 					<ul class="flex gap-0.5">
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">JavaScript</li>
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">TypeScript</li>
-						<li class="bg-white/30 rounded-xl p-0.5 px-1">Frameworks</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">JavaScript</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">TypeScript</li>
+						<li class="rounded-xl bg-white/30 p-0.5 px-1">Frameworks</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
-		<ul class="flex flex-wrap gap-0.5">
-			<li class="p-0.5 px-1">
+		<ul class="flex flex-wrap gap-2">
+			<li>
 				<a
-					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
-					href="#"
-					rel="external noopener noreferrer"
+					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+					href="https://github.com/austin-raey"
+					rel="me external noopener noreferrer"
 					target="_blank"
+					title="Austin's GitHub profile"
 				>
-					<Threads /> austin-raey
+					<Icon name="ph/github-logo-duotone" /> austin-raey
 				</a>
 			</li>
-			<li class="p-0.5 px-1">
+			<li>
 				<a
-					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
-					href="#"
-					rel="external noopener noreferrer"
+					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+					href="https://www.threads.net/@austin.raey"
+					rel="me external noopener noreferrer"
 					target="_blank"
+					title="Austin's Threads profile"
 				>
-					<Instagram /> austin-raey
+					<Icon name="ph/threads-logo-duotone" /> austin.raey
 				</a>
 			</li>
-			<li class="p-0.5 px-1">
+			<li>
 				<a
-					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
-					href="#"
-					rel="external noopener noreferrer"
+					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+					href="https://www.instagram.com/austin.raey"
+					rel="me external noopener noreferrer"
 					target="_blank"
+					title="Austin's Instagram profile"
 				>
-					<GitHub /> austin-raey
+					<Icon name="ph/instagram-logo-duotone" /> austin.raey
 				</a>
 			</li>
-			<li class="p-0.5 px-1">
+			<li>
 				<a
-					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
-					href="#"
-					rel="external noopener noreferrer"
+					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+					href="https://www.linkedin.com/in/austin-raey/"
+					rel="me external noopener noreferrer"
 					target="_blank"
+					title="Austin's LinkedIn profile"
 				>
-					<LinkedIn /> ausmdw
+					<Icon name="ph/linkedin-logo-duotone" /> austin-raey
 				</a>
 			</li>
-			<li class="p-0.5 px-1">
+			<li>
 				<a
-					class="flex items-center gap-0.5 border border-black/20 rounded-xl p-0.5 px-1 bg-white/20"
-					href="#"
-					rel="external noopener noreferrer"
+					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+					href="mailto:austin@raey.link"
+					rel="me external noopener noreferrer"
 					target="_blank"
+					title="Austin's email"
 				>
-					<Mailbox />
+					<Icon name="ph/mailbox-duotone" />
 					Email
 				</a>
 			</li>
