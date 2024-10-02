@@ -9,7 +9,9 @@ const { class: className } = Astro.props;
 <astro-card
 	class="block aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
 >
-	<div class="rotator size-full overflow-hidden rounded-xl p-5 shadow-2xl">
+	<div
+		class="rotator relative size-full overflow-hidden rounded-xl p-5 shadow-2xl"
+	>
 		<div
 			aria-hidden="true"
 			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25"
@@ -18,14 +20,14 @@ const { class: className } = Astro.props;
 		<img
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-20 block size-full object-cover opacity-15 mix-blend-multiply"
+			class="pointer-events-none absolute left-0 top-0 z-20 object-cover opacity-15 mix-blend-multiply"
 			loading="eager"
 			src="/bg/texture.avif"
 		/>
 		<img
 			alt=""
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-0 block size-full object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+			class="pointer-events-none absolute left-0 top-0 z-0 object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
 			loading="eager"
 			src="/bg/1.avif"
 		/>
