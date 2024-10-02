@@ -17,20 +17,16 @@ const { class: className } = Astro.props;
 			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25"
 		>
 		</div>
-		<img
-			alt=""
+		<div
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-20 object-cover opacity-15 mix-blend-multiply"
-			loading="eager"
-			src="/bg/texture.avif"
-		/>
-		<img
-			alt=""
+			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15 mix-blend-multiply"
+		>
+		</div>
+		<div
 			aria-hidden="true"
-			class="pointer-events-none absolute left-0 top-0 z-0 object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
-			loading="eager"
-			src="/bg/1.avif"
-		/>
+			class="background pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+		>
+		</div>
 		<div class:list={["relative z-10", className]}>
 			<slot />
 		</div>
@@ -53,12 +49,8 @@ const { class: className } = Astro.props;
 			requestAnimationFrame(() => {
 				this.style.setProperty("--rotate-x", "0deg");
 				this.style.setProperty("--rotate-y", "0deg");
-			});
-
-			// slowly transition the shine back to the center of the card.
-			requestAnimationFrame(() => {
-				this.style.setProperty("--pointer-x", `${this.offsetWidth / 2}px`);
-				this.style.setProperty("--pointer-y", `${this.offsetHeight / 2}px`);
+				this.style.setProperty("--pointer-x", "50%");
+				this.style.setProperty("--pointer-y", "50%");
 			});
 		}
 
@@ -96,8 +88,8 @@ const { class: className } = Astro.props;
 
 <style>
 	:root {
-		--pointer-x: 0px;
-		--pointer-y: 0px;
+		--pointer-x: 50%;
+		--pointer-y: 50%;
 		--rotate-x: 0deg;
 		--rotate-y: 0deg;
 		--translate-x: 0px;
@@ -143,5 +135,19 @@ const { class: className } = Astro.props;
 		filter: brightness(0.9) contrast(2);
 		mix-blend-mode: overlay;
 		transition: opacity 0.1s ease-in-out;
+	}
+
+	astro-card .background {
+		background-image: url("/bg/1.avif");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	astro-card .texture {
+		background-image: url("/bg/texture.avif");
+		background-size: cover;
+		background-position: center;
+		background-repeat: repeat;
 	}
 </style>
