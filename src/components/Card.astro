@@ -19,7 +19,7 @@ const { class: className } = Astro.props;
 		</div>
 		<div
 			aria-hidden="true"
-			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-15 mix-blend-multiply"
+			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-60 mix-blend-multiply brightness-105"
 		>
 		</div>
 		<div
@@ -31,9 +31,13 @@ const { class: className } = Astro.props;
 			<slot />
 		</div>
 	</div>
-	<div class="back layer-1 absolute left-0 top-0 -z-10 size-full rounded-xl">
+	<div
+		class="back layer-1 texture absolute left-0 top-0 -z-10 size-full rounded-xl opacity-65 brightness-105"
+	>
 	</div>
-	<div class="back layer-2 absolute left-0 top-0 -z-20 size-full rounded-xl">
+	<div
+		class="back layer-2 texture absolute left-0 top-0 -z-20 size-full rounded-xl opacity-65 brightness-110"
+	>
 	</div>
 </astro-card>
 
@@ -148,6 +152,6 @@ const { class: className } = Astro.props;
 		background-image: url("/bg/texture.avif");
 		background-size: cover;
 		background-position: center;
-		background-repeat: repeat;
+		background-repeat: no-repeat;
 	}
 </style>
