@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: 5.0.0-beta.2
         version: 5.0.0-beta.2(rollup@4.23.0)(typescript@5.6.2)
+      astro-capo:
+        specifier: 0.0.1
+        version: 0.0.1(astro@5.0.0-beta.2(rollup@4.23.0)(typescript@5.6.2))
       eslint:
         specifier: 9.11.1
         version: 9.11.1(jiti@2.0.0)
@@ -712,6 +715,11 @@ packages:
   array-union@2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
+
+  astro-capo@0.0.1:
+    resolution: {integrity: sha512-KyQD1mzgEQnbqrKpYdoIZMAYejkOcIJocdGuQBH9Yzr4KqGzIR8P2DDNbV/FQXaSyq900lCZwWJH45tBIQCG8w==}
+    peerDependencies:
+      astro: '>= 2.8'
 
   astro-eslint-parser@1.0.3:
     resolution: {integrity: sha512-AGsGgcg7Jg9UpyCDgvl/EkdYpe1oMkFdmC2Zl+KWneoieLCtQIFjmcY8yt41gcNx4mby0w8BBJQcBmPuf8UAoQ==}
@@ -2179,6 +2187,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  ultrahtml@1.5.3:
+    resolution: {integrity: sha512-GykOvZwgDWZlTQMtp5jrD4BVL+gNn2NVlVafjcFUJ7taY20tqYdwdoWBFy6GBJsNTZe1GkGPkSl5knQAjtgceg==}
+
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
 
@@ -2916,6 +2927,11 @@ snapshots:
   array-iterate@2.0.1: {}
 
   array-union@2.1.0: {}
+
+  astro-capo@0.0.1(astro@5.0.0-beta.2(rollup@4.23.0)(typescript@5.6.2)):
+    dependencies:
+      astro: 5.0.0-beta.2(rollup@4.23.0)(typescript@5.6.2)
+      ultrahtml: 1.5.3
 
   astro-eslint-parser@1.0.3(typescript@5.6.2):
     dependencies:
@@ -4752,6 +4768,8 @@ snapshots:
       - supports-color
 
   typescript@5.6.2: {}
+
+  ultrahtml@1.5.3: {}
 
   unified@11.0.5:
     dependencies:
