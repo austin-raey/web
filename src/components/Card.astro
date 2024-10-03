@@ -58,9 +58,11 @@ const { class: className } = Astro.props;
 			});
 		}
 
-		#onPointerMove(event: PointerEvent) {
-			const cursorPosX = event.clientX - this.offsetLeft;
-			const cursorPosY = event.clientY - this.offsetTop;
+		#onPointerMove(event: PointerEvent | TouchEvent) {
+			const eventX = event.touches ? event.touches[0].clientX : event.clientX;
+			const eventY = event.touches ? event.touches[0].clientY : event.clientY;
+			const cursorPosX = eventX - this.offsetLeft;
+			const cursorPosY = eventY - this.offsetTop;
 
 			// Calculate the rotation of the card based on the pointer's position.
 			const x = (cursorPosX - this.offsetWidth / 2) / 15;
@@ -78,11 +80,17 @@ const { class: className } = Astro.props;
 		connectedCallback() {
 			this.addEventListener("pointermove", this.#onPointerMove);
 			this.addEventListener("pointerleave", this.#onPointerLeave);
+			this.addEventListener("touchmove", this.#onPointerMove);
+			this.addEventListener("touchstart", this.#onPointerMove);
+			this.addEventListener("touchend", this.#onPointerLeave);
 		}
 
 		disconnectedCallback() {
 			this.removeEventListener("pointermove", this.#onPointerMove);
 			this.removeEventListener("pointerleave", this.#onPointerLeave);
+			this.removeEventListener("touchmove", this.#onPointerMove);
+			this.removeEventListener("touchstart", this.#onPointerMove);
+			this.removeEventListener("touchend", this.#onPointerLeave);
 		}
 	}
 
