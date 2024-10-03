@@ -43,7 +43,7 @@ const { class: className } = Astro.props;
 		</div>
 		<div
 			aria-hidden="true"
-			class="background pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+			class="background pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
 		>
 		</div>
 		<div class:list={["relative z-10", className]}>
@@ -51,11 +51,11 @@ const { class: className } = Astro.props;
 		</div>
 	</div>
 	<div
-		class="back layer-1 texture absolute left-0 top-0 -z-10 size-full rounded-xl bg-cover opacity-65 brightness-105"
+		class="back layer-1 texture absolute left-0 top-0 -z-10 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105"
 	>
 	</div>
 	<div
-		class="back layer-2 texture absolute left-0 top-0 -z-20 size-full rounded-xl bg-cover opacity-65 brightness-110"
+		class="back layer-2 texture absolute left-0 top-0 -z-20 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105"
 	>
 	</div>
 </astro-card>
