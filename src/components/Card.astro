@@ -6,6 +6,25 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
+<img
+	alt=""
+	class="hidden"
+	fetchpriority="high"
+	height="0"
+	loading="eager"
+	src="/bg/1.avif"
+	width="0"
+/>
+<img
+	alt=""
+	class="hidden"
+	fetchpriority="high"
+	height="0"
+	loading="eager"
+	src="/bg/texture.avif"
+	width="0"
+/>
+
 <astro-card
 	class="block aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
 >
@@ -14,17 +33,17 @@ const { class: className } = Astro.props;
 	>
 		<div
 			aria-hidden="true"
-			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25"
+			class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200"
 		>
 		</div>
 		<div
 			aria-hidden="true"
-			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full opacity-60 mix-blend-multiply brightness-105"
+			class="texture pointer-events-none absolute left-0 top-0 z-20 size-full bg-cover opacity-60 mix-blend-multiply brightness-105"
 		>
 		</div>
 		<div
 			aria-hidden="true"
-			class="background pointer-events-none absolute left-0 top-0 z-0 size-full opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+			class="background pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
 		>
 		</div>
 		<div class:list={["relative z-10", className]}>
@@ -32,11 +51,11 @@ const { class: className } = Astro.props;
 		</div>
 	</div>
 	<div
-		class="back layer-1 texture absolute left-0 top-0 -z-10 size-full rounded-xl opacity-65 brightness-105"
+		class="back layer-1 texture absolute left-0 top-0 -z-10 size-full rounded-xl bg-cover opacity-65 brightness-105"
 	>
 	</div>
 	<div
-		class="back layer-2 texture absolute left-0 top-0 -z-20 size-full rounded-xl opacity-65 brightness-110"
+		class="back layer-2 texture absolute left-0 top-0 -z-20 size-full rounded-xl bg-cover opacity-65 brightness-110"
 	>
 	</div>
 </astro-card>
@@ -78,11 +97,21 @@ const { class: className } = Astro.props;
 		}
 
 		connectedCallback() {
-			this.addEventListener("pointermove", this.#onPointerMove);
-			this.addEventListener("pointerleave", this.#onPointerLeave);
-			this.addEventListener("touchmove", this.#onPointerMove);
-			this.addEventListener("touchstart", this.#onPointerMove);
-			this.addEventListener("touchend", this.#onPointerLeave);
+			this.addEventListener("pointermove", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("pointerleave", this.#onPointerLeave, {
+				passive: true
+			});
+			this.addEventListener("touchmove", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("touchstart", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("touchend", this.#onPointerLeave, {
+				passive: true
+			});
 		}
 
 		disconnectedCallback() {
@@ -144,22 +173,14 @@ const { class: className } = Astro.props;
 			hsla(150, 20%, 30%, 0.45) 100%,
 			hsla(0, 0%, 0%, 0.9) 175%
 		);
-		filter: brightness(0.9) contrast(2);
-		mix-blend-mode: overlay;
 		transition: opacity 0.1s ease-in-out;
 	}
 
 	astro-card .background {
 		background-image: url("/bg/1.avif");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
 	}
 
 	astro-card .texture {
 		background-image: url("/bg/texture.avif");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
 	}
 </style>
