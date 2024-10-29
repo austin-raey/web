@@ -23,8 +23,15 @@ export default tseslint.config(
 					}
 				}
 			],
-			// Astro likes "Props" for component properties
-			"unicorn/prevent-abbreviations": "off"
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					replacements: {
+						// Astro likes "Props" for component properties
+						props: false
+					}
+				}
+			]
 		}
 	},
 
