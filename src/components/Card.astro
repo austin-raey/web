@@ -78,10 +78,10 @@ const { class: className } = Astro.props;
 		}
 
 		#onPointerMove(event: PointerEvent | TouchEvent) {
-			const eventX = event.touches ? event.touches[0].clientX : event.clientX;
-			const eventY = event.touches ? event.touches[0].clientY : event.clientY;
-			const cursorPosX = eventX - this.offsetLeft;
-			const cursorPosY = eventY - this.offsetTop;
+			const { clientX, clientY } =
+				event instanceof TouchEvent ? event.touches[0] : event;
+			const cursorPosX = clientX - this.offsetLeft;
+			const cursorPosY = clientY - this.offsetTop;
 
 			// Calculate the rotation of the card based on the pointer's position.
 			const x = (cursorPosX - this.offsetWidth / 2) / 15;
