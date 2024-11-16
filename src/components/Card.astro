@@ -77,9 +77,12 @@ const { class: className } = Astro.props;
 			});
 		}
 
-		#onPointerMove(event: PointerEvent | TouchEvent) {
+		#onPointerMove(event: PointerEvent | TouchEvent | Touch) {
+			const supportsTouchEvent = "TouchEvent" in window;
 			const { clientX, clientY } =
-				event instanceof TouchEvent ? event.touches[0] : event;
+				supportsTouchEvent && event instanceof TouchEvent
+					? event.touches[0]
+					: (event as Touch | PointerEvent);
 			const cursorPosX = clientX - this.offsetLeft;
 			const cursorPosY = clientY - this.offsetTop;
 
