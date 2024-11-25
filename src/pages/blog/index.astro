@@ -1,10 +1,12 @@
 ---
+import { getCollection } from "astro:content";
+
 import BlogLink from "~/components/BlogLink.astro";
 import Card from "~/components/Card.astro";
 import Icon from "~/components/Icon.astro";
 import Default from "~/layouts/Default.astro";
 
-const posts = Object.values(import.meta.glob("./blog/*.md", { eager: true }));
+const posts = await getCollection("blog");
 ---
 
 <Default>
@@ -28,8 +30,8 @@ const posts = Object.values(import.meta.glob("./blog/*.md", { eager: true }));
 			</nav>
 		</header>
 
-		<main>
-			<p>
+		<main class="space-y-3">
+			<p class="md:w-2/3">
 				Here I post my thoughts on things, tutorials, and fixes to random
 				nonsense I encounter when using computers (so I don't forget!).
 			</p>
@@ -79,13 +81,11 @@ const posts = Object.values(import.meta.glob("./blog/*.md", { eager: true }));
 			<nav>
 				<ul class="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
 					{
-						posts.map((post) => {
-							return (
-								<li>
-									<BlogLink frontmatter={post.frontmatter} href={post.url} />
-								</li>
-							);
-						})
+						posts.map(({ data, slug }) => (
+							<li>
+								<BlogLink frontmatter={data} slug={slug} />
+							</li>
+						))
 					}
 				</ul>
 			</nav>
