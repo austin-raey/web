@@ -5,33 +5,33 @@ import Default from "../layouts/Default.astro";
 ---
 
 <Default>
-	<Card
-		class="right-[-20%] top-1/2 w-[158.824%] origin-top rotate-90 space-y-3 font-semibold text-[#242424]/90 sm:right-auto sm:top-auto sm:w-auto sm:rotate-0"
-	>
-		<figure>
-			<figcaption>
-				<h1 class="text-3xl font-extrabold">
-					<span class="block text-4xl leading-8">Austin</span>
-					<span class="inline-block">Raey</span>
-				</h1>
-			</figcaption>
-			<img
-				alt="Portrait of Austin Raey"
-				class="absolute right-0 top-0 size-24 rounded-[40%]"
-				fetchpriority="high"
-				loading="eager"
-				src="/portrait.avif"
-			/>
-		</figure>
+	<Card class="space-y-3 font-semibold">
+		<header>
+			<figure>
+				<figcaption>
+					<h1 class="text-3xl font-extrabold">
+						<span class="block text-4xl leading-8">Austin</span>
+						<span class="inline-block">Raey</span>
+					</h1>
+				</figcaption>
+				<img
+					alt="Portrait of Austin Raey"
+					class="absolute right-0 top-0 m-5 size-24 rounded-[40%]"
+					fetchpriority="high"
+					loading="eager"
+					src="/portrait.avif"
+				/>
+			</figure>
+		</header>
 
-		<div>
+		<main>
 			<div>
 				<Icon name="ph/map-pin-duotone" />
-				<span>North Carolina</span>
+				<span><span class="sr-only">Located in:</span> North Carolina</span>
 			</div>
 			<div>
 				<Icon name="ph/shirt-folded-duotone" />
-				<span>Software Engineer</span>
+				<span><span class="sr-only">Occupation:</span> Software Engineer</span>
 			</div>
 			<ul class="ml-5 space-y-0.5 text-xs font-normal tracking-tight">
 				<li>
@@ -51,66 +51,79 @@ import Default from "../layouts/Default.astro";
 					</ul>
 				</li>
 			</ul>
-		</div>
+		</main>
 
-		<ul class="flex flex-wrap gap-2">
-			<li>
-				<a
-					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					href="https://github.com/austin-raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's GitHub profile"
-				>
-					<Icon name="ph/github-logo-duotone" /> austin-raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					href="https://www.threads.net/@austin.raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's Threads profile"
-				>
-					<Icon name="ph/threads-logo-duotone" /> austin.raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					href="https://www.instagram.com/austin.raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's Instagram profile"
-				>
-					<Icon name="ph/instagram-logo-duotone" /> austin.raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					href="https://www.linkedin.com/in/austin-raey/"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's LinkedIn profile"
-				>
-					<Icon name="ph/linkedin-logo-duotone" /> austin-raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					href="mailto:austin@raey.link"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's email"
-				>
-					<Icon name="ph/mailbox-duotone" />
-					Email
-				</a>
-			</li>
-		</ul>
+		<footer>
+			<ul class="flex flex-wrap gap-2">
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="https://github.com/austin-raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's GitHub profile"
+					>
+						<Icon name="ph/github-logo-duotone" /> austin-raey
+					</a>
+				</li>
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="https://www.threads.net/@austin.raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's Threads profile"
+					>
+						<Icon name="ph/threads-logo-duotone" /> austin.raey
+					</a>
+				</li>
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="https://www.instagram.com/austin.raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's Instagram profile"
+					>
+						<Icon name="ph/instagram-logo-duotone" /> austin.raey
+					</a>
+				</li>
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="https://www.linkedin.com/in/austin-raey/"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's LinkedIn profile"
+					>
+						<Icon name="ph/linkedin-logo-duotone" /> austin-raey
+					</a>
+				</li>
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="mailto:austin@raey.link"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's email"
+					>
+						<Icon name="ph/mailbox-duotone" />
+						Email
+					</a>
+				</li>
+				<li>
+					<a
+						class="rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+						href="/blog"
+						rel="me"
+						title="Austin's blog"
+					>
+						<Icon name="ph/newspaper-clipping-duotone" />
+						Blog
+					</a>
+				</li>
+			</ul>
+		</footer>
 	</Card>
 </Default>
 

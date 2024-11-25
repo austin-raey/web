@@ -1,5 +1,6 @@
 ---
 import { Head } from "astro-capo";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <html class="overflow-hidden dark:bg-[#242424]" lang="en">
@@ -40,6 +41,8 @@ import { Head } from "astro-capo";
 		<meta content="Austin Raey" name="author" />
 		<meta content="Austin Raey's contact card" name="description" />
 		<meta content="light dark" name="color-scheme" />
+
+		<ClientRouter />
 	</Head>
 	<body
 		class="flex h-screen items-center justify-center overflow-hidden dark:bg-[#242424]"
@@ -47,3 +50,17 @@ import { Head } from "astro-capo";
 		<slot />
 	</body>
 </html>
+
+<style is:global>
+	h1,
+	h2,
+	h3,
+	span,
+	a,
+	li {
+		text-shadow:
+			0 0.5px 0 rgba(255, 255, 255, 0.45),
+			0 -0.5px 0 rgba(255, 255, 255, 0.33),
+			1px 0 0 rgba(255, 255, 255, 0.33);
+	}
+</style>

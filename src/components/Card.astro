@@ -3,16 +3,29 @@ import { Image } from "astro:assets";
 
 interface Props {
 	class?: string;
+	size?: "large" | "small";
 }
 
-const { class: className } = Astro.props;
+const { class: className, size = "small" } = Astro.props;
+const CLASSES = {
+	large: {
+		content: "",
+		root: "md:aspect-[3.375/2.125] max-w-[1024px]"
+	},
+	small: {
+		content:
+			"rotate-90 right-[-20%] top-1/2 w-[158.824%] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0",
+		root: "aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
+	}
+} as const;
 ---
 
-<astro-card
-	class="block aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
->
+<astro-card class="block max-h-screen" data-size={size} transition:name="card">
 	<div
-		class="rotator relative size-full overflow-hidden rounded-xl p-5 shadow-2xl"
+		class:list={[
+			"rotator relative size-full overflow-hidden rounded-xl shadow-2xl",
+			CLASSES[size].root
+		]}
 	>
 		<div
 			aria-hidden="true"
@@ -20,29 +33,35 @@ const { class: className } = Astro.props;
 		>
 		</div>
 		<Image
+			alt=""
 			aria-hidden="true"
 			class="pointer-events-none absolute left-0 top-0 z-20 size-full bg-cover opacity-60 mix-blend-multiply brightness-105"
-			src="/bg/texture.avif"
-			alt=""
-			width={500}
-			height={375}
-			fetchpriority="high"
 			decoding="async"
+			fetchpriority="high"
+			height={375}
 			loading="eager"
+			src="/bg/texture.avif"
+			width={500}
 		/>
 
 		<Image
+			alt=""
 			aria-hidden="true"
 			class="pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
-			src="/bg/1.avif"
-			alt=""
-			width={500}
-			height={375}
-			fetchpriority="high"
 			decoding="async"
+			fetchpriority="high"
+			height={375}
 			loading="eager"
+			src="/bg/1.avif"
+			width={500}
 		/>
-		<div class:list={["relative z-10", className]}>
+		<div
+			class:list={[
+				"relative z-10 origin-top text-[#242424]/90 p-5",
+				CLASSES[size].content,
+				className
+			]}
+		>
 			<slot />
 		</div>
 	</div>
@@ -50,7 +69,7 @@ const { class: className } = Astro.props;
 	<Image
 		alt=""
 		aria-hidden="true"
-		class="back layer-1 absolute left-0 top-0 -z-10 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105 pointer-events-none"
+		class="back layer-1 pointer-events-none absolute left-0 top-0 -z-10 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105"
 		decoding="async"
 		fetchpriority="high"
 		height={375}
@@ -62,7 +81,7 @@ const { class: className } = Astro.props;
 	<Image
 		alt=""
 		aria-hidden="true"
-		class="back layer-2 absolute left-0 top-0 -z-20 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105 pointer-events-none"
+		class="back layer-2 pointer-events-none absolute left-0 top-0 -z-20 size-full rounded-xl bg-cover bg-center opacity-65 brightness-105"
 		decoding="async"
 		fetchpriority="high"
 		height={375}
@@ -75,43 +94,22 @@ const { class: className } = Astro.props;
 <script>
 	// Define the behaviour for our new type of HTML element.
 	class AstroCard extends HTMLElement {
+		// eslint-disable-next-line unicorn/explicit-length-check
+		#size = this.dataset.size || "small";
+
 		constructor() {
 			super();
 		}
 
-		#onPointerLeave() {
-			// Reset the card's rotation when the pointer leaves the card.
-			requestAnimationFrame(() => {
-				this.style.setProperty("--rotate-x", "0deg");
-				this.style.setProperty("--rotate-y", "0deg");
-				this.style.setProperty("--pointer-x", "50%");
-				this.style.setProperty("--pointer-y", "50%");
-			});
-		}
-
-		#onPointerMove(event: PointerEvent | TouchEvent | Touch) {
-			const supportsTouchEvent = "TouchEvent" in window;
-			const { clientX, clientY } =
-				supportsTouchEvent && event instanceof TouchEvent
-					? event.touches[0]
-					: (event as Touch | PointerEvent);
-			const cursorPosX = clientX - this.offsetLeft;
-			const cursorPosY = clientY - this.offsetTop;
-
-			// Calculate the rotation of the card based on the pointer's position.
-			const x = (cursorPosX - this.offsetWidth / 2) / 15;
-			const y = (cursorPosY - this.offsetHeight / 2) / 15;
-
-			// Update the CSS custom properties to rotate the card.
-			requestAnimationFrame(() => {
-				this.style.setProperty("--rotate-x", `${-x}deg`);
-				this.style.setProperty("--rotate-y", `${y}deg`);
-				this.style.setProperty("--pointer-x", `${cursorPosX}px`);
-				this.style.setProperty("--pointer-y", `${cursorPosY}px`);
-			});
-		}
-
 		connectedCallback() {
+			const prefersReducedMotion = globalThis.matchMedia(
+				"(prefers-reduced-motion: reduce)"
+			).matches;
+
+			if (prefersReducedMotion) {
+				return;
+			}
+
 			this.addEventListener("pointermove", this.#onPointerMove, {
 				passive: true
 			});
@@ -135,6 +133,40 @@ const { class: className } = Astro.props;
 			this.removeEventListener("touchmove", this.#onPointerMove);
 			this.removeEventListener("touchstart", this.#onPointerMove);
 			this.removeEventListener("touchend", this.#onPointerLeave);
+		}
+
+		#onPointerLeave() {
+			// Reset the card's rotation when the pointer leaves the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", "0deg");
+				this.style.setProperty("--rotate-y", "0deg");
+				this.style.setProperty("--pointer-x", "50%");
+				this.style.setProperty("--pointer-y", "50%");
+			});
+		}
+
+		#onPointerMove(event: PointerEvent | Touch | TouchEvent) {
+			const supportsTouchEvent = "TouchEvent" in globalThis;
+			const { clientX, clientY } =
+				supportsTouchEvent && event instanceof TouchEvent
+					? event.touches[0]
+					: (event as PointerEvent | Touch);
+			const cursorPosX = clientX - this.offsetLeft;
+			const cursorPosY = clientY - this.offsetTop;
+
+			const rotateFactor = this.#size === "small" ? 15 : 150;
+
+			// Calculate the rotation of the card based on the pointer's position.
+			const x = (cursorPosX - this.offsetWidth / 2) / rotateFactor;
+			const y = (cursorPosY - this.offsetHeight / 2) / rotateFactor;
+
+			// Update the CSS custom properties to rotate the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", `${-x}deg`);
+				this.style.setProperty("--rotate-y", `${y}deg`);
+				this.style.setProperty("--pointer-x", `${cursorPosX}px`);
+				this.style.setProperty("--pointer-y", `${cursorPosY}px`);
+			});
 		}
 	}
 

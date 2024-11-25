@@ -11,6 +11,11 @@ export default tseslint.config(
 	...tseslint.configs.stylistic,
 	prettier,
 	...astro.configs.recommended,
+	{
+		rules: {
+			"astro/sort-attributes": "error"
+		}
+	},
 	unicorn.configs["flat/recommended"],
 	{
 		rules: {
