@@ -1,16 +1,22 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
 import Card from "~/components/Card.astro";
 import Icon from "~/components/Icon.astro";
 
 import Default from "./Default.astro";
 
-const { frontmatter, url } = Astro.props;
-const iconToLabel = {
+type Props = CollectionEntry<"blog">["data"] & {
+	slug: CollectionEntry<"blog">["slug"];
+};
+
+const { icons, slug, title } = Astro.props;
+const ICON_TO_LABEL = {
 	"ph/bug-duotone": "Fix",
 	"ph/laptop-duotone": "Computer",
 	"ph/list-numbers-duotone": "Tutorial",
 	"ph/pencil-circle-duotone": "Personal"
-};
+} as const;
 ---
 
 <Default>
@@ -19,19 +25,19 @@ const iconToLabel = {
 		size="large"
 	>
 		<header class="flex items-start justify-between font-semibold">
-			<div class="space-y-2" transition:name={`blog-tags-${url}`}>
+			<div class="space-y-2" transition:name={`blog-tags-${slug}`}>
 				<h1
 					class="text-3xl font-extrabold"
-					transition:name={`blog-title-${url}`}
+					transition:name={`blog-title-${slug}`}
 				>
-					{frontmatter.title}
+					{title}
 				</h1>
 				<h2 class="flex gap-5 rounded-xl bg-white/80 px-2 py-1">
 					{
-						frontmatter.icons.map((icon) => (
+						icons.map((icon) => (
 							<div class="flex items-center gap-2">
 								<Icon class="size-8" name={icon} />
-								<span>{iconToLabel[icon]}</span>
+								<span>{ICON_TO_LABEL[icon]}</span>
 							</div>
 						))
 					}
@@ -67,7 +73,7 @@ const iconToLabel = {
 			</nav>
 		</header>
 
-		<main transition:name={`blog-content-${url}`}>
+		<main transition:name={`blog-content-${slug}`}>
 			<slot />
 		</main>
 	</Card>
