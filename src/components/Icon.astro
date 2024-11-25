@@ -2,14 +2,16 @@
 interface Props {
 	class?: string;
 	name: string;
+	title?: string;
 }
 
-const { class: className, name } = Astro.props;
+const { class: className, name, title } = Astro.props;
 ---
 
 <span
-	aria-hidden="true"
-	class:list={["i", name, "pointer-events-none", className]}
+	aria-hidden={title ? undefined : "true"}
+	class:list={["i", name, !title && "pointer-events-none", className]}
 	role="presentation"
+	title={title}
 >
 </span>

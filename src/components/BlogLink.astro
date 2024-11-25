@@ -1,0 +1,32 @@
+---
+import { slide } from "astro:transitions";
+
+import Icon from "./Icon.astro";
+
+interface Props {
+	frontmatter: Record<string, string>;
+	href: string;
+}
+
+const {
+	frontmatter: { icons = [], shortDescription = "" },
+	href = "/"
+} = Astro.props;
+---
+
+<a class="block space-y-1 rounded-xl py-3" href={href}>
+	<div class="flex items-center space-x-2">
+		<div
+			class="flex gap-1 rounded-xl bg-white/80 px-2 py-1"
+			transition:name={`blog-tags-${href}`}
+		>
+			{icons.map((icon) => <Icon class="size-8" name={icon} />)}
+		</div>
+		<h2 class="text-xl font-bold" transition:name={`blog-title-${href}`}>
+			Test Post
+		</h2>
+	</div>
+	<p class="opacity-75" transition:name={`blog-content-${href}`}>
+		{shortDescription}
+	</p>
+</a>
