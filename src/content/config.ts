@@ -3,7 +3,14 @@ import { defineCollection, z } from "astro:content";
 const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
-		icons: z.array(z.string()),
+		icons: z.array(
+			z.enum([
+				"ph/bug-duotone",
+				"ph/laptop-duotone",
+				"ph/list-numbers-duotone",
+				"ph/pencil-circle-duotone"
+			])
+		),
 		shortDescription: z.string().optional(),
 		title: z.string()
 	}),

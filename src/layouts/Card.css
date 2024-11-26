@@ -1,0 +1,91 @@
+:root {
+	--pointer-x: 50%;
+	--pointer-y: 50%;
+	--rotate-x: 0deg;
+	--rotate-y: 0deg;
+	--translate-x: 0px;
+	--translate-y: 0px;
+	--translate-z: 0px;
+}
+
+astro-card {
+	--rotate: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
+		transLateZ(var(--translate-z));
+	--shine: radial-gradient(
+		farthest-corner circle at var(--pointer-x) var(--pointer-y),
+		hsla(50, 20%, 90%, 0.45) 0%,
+		hsla(150, 20%, 30%, 0.45) 100%,
+		hsla(0, 0%, 0%, 0.9) 175%
+	);
+
+	perspective: 900px;
+	transform-origin: center;
+
+	.back,
+	.rotator {
+		transform-origin: center;
+		transform-style: preserve-3d;
+	}
+
+	&:not([data-size="large"]) {
+		.back,
+		.rotator {
+			transform: var(--rotate);
+		}
+
+		.shine {
+			background-image: var(--shine);
+		}
+	}
+
+	@screen md {
+		&[data-size="large"] {
+			.back,
+			.rotator {
+				transform: var(--rotate);
+			}
+		}
+
+		.shine {
+			background-image: var(--shine);
+		}
+	}
+
+	.back {
+		background: linear-gradient(
+			180deg,
+			hsla(0, 0%, 90%, 0.45),
+			hsla(0, 0%, 90%, 0.5)
+		);
+
+		&.layer-1 {
+			--translate-z: -10px;
+		}
+
+		&.layer-2 {
+			--translate-z: -20px;
+		}
+	}
+
+	.shine {
+		transition: opacity 0.1s ease-in-out;
+	}
+}
+
+astro-card {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	span,
+	a,
+	p,
+	li {
+		text-shadow:
+			0 0.5px 0 rgba(255, 255, 255, 0.45),
+			0 -0.5px 0 rgba(255, 255, 255, 0.33),
+			1px 0 0 rgba(255, 255, 255, 0.33);
+	}
+}

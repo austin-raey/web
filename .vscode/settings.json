@@ -24,6 +24,13 @@
 	"files.trimTrailingWhitespace": true,
 	"npm.packageManager": "pnpm",
 	"prettier.documentSelectors": ["**/*.astro"],
+	"tailwindCSS.experimental.classRegex": [
+		["CLASSES \\=([^;]*);", "'([^']*)'"],
+		["CLASSES \\=([^;]*);", "\"([^\"]*)\""],
+		["CLASSES \\=([^;]*);", "\\`([^\\`]*)\\`"],
+		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+	],
+	"tailwindCSS.lint.recommendedVariantOrder": "error",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib"
 }

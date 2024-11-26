@@ -1,32 +1,40 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Icon from "./Icon.astro";
 
-interface Props {
-	frontmatter: Record<string, string>;
-	slug: string;
-}
-
-const {
-	frontmatter: { icons = [], shortDescription = "" },
-	slug = ""
-} = Astro.props;
+type Props = CollectionEntry<"blog">;
+const { data: { icons = [], shortDescription = "", title } = {}, slug } =
+	Astro.props;
 
 const href = `/blog/${slug}`;
 ---
 
 <a class="block space-y-1 rounded-xl py-3" href={href}>
 	<div class="flex items-center space-x-2">
-		<div
-			class="flex gap-1 rounded-xl bg-white/80 px-2 py-1"
+		<h3
+			class="flex max-w-max shrink gap-1 rounded-xl bg-white/80 px-2 py-1"
+			data-transition-name={`blog-tags-${slug}`}
 			transition:name={`blog-tags-${slug}`}
 		>
 			{icons.map((icon) => <Icon class="size-8" name={icon} />)}
-		</div>
-		<h2 class="text-xl font-bold" transition:name={`blog-title-${slug}`}>
-			Test Post
+		</h3>
+		<h2
+			class="text-xl font-bold"
+			data-transition-name={`blog-title-${slug}`}
+			transition:name={`blog-title-${slug}`}
+		>
+			{title}
 		</h2>
 	</div>
-	<p class="opacity-75" transition:name={`blog-content-${slug}`}>
-		{shortDescription}
-	</p>
+	{
+		shortDescription !== "" && (
+			<p
+				class="opacity-75"
+				data-transition-name={`blog-content-${slug}`}
+				transition:name={`blog-content-${slug}`}
+			>
+				{shortDescription}
+			</p>
+		)
+	}
 </a>
