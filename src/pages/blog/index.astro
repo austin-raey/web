@@ -3,8 +3,10 @@ import { getCollection } from "astro:content";
 import BlogLink from "~/components/BlogLink.astro";
 import Icon from "~/components/Icon.astro";
 import Card from "~/layouts/Card.astro";
+import { ICON_TO_LABEL } from "~/layouts/Post.astro";
 
 const posts = await getCollection("blog");
+console.log(posts);
 ---
 
 <Card size="large">
@@ -36,44 +38,28 @@ const posts = await getCollection("blog");
 		</p>
 
 		<div class="text-xs">
-			<span class="sr-only">Icon legend for post types:</span>
+			<span class="sr-only">Legend for post types:</span>
 			<div class="flex flex-wrap gap-1">
-				<figure
-					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-				>
-					<Icon
-						name="ph/pencil-circle-duotone"
-						title="Pencil Icon: personal post"
-					/>
-					<figcaption>Personal</figcaption>
-				</figure>
-
-				<figure
-					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-				>
-					<Icon
-						name="ph/list-numbers-duotone"
-						title="List Icon: tutorial post"
-					/>
-					<figcaption>Tutorial</figcaption>
-				</figure>
-
-				<figure
-					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-				>
-					<Icon name="ph/bug-duotone" title="Bug Icon: bugfix post" />
-					<figcaption>Fix</figcaption>
-				</figure>
-
-				<figure
-					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-				>
-					<Icon
-						name="ph/laptop-duotone"
-						title="Computer Icon: post about computers"
-					/>
-					<figcaption>Computer</figcaption>
-				</figure>
+				{
+					Object.keys(ICON_TO_LABEL)
+						.sort((a, b) =>
+							ICON_TO_LABEL[a as keyof typeof ICON_TO_LABEL] >
+							ICON_TO_LABEL[b as keyof typeof ICON_TO_LABEL]
+								? 1
+								: -1
+						)
+						.map((icon) => (
+							<figure class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold">
+								<Icon
+									name={icon}
+									title={`${ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]} Icon`}
+								/>
+								<figcaption>
+									{ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]}
+								</figcaption>
+							</figure>
+						))
+				}
 			</div>
 		</div>
 
