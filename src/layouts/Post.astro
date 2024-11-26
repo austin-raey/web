@@ -6,26 +6,39 @@ import Card from "./Card.astro";
 type Props = CollectionEntry<"blog">["data"] & {
 	slug: CollectionEntry<"blog">["slug"];
 };
-const { icons, slug, title } = Astro.props;
+const { date, icons, slug, title } = Astro.props;
+console.log(date);
 
-const ICON_TO_LABEL = {
-	"ph/bug-duotone": "Fix",
+type ICON_NAME = CollectionEntry<"blog">["data"]["icons"][number];
+export const ICON_TO_LABEL: Record<ICON_NAME, string> = {
+	"ph/bug-duotone": "Bug Fix",
+	"ph/gear-fine-duotone": "JS Framework",
 	"ph/laptop-duotone": "Computer",
 	"ph/list-numbers-duotone": "Tutorial",
 	"ph/pencil-circle-duotone": "Personal"
-} satisfies Record<CollectionEntry<"blog">["data"]["icons"][number], string>;
+};
 ---
 
 <Card size="large">
-	<header class="flex items-start justify-between font-semibold">
-		<div class="basis-1/2 space-y-2">
-			<h1
-				class="text-3xl font-extrabold"
-				data-transition-name={`blog-title-${slug}`}
-				transition:name={`blog-title-${slug}`}
-			>
-				{title}
-			</h1>
+	<header class="flex items-start justify-between pb-3 font-semibold">
+		<div class="basis-2/3 space-y-2 md:basis-1/2">
+			<div>
+				<h1
+					class="text-3xl font-extrabold"
+					data-transition-name={`blog-title-${slug}`}
+					transition:name={`blog-title-${slug}`}
+				>
+					{title}
+				</h1>
+				<time
+					class="text-sm"
+					data-transition-name={`blog-date-${slug}`}
+					datetime={date.toISOString().split("T")[0]}
+					transition:name={`blog-date-${slug}`}
+				>
+					Written on {date.toLocaleDateString()}
+				</time>
+			</div>
 			<h2
 				class="flex max-w-max gap-5 rounded-xl bg-white/80 px-2 py-1"
 				data-transition-name={`blog-tags-${slug}`}
@@ -42,9 +55,9 @@ const ICON_TO_LABEL = {
 			</h2>
 		</div>
 
-		<nav class="absolute right-0 top-0 m-5 shrink-0 sm:static sm:m-0">
+		<nav>
 			<ol
-				class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+				class="flex flex-col rounded-xl border border-black/20 bg-white/20 px-2 py-1 md:flex-row"
 				data-transition-name="breadcrumb"
 				transition:name="breadcrumb"
 			>
@@ -54,14 +67,19 @@ const ICON_TO_LABEL = {
 					transition:animate="slide"
 					transition:name="breadcrumb-home"
 				>
-					<a href="/">
+					<a class="min-w-max py-2 md:py-0" href="/">
 						<Icon name="ph/house-duotone" />
 						<span class="sr-only">Back to</span> Home
 					</a>
 					<Icon class="mx-1 size-3 opacity-50" name="ph/caret-right-duotone" />
 				</li>
-				<li class="flex items-center">
-					<a href="/blog">
+				<li
+					class="flex items-center"
+					data-transition-name="breadcrumb-blog"
+					transition:animate="slide"
+					transition:name="breadcrumb-blog"
+				>
+					<a class="min-w-max py-2 md:py-0" href="/blog">
 						<Icon name="ph/newspaper-clipping-duotone" />
 						<span class="sr-only">Back to</span> Blog
 					</a>
@@ -77,3 +95,13 @@ const ICON_TO_LABEL = {
 		<slot />
 	</main>
 </Card>
+
+<style>
+	main {
+		@apply flex flex-col gap-2;
+
+		h2 {
+			@apply text-xl font-semibold;
+		}
+	}
+</style>

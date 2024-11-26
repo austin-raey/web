@@ -3,23 +3,35 @@ import type { CollectionEntry } from "astro:content";
 import Icon from "./Icon.astro";
 
 type Props = CollectionEntry<"blog">;
-const { data: { icons = [], shortDescription = "", title } = {}, slug } =
+const { data: { date, icons = [], shortDescription = "", title } = {}, slug } =
 	Astro.props;
 
 const href = `/blog/${slug}`;
 ---
 
-<a class="block space-y-1 rounded-xl py-3" href={href}>
+<a class="block rounded-xl py-3" href={href}>
 	<div class="flex items-center space-x-2">
-		<h3
-			class="flex max-w-max shrink gap-1 rounded-xl bg-white/80 px-2 py-1"
-			data-transition-name={`blog-tags-${slug}`}
-			transition:name={`blog-tags-${slug}`}
-		>
-			{icons.map((icon) => <Icon class="size-8" name={icon} />)}
-		</h3>
+		<div class="rounded-xl bg-white/80 px-2 py-1 text-center">
+			<h3
+				class="flex max-w-max shrink gap-1"
+				data-transition-name={`blog-tags-${slug}`}
+				transition:name={`blog-tags-${slug}`}
+			>
+				{icons.map((icon) => <Icon class="size-8" name={icon} />)}
+			</h3>
+			<time
+				class="text-xs tracking-wider"
+				data-transition-name={`blog-date-${slug}`}
+				datetime={date?.toISOString().split("T")[0]}
+				transition:name={`blog-date-${slug}`}
+			>
+				<span class="sr-only">Written on</span>
+				{date?.toLocaleDateString()}
+			</time>
+		</div>
+
 		<h2
-			class="text-xl font-bold"
+			class="text-xl font-bold leading-none"
 			data-transition-name={`blog-title-${slug}`}
 			transition:name={`blog-title-${slug}`}
 		>
