@@ -1,94 +1,92 @@
 ---
 import { getCollection } from "astro:content";
-
 import BlogLink from "~/components/BlogLink.astro";
-import Card from "~/components/Card.astro";
 import Icon from "~/components/Icon.astro";
-import Default from "~/layouts/Default.astro";
+import Card from "~/layouts/Card.astro";
 
 const posts = await getCollection("blog");
 ---
 
-<Default>
-	<Card
-		class="h-full min-w-[320px] space-y-3 overflow-y-scroll bg-white/50"
-		size="large"
-	>
-		<header class="flex items-start justify-between font-semibold">
-			<h1 class="text-3xl font-extrabold">Blog</h1>
-			<nav>
-				<ol
-					class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					transition:name="breadcrumb"
+<Card size="large">
+	<header class="flex items-start justify-between font-semibold">
+		<h1 class="text-3xl font-extrabold">Blog</h1>
+		<nav>
+			<ol
+				class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+				data-transition-name="breadcrumb"
+				transition:name="breadcrumb"
+			>
+				<li
+					class="flex items-center"
+					data-transition-name="breadcrumb-home"
+					transition:name="breadcrumb-home"
 				>
-					<li class="flex items-center" transition:name="breadcrumb-home">
-						<a href="/">
-							<Icon name="ph/house-duotone" /> Home
-						</a>
-					</li>
-				</ol>
-			</nav>
-		</header>
+					<a href="/">
+						<Icon name="ph/house-duotone" /> Home
+					</a>
+				</li>
+			</ol>
+		</nav>
+	</header>
 
-		<main class="space-y-3">
-			<p class="md:w-2/3">
-				Here I post my thoughts on things, tutorials, and fixes to random
-				nonsense I encounter when using computers (so I don't forget!).
-			</p>
+	<main class="space-y-3">
+		<p class="md:w-2/3">
+			Here I post my thoughts on things, tutorials, and fixes to random nonsense
+			I encounter when using computers (so I don't forget!).
+		</p>
 
-			<div class="text-xs">
-				<span class="sr-only">Icon legend for post types:</span>
-				<div class="flex flex-wrap gap-1">
-					<figure
-						class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-					>
-						<Icon
-							name="ph/pencil-circle-duotone"
-							title="Pencil Icon: personal post"
-						/>
-						<figcaption>Personal</figcaption>
-					</figure>
+		<div class="text-xs">
+			<span class="sr-only">Icon legend for post types:</span>
+			<div class="flex flex-wrap gap-1">
+				<figure
+					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
+				>
+					<Icon
+						name="ph/pencil-circle-duotone"
+						title="Pencil Icon: personal post"
+					/>
+					<figcaption>Personal</figcaption>
+				</figure>
 
-					<figure
-						class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-					>
-						<Icon
-							name="ph/list-numbers-duotone"
-							title="List Icon: tutorial post"
-						/>
-						<figcaption>Tutorial</figcaption>
-					</figure>
+				<figure
+					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
+				>
+					<Icon
+						name="ph/list-numbers-duotone"
+						title="List Icon: tutorial post"
+					/>
+					<figcaption>Tutorial</figcaption>
+				</figure>
 
-					<figure
-						class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-					>
-						<Icon name="ph/bug-duotone" title="Bug Icon: bugfix post" />
-						<figcaption>Fix</figcaption>
-					</figure>
+				<figure
+					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
+				>
+					<Icon name="ph/bug-duotone" title="Bug Icon: bugfix post" />
+					<figcaption>Fix</figcaption>
+				</figure>
 
-					<figure
-						class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
-					>
-						<Icon
-							name="ph/laptop-duotone"
-							title="Computer Icon: post about computers"
-						/>
-						<figcaption>Computer</figcaption>
-					</figure>
-				</div>
+				<figure
+					class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold"
+				>
+					<Icon
+						name="ph/laptop-duotone"
+						title="Computer Icon: post about computers"
+					/>
+					<figcaption>Computer</figcaption>
+				</figure>
 			</div>
+		</div>
 
-			<nav>
-				<ul class="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
-					{
-						posts.map(({ data, slug }) => (
-							<li>
-								<BlogLink frontmatter={data} slug={slug} />
-							</li>
-						))
-					}
-				</ul>
-			</nav>
-		</main>
-	</Card>
-</Default>
+		<nav>
+			<ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					posts.map((post) => (
+						<li>
+							<BlogLink {...post} />
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</main>
+</Card>

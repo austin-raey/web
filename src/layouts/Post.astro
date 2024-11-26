@@ -1,80 +1,79 @@
 ---
 import type { CollectionEntry } from "astro:content";
-
-import Card from "~/components/Card.astro";
 import Icon from "~/components/Icon.astro";
-
-import Default from "./Default.astro";
+import Card from "./Card.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
 	slug: CollectionEntry<"blog">["slug"];
 };
-
 const { icons, slug, title } = Astro.props;
+
 const ICON_TO_LABEL = {
 	"ph/bug-duotone": "Fix",
 	"ph/laptop-duotone": "Computer",
 	"ph/list-numbers-duotone": "Tutorial",
 	"ph/pencil-circle-duotone": "Personal"
-} as const;
+} satisfies Record<CollectionEntry<"blog">["data"]["icons"][number], string>;
 ---
 
-<Default>
-	<Card
-		class="h-full min-w-[320px] space-y-3 overflow-y-scroll bg-white/50"
-		size="large"
+<Card size="large">
+	<header class="flex items-start justify-between font-semibold">
+		<div class="basis-1/2 space-y-2">
+			<h1
+				class="text-3xl font-extrabold"
+				data-transition-name={`blog-title-${slug}`}
+				transition:name={`blog-title-${slug}`}
+			>
+				{title}
+			</h1>
+			<h2
+				class="flex max-w-max gap-5 rounded-xl bg-white/80 px-2 py-1"
+				data-transition-name={`blog-tags-${slug}`}
+				transition:name={`blog-tags-${slug}`}
+			>
+				{
+					icons.map((icon) => (
+						<div class="flex items-center gap-2">
+							<Icon class="size-8" name={icon} />
+							<span>{ICON_TO_LABEL[icon]}</span>
+						</div>
+					))
+				}
+			</h2>
+		</div>
+
+		<nav class="absolute right-0 top-0 m-5 shrink-0 sm:static sm:m-0">
+			<ol
+				class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
+				data-transition-name="breadcrumb"
+				transition:name="breadcrumb"
+			>
+				<li
+					class="flex items-center"
+					data-transition-name="breadcrumb-home"
+					transition:animate="slide"
+					transition:name="breadcrumb-home"
+				>
+					<a href="/">
+						<Icon name="ph/house-duotone" />
+						<span class="sr-only">Back to</span> Home
+					</a>
+					<Icon class="mx-1 size-3 opacity-50" name="ph/caret-right-duotone" />
+				</li>
+				<li class="flex items-center">
+					<a href="/blog">
+						<Icon name="ph/newspaper-clipping-duotone" />
+						<span class="sr-only">Back to</span> Blog
+					</a>
+				</li>
+			</ol>
+		</nav>
+	</header>
+
+	<main
+		data-transition-name={`blog-content-${slug}`}
+		transition:name={`blog-content-${slug}`}
 	>
-		<header class="flex items-start justify-between font-semibold">
-			<div class="space-y-2" transition:name={`blog-tags-${slug}`}>
-				<h1
-					class="text-3xl font-extrabold"
-					transition:name={`blog-title-${slug}`}
-				>
-					{title}
-				</h1>
-				<h2 class="flex gap-5 rounded-xl bg-white/80 px-2 py-1">
-					{
-						icons.map((icon) => (
-							<div class="flex items-center gap-2">
-								<Icon class="size-8" name={icon} />
-								<span>{ICON_TO_LABEL[icon]}</span>
-							</div>
-						))
-					}
-				</h2>
-			</div>
-
-			<nav>
-				<ol
-					class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-					transition:name="breadcrumb"
-				>
-					<li
-						class="flex items-center"
-						transition:animate="slide"
-						transition:name="breadcrumb-home"
-					>
-						<a href="/">
-							<Icon name="ph/house-duotone" />
-							<span class="sr-only">Back to</span> Home
-						</a>
-						<Icon
-							class="mx-1 size-3 opacity-50"
-							name="ph/caret-right-duotone"
-						/>
-					</li>
-					<li class="flex items-center">
-						<a href="/blog">
-							<Icon name="ph/newspaper-clipping-duotone" />
-							<span class="sr-only">Back to</span> Blog
-						</a>
-					</li>
-				</ol>
-			</nav>
-		</header>
-
-		<main transition:name={`blog-content-${slug}`}>
-			<slot />
-		</main>
-	</Card>
-</Default>
+		<slot />
+	</main>
+</Card>

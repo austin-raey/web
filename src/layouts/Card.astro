@@ -1,0 +1,234 @@
+---
+import { Image } from "astro:assets";
+import Default from "./Default.astro";
+import "./Card.css";
+
+interface Props {
+	size?: "large" | "small";
+}
+const { size = "small" } = Astro.props;
+
+const CLASSES = {
+	large: {
+		content: "h-full min-w-[320px] space-y-3 overflow-y-scroll bg-white/50",
+		root: "rounded-none md:rounded-xl max-w-[1024px] h-screen md:h-auto md:aspect-[3.375/2.125]"
+	},
+	small: {
+		content:
+			"rotate-90 right-[-20%] top-1/2 w-[158.824%] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0 space-y-3 font-semibold",
+		root: "rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
+	}
+} as const;
+---
+
+<Default>
+	<astro-card
+		class="m-0 block max-h-screen md:m-5"
+		data-size={size}
+		data-transition-name="card"
+		transition:name="card"
+	>
+		<div
+			class:list={[
+				"rotator relative size-full overflow-hidden shadow-2xl",
+				CLASSES[size].root
+			]}
+		>
+			<div
+				aria-hidden="true"
+				class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200"
+			>
+			</div>
+			<Image
+				alt=""
+				aria-hidden="true"
+				class="pointer-events-none absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105"
+				decoding="async"
+				fetchpriority="high"
+				height={375}
+				loading="eager"
+				src="/bg/texture.avif"
+				width={500}
+			/>
+
+			<Image
+				alt=""
+				aria-hidden="true"
+				class="pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+				decoding="async"
+				fetchpriority="high"
+				height={375}
+				loading="eager"
+				src="/bg/1.avif"
+				width={500}
+			/>
+			<div
+				class:list={[
+					"relative z-10 origin-top text-[#242424]/90 p-5",
+					CLASSES[size].content
+				]}
+			>
+				<slot />
+			</div>
+		</div>
+
+		<Image
+			alt=""
+			aria-hidden="true"
+			class="back layer-1 pointer-events-none absolute left-0 top-0 -z-10 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			decoding="async"
+			fetchpriority="high"
+			height={375}
+			loading="eager"
+			src="/bg/texture.avif"
+			width={500}
+		/>
+
+		<Image
+			alt=""
+			aria-hidden="true"
+			class="back layer-2 pointer-events-none absolute left-0 top-0 -z-20 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			decoding="async"
+			fetchpriority="high"
+			height={375}
+			loading="eager"
+			src="/bg/texture.avif"
+			width={500}
+		/>
+	</astro-card>
+</Default>
+
+<script>
+	// Define the behaviour for our new type of HTML element.
+	class AstroCard extends HTMLElement {
+		// eslint-disable-next-line unicorn/explicit-length-check
+		#size = this.dataset.size || "small";
+
+		constructor() {
+			super();
+		}
+
+		connectedCallback() {
+			const prefersReducedMotion = globalThis.matchMedia(
+				"(prefers-reduced-motion: reduce)"
+			).matches;
+
+			if (prefersReducedMotion) {
+				return;
+			}
+
+			this.addEventListener("pointermove", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("pointerleave", this.#onPointerLeave, {
+				passive: true
+			});
+			this.addEventListener("touchmove", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("touchstart", this.#onPointerMove, {
+				passive: true
+			});
+			this.addEventListener("touchend", this.#onPointerLeave, {
+				passive: true
+			});
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("pointermove", this.#onPointerMove);
+			this.removeEventListener("pointerleave", this.#onPointerLeave);
+			this.removeEventListener("touchmove", this.#onPointerMove);
+			this.removeEventListener("touchstart", this.#onPointerMove);
+			this.removeEventListener("touchend", this.#onPointerLeave);
+		}
+
+		#onPointerLeave() {
+			// Reset the card's rotation when the pointer leaves the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", "0deg");
+				this.style.setProperty("--rotate-y", "0deg");
+				this.style.setProperty("--pointer-x", "50%");
+				this.style.setProperty("--pointer-y", "50%");
+			});
+		}
+
+		#onPointerMove(event: PointerEvent | Touch | TouchEvent) {
+			const supportsTouchEvent = "TouchEvent" in globalThis;
+			const { clientX, clientY } =
+				supportsTouchEvent && event instanceof TouchEvent
+					? event.touches[0]
+					: (event as PointerEvent | Touch);
+			const cursorPosX = clientX - this.offsetLeft;
+			const cursorPosY = clientY - this.offsetTop;
+
+			const rotateFactor = this.#size === "small" ? 15 : 150;
+
+			// Calculate the rotation of the card based on the pointer's position.
+			const x = (cursorPosX - this.offsetWidth / 2) / rotateFactor;
+			const y = (cursorPosY - this.offsetHeight / 2) / rotateFactor;
+
+			// Update the CSS custom properties to rotate the card.
+			requestAnimationFrame(() => {
+				this.style.setProperty("--rotate-x", `${-x}deg`);
+				this.style.setProperty("--rotate-y", `${y}deg`);
+				this.style.setProperty("--pointer-x", `${cursorPosX}px`);
+				this.style.setProperty("--pointer-y", `${cursorPosY}px`);
+			});
+		}
+	}
+
+	// Tell the browser to use our AstroHeart class for <astro-heart> elements.
+	customElements.define("astro-card", AstroCard);
+</script>
+
+<script is:inline>
+	const namesToDisableTransitionTemporarily = [];
+
+	document.addEventListener("astro:before-swap", (event) => {
+		const beforeEls = [
+			...document.querySelectorAll("[data-astro-transition-scope]")
+		].map((element) => element.dataset.transitionName);
+
+		const afterEls = [
+			...event.newDocument.querySelectorAll("[data-astro-transition-scope]")
+		];
+
+		if (afterEls.length === beforeEls.length) return;
+
+		const newElsWithNewTransitionScope = afterEls.filter(
+			(element) => !beforeEls.includes(element.dataset.transitionName)
+		);
+
+		const oldElsNotInNewTransitionScope = beforeEls.filter(
+			(name) =>
+				!afterEls.some((element) => element.dataset.transitionName === name)
+		);
+
+		for (const element of newElsWithNewTransitionScope) {
+			namesToDisableTransitionTemporarily.push(
+				element.dataset.astroTransitionScope
+			);
+			element.dataset.oldTransitionScope = element.dataset.astroTransitionScope;
+			element.dataset.astroTransitionScope = "none";
+		}
+
+		for (const name of oldElsNotInNewTransitionScope) {
+			const element = document.querySelector(
+				`[data-transition-name="${name}"]`
+			);
+			element.dataset.astroTransitionScope = "none";
+		}
+	});
+
+	document.addEventListener("astro:page-load", () => {
+		for (const name of namesToDisableTransitionTemporarily) {
+			const element = document.querySelector(
+				`[data-old-transition-scope="${name}"]`
+			);
+			element.dataset.astroTransitionScope = name;
+			delete element.dataset.oldTransitionScope;
+		}
+
+		namesToDisableTransitionTemporarily.length = 0;
+	});
+</script>

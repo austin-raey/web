@@ -1,6 +1,5 @@
 ---
-layout: ~/layouts/Post.astro
-title: "My Post"
+title: "Multiple NextJS instances with NGINX"
 shortDescription: Post about stuff
 icons: ["ph/list-numbers-duotone", "ph/bug-duotone"]
 ---

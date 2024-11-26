@@ -41,5 +41,15 @@ export default tseslint.config(
 	},
 
 	perfectionist.configs["recommended-natural"],
+	{
+		rules: {
+			"perfectionist/sort-imports": [
+				"error",
+				{
+					newlinesBetween: "never"
+				}
+			]
+		}
+	},
 	...tailwind.configs["flat/recommended"]
 );
