@@ -7,102 +7,111 @@ interface Props {
 	size?: "large" | "small";
 }
 const { size = "small" } = Astro.props;
+const isSmall = size === "small";
+const isLarge = size === "large";
 ---
 
 <Default {size}>
 	<astro-card
-		class:list={["m-0 block md:m-4", size === "large" && "h-full md:h-auto"]}
+		class:list={["m-0 block md:m-4", isLarge && "h-full md:h-auto"]}
 		data-size={size}
 		data-transition-name="card"
 		transition:name="card"
 	>
-		<div aria-hidden="true" class="pointer-events-none contents">
-			<Image
-				alt=""
-				aria-hidden="true"
-				class:list={[
-					"back layer-1 absolute left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-					size === "small" && "rounded-xl",
-					size === "large" && "rounded-none md:rounded-xl"
-				]}
-				decoding="async"
-				fetchpriority="high"
-				height={375}
-				loading="eager"
-				src="/bg/texture.avif"
-				width={500}
-			/>
+		{
+			isSmall && (
+				<div aria-hidden="true" class="pointer-events-none contents">
+					<Image
+						alt=""
+						aria-hidden="true"
+						class:list={[
+							"back layer-1 absolute left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
+							isSmall && "rounded-xl"
+						]}
+						decoding="async"
+						fetchpriority="high"
+						height={375}
+						loading="eager"
+						src="/bg/texture.avif"
+						width={500}
+					/>
 
-			<Image
-				alt=""
-				aria-hidden="true"
-				class:list={[
-					"back layer-2 absolute left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-					size === "small" && "rounded-xl",
-					size === "large" && "rounded-none md:rounded-xl"
-				]}
-				decoding="async"
-				fetchpriority="high"
-				height={375}
-				loading="eager"
-				src="/bg/texture.avif"
-				width={500}
-			/>
-		</div>
+					<Image
+						alt=""
+						aria-hidden="true"
+						class:list={[
+							"back layer-2 absolute left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
+							isSmall && "rounded-xl"
+						]}
+						decoding="async"
+						fetchpriority="high"
+						height={375}
+						loading="eager"
+						src="/bg/texture.avif"
+						width={500}
+					/>
+				</div>
+			)
+		}
 
 		<div
 			class:list={[
 				"rotator relative drop-shadow-2xl",
-				size === "small" &&
+				isSmall &&
 					"overflow-hidden rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]",
-				size === "large" &&
+				isLarge &&
 					"rounded-none max-w-screen-lg md:overflow-hidden md:rounded-xl md:aspect-[3.375/2.125]"
 			]}
 		>
-			<div aria-hidden="true" class="pointer-events-none contents">
-				<div
-					class="shine absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200"
-				>
-				</div>
-				<Image
-					alt=""
-					class:list={[
-						"absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105",
-						size === "small" && "rounded-xl",
-						size === "large" &&
-							"blur-md overflow-hidden rounded-none md:rounded-xl"
-					]}
-					decoding="async"
-					fetchpriority="high"
-					height={375}
-					loading="eager"
-					src="/bg/texture.avif"
-					width={500}
-				/>
+			{
+				isSmall && (
+					<div aria-hidden="true" class="pointer-events-none contents">
+						<div class="shine absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200" />
+						<Image
+							alt=""
+							class="absolute left-0 top-0 z-20 size-full rounded-xl bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105"
+							decoding="async"
+							fetchpriority="high"
+							height={375}
+							loading="eager"
+							src="/bg/texture.avif"
+							width={500}
+						/>
 
-				<Image
-					alt=""
-					aria-hidden="true"
-					class:list={[
-						"absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 brightness-75 contrast-125 saturate-150",
-						size === "small" && "blur-sm rounded-xl",
-						size === "large" && "blur-lg rounded-none md:rounded-xl"
-					]}
-					decoding="async"
-					fetchpriority="high"
-					height={375}
-					loading="eager"
-					src="/bg/1.avif"
-					width={500}
-				/>
-			</div>
+						<Image
+							alt=""
+							aria-hidden="true"
+							class="absolute left-0 top-0 z-0 size-full rounded-xl bg-cover bg-center object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+							decoding="async"
+							fetchpriority="high"
+							height={375}
+							loading="eager"
+							src="/bg/1.avif"
+							width={500}
+						/>
+					</div>
+				)
+			}
+
+			{
+				isLarge && (
+					<div aria-hidden="true" class="pointer-events-none contents">
+						<div
+							class:list={[
+								"shine absolute left-0 top-0 z-30 size-full opacity-95 mix-blend-overlay brightness-90 contrast-200 hidden md:block md:rounded-xl"
+							]}
+						/>
+					</div>
+				)
+			}
+
 			<div
 				class:list={[
 					"relative z-10 origin-top text-[#242424]/90 p-5",
-					size === "small" &&
+					isSmall &&
 						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:translate-y-[none] sm:translate-x-[none] sm:w-auto sm:rotate-0 space-y-3 font-semibold",
-					size === "large" &&
-						"min-w-[320px] space-y-3 bg-white/50 dark:bg-white/25 min-h-[100svh] md:min-h-full md:max-h-full md:overflow-y-scroll"
+					isLarge &&
+						"min-w-[320px] space-y-3 min-h-[100svh] md:min-h-full md:max-h-full md:overflow-y-scroll [background:var(--shine-lg)] md:[background:transparent]"
 				]}
 			>
 				<slot />
@@ -156,6 +165,8 @@ const { size = "small" } = Astro.props;
 		}
 
 		#onPointerLeave() {
+			if (this.#size === "large" && window.innerWidth < 768) return;
+
 			// Reset the card's rotation when the pointer leaves the card.
 			requestAnimationFrame(() => {
 				this.style.setProperty("--rotate-x", "0deg");
@@ -166,6 +177,8 @@ const { size = "small" } = Astro.props;
 		}
 
 		#onPointerMove(event: PointerEvent | Touch | TouchEvent) {
+			if (this.#size === "large" && window.innerWidth < 768) return;
+
 			const supportsTouchEvent = "TouchEvent" in globalThis;
 			const { clientX, clientY } =
 				supportsTouchEvent && event instanceof TouchEvent

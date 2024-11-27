@@ -17,6 +17,12 @@ astro-card {
 		hsla(150, 20%, 30%, 0.45) 100%,
 		hsla(0, 0%, 0%, 0.9) 175%
 	);
+	--shine-lg: radial-gradient(
+		farthest-corner circle at var(--pointer-x) var(--pointer-y),
+		hsla(309, 17%, 68%, 0.15) 0%,
+		hsla(319, 20%, 30%, 0.15) 100%,
+		hsla(0, 0%, 0%, 0.9) 175%
+	);
 
 	perspective: 900px;
 	transform-origin: center;
@@ -44,10 +50,10 @@ astro-card {
 			.rotator {
 				transform: var(--rotate);
 			}
-		}
 
-		.shine {
-			background-image: var(--shine);
+			.shine {
+				background-image: var(--shine-lg);
+			}
 		}
 	}
 
@@ -55,7 +61,7 @@ astro-card {
 		background: linear-gradient(
 			180deg,
 			hsla(0, 0%, 90%, 0.45),
-			hsla(0, 0%, 90%, 0.5)
+			hsla(0, 7%, 84%, 0.5)
 		);
 
 		&.layer-1 {
