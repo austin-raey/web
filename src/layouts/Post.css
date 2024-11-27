@@ -1,0 +1,42 @@
+.post {
+	article,
+	section {
+		@apply flex flex-col gap-2;
+	}
+
+	section {
+		@apply mt-4;
+	}
+
+	h2 {
+		@apply text-xl font-bold;
+	}
+
+	a {
+		@apply text-blue-500 underline underline-offset-2;
+	}
+
+	p > code {
+		@apply text-gray-700 bg-white/50 rounded-md px-1 py-0.5 text-sm;
+	}
+
+	pre {
+		@apply p-3 rounded-2xl;
+
+		span {
+			text-shadow: none;
+		}
+	}
+
+	.tags {
+		@apply flex flex-col gap-1 text-sm leading-none;
+
+		ul {
+			@apply flex gap-1;
+
+			li {
+				@apply bg-white/50 rounded-full px-3 py-2 font-semibold cursor-pointer;
+			}
+		}
+	}
+}

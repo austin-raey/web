@@ -1,33 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 import BlogLink from "~/components/BlogLink.astro";
+import Breadcrumb from "~/components/Breadcrumb.astro";
 import Icon from "~/components/Icon.astro";
 import Card from "~/layouts/Card.astro";
 import { ICON_TO_LABEL } from "~/layouts/Post.astro";
 
 const posts = await getCollection("blog");
+const crumbs = [{ href: "/", icon: "ph/house-duotone", label: "Home" }];
 ---
 
 <Card size="large">
-	<header class="flex items-start justify-between font-semibold">
+	<header class="flex items-start justify-between">
 		<h1 class="text-3xl font-extrabold">Blog</h1>
-		<nav>
-			<ol
-				class="flex rounded-xl border border-black/20 bg-white/20 px-2 py-1"
-				data-transition-name="breadcrumb"
-				transition:name="breadcrumb"
-			>
-				<li
-					class="flex items-center"
-					data-transition-name="breadcrumb-home"
-					transition:name="breadcrumb-home"
-				>
-					<a href="/">
-						<Icon name="ph/house-duotone" /> Home
-					</a>
-				</li>
-			</ol>
-		</nav>
+		<Breadcrumb crumbs={crumbs} />
 	</header>
 
 	<main class="space-y-3">
@@ -36,34 +22,32 @@ const posts = await getCollection("blog");
 			I encounter when using computers (so I don't forget!).
 		</p>
 
-		<div class="text-xs">
-			<span class="sr-only">Legend for post types:</span>
-			<div class="flex flex-wrap gap-1">
-				{
-					Object.keys(ICON_TO_LABEL)
-						.sort((a, b) =>
-							ICON_TO_LABEL[a as keyof typeof ICON_TO_LABEL] >
-							ICON_TO_LABEL[b as keyof typeof ICON_TO_LABEL]
-								? 1
-								: -1
-						)
-						.map((icon) => (
-							<figure class="flex items-center gap-1 rounded-xl border border-black/20 bg-white/20 px-2 py-1 font-semibold">
-								<Icon
-									name={icon}
-									title={`${ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]} Icon`}
-								/>
-								<figcaption>
-									{ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]}
-								</figcaption>
-							</figure>
-						))
-				}
-			</div>
+		<div class="flex flex-wrap gap-1 text-xs font-semibold">
+			<span class="sr-only">Legend for categories:</span>
+			{
+				Object.keys(ICON_TO_LABEL)
+					.sort((a, b) =>
+						ICON_TO_LABEL[a as keyof typeof ICON_TO_LABEL] >
+						ICON_TO_LABEL[b as keyof typeof ICON_TO_LABEL]
+							? 1
+							: -1
+					)
+					.map((icon) => (
+						<figure class="rounded-xl border border-black/20 bg-white/20 px-2 py-1">
+							<Icon
+								name={icon}
+								title={`${ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]} Icon`}
+							/>
+							<figcaption class="inline-block">
+								{ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]}
+							</figcaption>
+						</figure>
+					))
+			}
 		</div>
 
 		<nav>
-			<ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+			<ol class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					posts.map((post) => (
 						<li>
@@ -71,7 +55,7 @@ const posts = await getCollection("blog");
 						</li>
 					))
 				}
-			</ul>
+			</ol>
 		</nav>
 	</main>
 </Card>

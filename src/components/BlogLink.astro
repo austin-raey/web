@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { ICON_TO_LABEL } from "~/layouts/Post.astro";
 import Icon from "./Icon.astro";
 
 type Props = CollectionEntry<"blog">;
@@ -9,15 +10,21 @@ const { data: { date, icons = [], shortDescription = "", title } = {}, slug } =
 const href = `/blog/${slug}`;
 ---
 
-<a class="block rounded-xl py-3" href={href}>
-	<div class="flex items-start space-x-2">
-		<div
-			class="h-full shrink rounded-xl bg-white/80 px-2 py-1 text-center"
-			data-transition-name={`blog-tags-${slug}`}
-			transition:name={`blog-tags-${slug}`}
-		>
-			<h3 class="flex max-w-max shrink gap-1">
-				{icons.map((icon) => <Icon class="size-8" name={icon} />)}
+<a
+	class="block rounded-xl border border-black/20 bg-white/80 p-3 px-1"
+	data-transition-name={`blog-tags-${slug}`}
+	href={href}
+	transition:name={`blog-tags-${slug}`}
+>
+	<article class="flex items-start gap-2">
+		<div class="shrink px-2 py-1 text-center">
+			<h3>
+				<span class="sr-only">Categories:</span>
+				{
+					icons.map((icon) => (
+						<Icon class="size-8" name={icon} title={ICON_TO_LABEL[icon]} />
+					))
+				}
 			</h3>
 			<time
 				class="text-xs tracking-wider"
@@ -32,13 +39,17 @@ const href = `/blog/${slug}`;
 
 		<div class="space-y-0">
 			<h2
-				class="text-xl font-bold leading-none"
+				class="text-xl font-bold leading-none tracking-tight"
 				data-transition-name={`blog-title-${slug}`}
 				transition:name={`blog-title-${slug}`}
 			>
 				{title}
 			</h2>
-			{shortDescription !== "" && <p class="opacity-75">{shortDescription}</p>}
+			{
+				shortDescription !== "" && (
+					<p class="text-xs opacity-75">{shortDescription}</p>
+				)
+			}
 		</div>
-	</div>
+	</article>
 </a>

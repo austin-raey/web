@@ -11,36 +11,19 @@ const { size = "small" } = Astro.props;
 
 <Default {size}>
 	<astro-card
-		class:list={[
-			"m-0 block md:m-5 self-center",
-			size === "large" && "h-full md:h-auto"
-		]}
+		class:list={["m-0 block md:m-4", size === "large" && "h-full md:h-auto"]}
 		data-size={size}
 		data-transition-name="card"
 		transition:name="card"
 	>
-		<div
-			class:list={[
-				"rotator relative size-full shadow-2xl",
-				size === "small" &&
-					"rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem] overflow-hidden",
-				size === "large" &&
-					"rounded-none md:rounded-xl max-w-[1024px] md:aspect-[3.375/2.125] md:overflow-hidden"
-			]}
-		>
-			<div
-				aria-hidden="true"
-				class="shine pointer-events-none absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200"
-			>
-			</div>
+		<div aria-hidden="true" class="pointer-events-none contents">
 			<Image
 				alt=""
 				aria-hidden="true"
 				class:list={[
-					"pointer-events-none absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105",
+					"back layer-1 absolute left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
 					size === "small" && "rounded-xl",
-					size === "large" &&
-						"blur-md overflow-hidden rounded-none md:rounded-xl"
+					size === "large" && "rounded-none md:rounded-xl"
 				]}
 				decoding="async"
 				fetchpriority="high"
@@ -54,22 +37,70 @@ const { size = "small" } = Astro.props;
 				alt=""
 				aria-hidden="true"
 				class:list={[
-					"pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 brightness-75 contrast-125 saturate-150",
-					size === "small" && "blur-sm rounded-xl",
-					size === "large" && "blur-lg rounded-none md:rounded-xl"
+					"back layer-2 absolute left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
+					size === "small" && "rounded-xl",
+					size === "large" && "rounded-none md:rounded-xl"
 				]}
 				decoding="async"
 				fetchpriority="high"
 				height={375}
 				loading="eager"
-				src="/bg/1.avif"
+				src="/bg/texture.avif"
 				width={500}
 			/>
+		</div>
+
+		<div
+			class:list={[
+				"rotator relative drop-shadow-2xl",
+				size === "small" &&
+					"overflow-hidden rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]",
+				size === "large" &&
+					"rounded-none max-w-screen-lg md:overflow-hidden md:rounded-xl md:aspect-[3.375/2.125]"
+			]}
+		>
+			<div aria-hidden="true" class="pointer-events-none contents">
+				<div
+					class="shine absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200"
+				>
+				</div>
+				<Image
+					alt=""
+					class:list={[
+						"absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105",
+						size === "small" && "rounded-xl",
+						size === "large" &&
+							"blur-md overflow-hidden rounded-none md:rounded-xl"
+					]}
+					decoding="async"
+					fetchpriority="high"
+					height={375}
+					loading="eager"
+					src="/bg/texture.avif"
+					width={500}
+				/>
+
+				<Image
+					alt=""
+					aria-hidden="true"
+					class:list={[
+						"absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 brightness-75 contrast-125 saturate-150",
+						size === "small" && "blur-sm rounded-xl",
+						size === "large" && "blur-lg rounded-none md:rounded-xl"
+					]}
+					decoding="async"
+					fetchpriority="high"
+					height={375}
+					loading="eager"
+					src="/bg/1.avif"
+					width={500}
+				/>
+			</div>
 			<div
 				class:list={[
-					"relative z-10 origin-top text-[#242424]/90 p-5 self-center",
+					"relative z-10 origin-top text-[#242424]/90 p-5",
 					size === "small" &&
-						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:translate-y-[none] sm:translate-x-[none] sm:w-auto sm:rotate-0 space-y-3 font-semibold ",
+						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:translate-y-[none] sm:translate-x-[none] sm:w-auto sm:rotate-0 space-y-3 font-semibold",
 					size === "large" &&
 						"min-w-[320px] space-y-3 bg-white/50 dark:bg-white/25 min-h-[100svh] md:min-h-full md:max-h-full md:overflow-y-scroll"
 				]}
@@ -77,38 +108,6 @@ const { size = "small" } = Astro.props;
 				<slot />
 			</div>
 		</div>
-
-		<Image
-			alt=""
-			aria-hidden="true"
-			class:list={[
-				"back layer-1 pointer-events-none absolute left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-65 brightness-105",
-				size === "small" && "rounded-xl",
-				size === "large" && "rounded-none md:rounded-xl"
-			]}
-			decoding="async"
-			fetchpriority="high"
-			height={375}
-			loading="eager"
-			src="/bg/texture.avif"
-			width={500}
-		/>
-
-		<Image
-			alt=""
-			aria-hidden="true"
-			class:list={[
-				"back layer-2 pointer-events-none absolute left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-65 brightness-105",
-				size === "small" && "rounded-xl",
-				size === "large" && "rounded-none md:rounded-xl"
-			]}
-			decoding="async"
-			fetchpriority="high"
-			height={375}
-			loading="eager"
-			src="/bg/texture.avif"
-			width={500}
-		/>
 	</astro-card>
 </Default>
 

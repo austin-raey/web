@@ -1,6 +1,6 @@
 ---
-title: Multiple NextJS instances with NGINX
-shortDescription: Getting two NextJS instances to play nice together on the same server
+title: Multiple NEXT.JS instances with NGINX
+shortDescription: Getting two NEXT.JS instances to play nice together on the same server
 date: 2024-11-23
 icons: ["ph/list-numbers-duotone", "ph/gear-fine-duotone"]
 ---
