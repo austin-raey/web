@@ -51,10 +51,10 @@ const { size = "small" } = Astro.props;
 	</Head>
 	<body
 		class:list={[
-			"h-full",
-			size === "small" && "flex items-center justify-center overflow-hidden",
+			size === "small" &&
+				"h-full flex items-center justify-center overflow-hidden",
 			size === "large" &&
-				"md:flex md:items-center md:justify-center md:overflow-hidden"
+				"md:flex md:items-center md:justify-center md:overflow-hidden md:h-full min-h-full"
 		]}
 	>
 		<slot />
