@@ -10,13 +10,13 @@ const href = `/blog/${slug}`;
 ---
 
 <a class="block rounded-xl py-3" href={href}>
-	<div class="flex items-center space-x-2">
-		<div class="rounded-xl bg-white/80 px-2 py-1 text-center">
-			<h3
-				class="flex max-w-max shrink gap-1"
-				data-transition-name={`blog-tags-${slug}`}
-				transition:name={`blog-tags-${slug}`}
-			>
+	<div class="flex items-start space-x-2">
+		<div
+			class="h-full shrink rounded-xl bg-white/80 px-2 py-1 text-center"
+			data-transition-name={`blog-tags-${slug}`}
+			transition:name={`blog-tags-${slug}`}
+		>
+			<h3 class="flex max-w-max shrink gap-1">
 				{icons.map((icon) => <Icon class="size-8" name={icon} />)}
 			</h3>
 			<time
@@ -30,23 +30,15 @@ const href = `/blog/${slug}`;
 			</time>
 		</div>
 
-		<h2
-			class="text-xl font-bold leading-none"
-			data-transition-name={`blog-title-${slug}`}
-			transition:name={`blog-title-${slug}`}
-		>
-			{title}
-		</h2>
-	</div>
-	{
-		shortDescription !== "" && (
-			<p
-				class="opacity-75"
-				data-transition-name={`blog-content-${slug}`}
-				transition:name={`blog-content-${slug}`}
+		<div class="space-y-0">
+			<h2
+				class="text-xl font-bold leading-none"
+				data-transition-name={`blog-title-${slug}`}
+				transition:name={`blog-title-${slug}`}
 			>
-				{shortDescription}
-			</p>
-		)
-	}
+				{title}
+			</h2>
+			{shortDescription !== "" && <p class="opacity-75">{shortDescription}</p>}
+		</div>
+	</div>
 </a>

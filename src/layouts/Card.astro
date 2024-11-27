@@ -7,23 +7,14 @@ interface Props {
 	size?: "large" | "small";
 }
 const { size = "small" } = Astro.props;
-
-const CLASSES = {
-	large: {
-		content: "h-full min-w-[320px] space-y-3 overflow-y-scroll bg-white/50",
-		root: "rounded-none md:rounded-xl max-w-[1024px] h-screen md:h-auto md:aspect-[3.375/2.125]"
-	},
-	small: {
-		content:
-			"rotate-90 right-[-20%] top-[240px] w-[158.824%] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0 space-y-3 font-semibold",
-		root: "rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]"
-	}
-} as const;
 ---
 
-<Default>
+<Default {size}>
 	<astro-card
-		class="m-0 block max-h-screen md:m-5"
+		class:list={[
+			"m-0 block md:m-5 self-center",
+			size === "large" && "h-full md:h-auto"
+		]}
 		data-size={size}
 		data-transition-name="card"
 		transition:name="card"
@@ -31,7 +22,10 @@ const CLASSES = {
 		<div
 			class:list={[
 				"rotator relative size-full overflow-hidden shadow-2xl",
-				CLASSES[size].root
+				size === "small" &&
+					"rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]",
+				size === "large" &&
+					"rounded-none md:rounded-xl max-w-[1024px] md:aspect-[3.375/2.125]"
 			]}
 		>
 			<div
@@ -42,7 +36,10 @@ const CLASSES = {
 			<Image
 				alt=""
 				aria-hidden="true"
-				class="pointer-events-none absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105"
+				class:list={[
+					"pointer-events-none absolute left-0 top-0 z-20 size-full bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105",
+					size === "large" && "blur-md overflow-hidden"
+				]}
 				decoding="async"
 				fetchpriority="high"
 				height={375}
@@ -54,7 +51,11 @@ const CLASSES = {
 			<Image
 				alt=""
 				aria-hidden="true"
-				class="pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+				class:list={[
+					"pointer-events-none absolute left-0 top-0 z-0 size-full bg-cover bg-center object-cover opacity-25 brightness-75 contrast-125 saturate-150",
+					size === "small" && "blur-sm",
+					size === "large" && "blur-lg"
+				]}
 				decoding="async"
 				fetchpriority="high"
 				height={375}
@@ -64,8 +65,11 @@ const CLASSES = {
 			/>
 			<div
 				class:list={[
-					"relative z-10 origin-top text-[#242424]/90 p-5",
-					CLASSES[size].content
+					"relative z-10 origin-top text-[#242424]/90 p-5 self-center",
+					size === "small" &&
+						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:right-auto sm:top-auto sm:w-auto sm:rotate-0 space-y-3 font-semibold",
+					size === "large" &&
+						"min-w-[320px] space-y-3 bg-white/50 dark:bg-white/25 h-full max-h-full overflow-y-scroll"
 				]}
 			>
 				<slot />
@@ -75,7 +79,9 @@ const CLASSES = {
 		<Image
 			alt=""
 			aria-hidden="true"
-			class="back layer-1 pointer-events-none absolute left-0 top-0 -z-10 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			class:list={[
+				"back layer-1 pointer-events-none absolute left-0 top-0 -z-10 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			]}
 			decoding="async"
 			fetchpriority="high"
 			height={375}
@@ -87,7 +93,9 @@ const CLASSES = {
 		<Image
 			alt=""
 			aria-hidden="true"
-			class="back layer-2 pointer-events-none absolute left-0 top-0 -z-20 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			class:list={[
+				"back layer-2 pointer-events-none absolute left-0 top-0 -z-20 size-full rounded-xl bg-center bg-repeat object-cover opacity-65 brightness-105"
+			]}
 			decoding="async"
 			fetchpriority="high"
 			height={375}

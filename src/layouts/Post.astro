@@ -7,7 +7,6 @@ type Props = CollectionEntry<"blog">["data"] & {
 	slug: CollectionEntry<"blog">["slug"];
 };
 const { date, icons, slug, title } = Astro.props;
-console.log(date);
 
 type ICON_NAME = CollectionEntry<"blog">["data"]["icons"][number];
 export const ICON_TO_LABEL: Record<ICON_NAME, string> = {
@@ -20,9 +19,9 @@ export const ICON_TO_LABEL: Record<ICON_NAME, string> = {
 ---
 
 <Card size="large">
-	<header class="flex items-start justify-between pb-3 font-semibold">
-		<div class="basis-2/3 space-y-2 md:basis-1/2">
-			<div>
+	<header class="space-y-3 pb-3 font-semibold">
+		<div class="flex items-start justify-between">
+			<div class="basis-2/3 space-y-2 md:basis-1/2">
 				<h1
 					class="text-3xl font-extrabold"
 					data-transition-name={`blog-title-${slug}`}
@@ -39,69 +38,108 @@ export const ICON_TO_LABEL: Record<ICON_NAME, string> = {
 					Written on {date.toLocaleDateString()}
 				</time>
 			</div>
-			<h2
-				class="flex max-w-max gap-5 rounded-xl bg-white/80 px-2 py-1"
-				data-transition-name={`blog-tags-${slug}`}
-				transition:name={`blog-tags-${slug}`}
-			>
-				{
-					icons.map((icon) => (
-						<div class="flex items-center gap-2">
-							<Icon class="size-8" name={icon} />
-							<span>{ICON_TO_LABEL[icon]}</span>
-						</div>
-					))
-				}
-			</h2>
+
+			<nav>
+				<ol
+					class="flex flex-col rounded-xl border border-black/20 bg-white/20 px-2 py-1 md:flex-row"
+					data-transition-name="breadcrumb"
+					transition:name="breadcrumb"
+				>
+					<li
+						class="flex items-center"
+						data-transition-name="breadcrumb-home"
+						transition:animate="slide"
+						transition:name="breadcrumb-home"
+					>
+						<a class="min-w-max py-2 md:py-0" href="/">
+							<Icon name="ph/house-duotone" />
+							<span class="sr-only">Back to</span> Home
+						</a>
+						<Icon
+							class="mx-1 size-3 opacity-50"
+							name="ph/caret-right-duotone"
+						/>
+					</li>
+					<li
+						class="flex items-center"
+						data-transition-name="breadcrumb-blog"
+						transition:animate="slide"
+						transition:name="breadcrumb-blog"
+					>
+						<a class="min-w-max py-2 md:py-0" href="/blog">
+							<Icon name="ph/newspaper-clipping-duotone" />
+							<span class="sr-only">Back to</span> Blog
+						</a>
+					</li>
+				</ol>
+			</nav>
 		</div>
 
-		<nav>
-			<ol
-				class="flex flex-col rounded-xl border border-black/20 bg-white/20 px-2 py-1 md:flex-row"
-				data-transition-name="breadcrumb"
-				transition:name="breadcrumb"
-			>
-				<li
-					class="flex items-center"
-					data-transition-name="breadcrumb-home"
-					transition:animate="slide"
-					transition:name="breadcrumb-home"
-				>
-					<a class="min-w-max py-2 md:py-0" href="/">
-						<Icon name="ph/house-duotone" />
-						<span class="sr-only">Back to</span> Home
-					</a>
-					<Icon class="mx-1 size-3 opacity-50" name="ph/caret-right-duotone" />
-				</li>
-				<li
-					class="flex items-center"
-					data-transition-name="breadcrumb-blog"
-					transition:animate="slide"
-					transition:name="breadcrumb-blog"
-				>
-					<a class="min-w-max py-2 md:py-0" href="/blog">
-						<Icon name="ph/newspaper-clipping-duotone" />
-						<span class="sr-only">Back to</span> Blog
-					</a>
-				</li>
-			</ol>
-		</nav>
+		<h2
+			class="flex max-w-max shrink-0 flex-wrap items-center gap-5 rounded-xl bg-white/80 px-2 py-1"
+			data-transition-name={`blog-tags-${slug}`}
+			transition:animate="initial"
+			transition:name={`blog-tags-${slug}`}
+		>
+			{
+				icons.map((icon) => (
+					<div class="inline-flex items-center gap-1">
+						<Icon class="size-8" name={icon} />
+						<span>{ICON_TO_LABEL[icon]}</span>
+					</div>
+				))
+			}
+		</h2>
 	</header>
 
-	<main
-		data-transition-name={`blog-content-${slug}`}
-		transition:name={`blog-content-${slug}`}
-	>
-		<slot />
+	<main>
+		<article>
+			<slot />
+		</article>
 	</main>
 </Card>
 
 <style>
 	main {
-		@apply flex flex-col gap-2;
+		.tags {
+			@apply flex flex-col gap-1 text-sm leading-none;
+
+			ul {
+				@apply flex gap-1;
+
+				li {
+					@apply bg-white/50 rounded-full px-3 py-2 font-semibold cursor-pointer;
+				}
+			}
+		}
+
+		article,
+		section {
+			@apply flex flex-col gap-2;
+		}
+
+		section {
+			@apply mt-4;
+		}
 
 		h2 {
-			@apply text-xl font-semibold;
+			@apply text-xl font-bold;
+		}
+
+		a {
+			@apply text-blue-500 underline underline-offset-2;
+		}
+
+		p > code {
+			@apply text-gray-700 bg-white/50 rounded-md px-1 py-0.5 text-sm;
+		}
+
+		pre {
+			@apply p-3 rounded-2xl;
+
+			span {
+				text-shadow: none;
+			}
 		}
 	}
 </style>
