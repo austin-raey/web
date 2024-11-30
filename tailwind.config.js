@@ -12,6 +12,9 @@ export default {
 			extraBackgroundRules: {
 				"vertical-align": "text-top"
 			},
+			extraMaskRules: {
+				"vertical-align": "text-top"
+			},
 			iconSelector: String.raw`.{prefix}\/{name}`,
 			maskSelector: ".ic",
 			prefixes: ["ph"],

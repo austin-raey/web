@@ -24,6 +24,15 @@ astro-card {
 		hsla(0, 0%, 0%, 0.9) 175%
 	);
 
+	@media (prefers-color-scheme: dark) {
+		--shine-lg: radial-gradient(
+			farthest-corner circle at var(--pointer-x) var(--pointer-y),
+			hsla(304, 23%, 65%, 0.33) 0%,
+			hsla(291, 34%, 68%, 0.15) 90%,
+			hsla(270, 13%, 3%, 0.95) 300%
+		);
+	}
+
 	perspective: 900px;
 	transform-origin: center;
 
@@ -93,5 +102,25 @@ astro-card {
 			0 0.5px 0 rgba(255, 255, 255, 0.45),
 			0 -0.5px 0 rgba(255, 255, 255, 0.33),
 			1px 0 0 rgba(255, 255, 255, 0.33);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	astro-card:not([data-size="small"]) {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		span,
+		a,
+		p,
+		li {
+			text-shadow:
+				0 0.5px 0 rgba(0, 0, 0, 0.45),
+				0 -0.5px 0 rgba(0, 0, 0, 0.33),
+				1px 0 0 rgba(0, 0, 0, 0.33);
+		}
 	}
 }

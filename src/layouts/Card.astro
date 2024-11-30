@@ -13,7 +13,7 @@ const isLarge = size === "large";
 
 <Default {size}>
 	<astro-card
-		class:list={["m-0 block md:m-4", isLarge && "h-full md:h-auto"]}
+		class:list={["block md:max-w-[95vw]", isLarge && "h-full md:h-auto"]}
 		data-size={size}
 		data-transition-name="card"
 		transition:name="card"
@@ -111,7 +111,7 @@ const isLarge = size === "large";
 					isSmall &&
 						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:translate-y-[none] sm:translate-x-[none] sm:w-auto sm:rotate-0 space-y-3 font-semibold",
 					isLarge &&
-						"min-w-[320px] space-y-3 min-h-[100svh] md:min-h-full md:max-h-full md:overflow-y-scroll [background:var(--shine-lg)] md:[background:transparent]"
+						"dark:text-[#fafafa]/90 min-w-[320px] space-y-3 min-h-[100svh] md:min-h-full md:max-h-full md:overflow-y-scroll [background:var(--shine-lg)] md:[background:transparent]"
 				]}
 			>
 				<slot />
