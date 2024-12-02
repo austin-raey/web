@@ -13,7 +13,10 @@ const isLarge = size === "large";
 
 <Default {size}>
 	<astro-card
-		class:list={["block md:max-w-[95vw]", isLarge && "h-full md:h-auto"]}
+		class:list={[
+			"block md:max-w-[95vw] transform-gpu",
+			isLarge && "h-full md:h-auto"
+		]}
 		data-size={size}
 		data-transition-name="card"
 		transition:name="card"
@@ -25,8 +28,8 @@ const isLarge = size === "large";
 						alt=""
 						aria-hidden="true"
 						class:list={[
-							"back layer-1 absolute left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-							isSmall && "rounded-xl"
+							"back layer-1 absolute transform-gpu left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
+							isSmall && "rounded-xl rotate-90"
 						]}
 						decoding="async"
 						fetchpriority="high"
@@ -40,8 +43,8 @@ const isLarge = size === "large";
 						alt=""
 						aria-hidden="true"
 						class:list={[
-							"back layer-2 absolute left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-							isSmall && "rounded-xl"
+							"back layer-2 absolute transform-gpu left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
+							isSmall && "rounded-xl rotate-90"
 						]}
 						decoding="async"
 						fetchpriority="high"
@@ -56,7 +59,7 @@ const isLarge = size === "large";
 
 		<div
 			class:list={[
-				"rotator relative shadow-lg dark:shadow-2xl dark:shadow-gray-600/40",
+				"rotator relative shadow-lg dark:shadow-2xl dark:shadow-gray-600/40 transform-gpu",
 				isSmall &&
 					"overflow-hidden rounded-xl aspect-[2.125/3.375] max-w-[302px] sm:aspect-[3.375/2.125] sm:max-w-[30rem]",
 				isLarge &&
@@ -107,7 +110,7 @@ const isLarge = size === "large";
 
 			<div
 				class:list={[
-					"relative z-10 origin-top text-[#242424]/90 p-5",
+					"relative z-10 origin-top text-[#242424]/90 p-5 transform-gpu",
 					isSmall &&
 						"rotate-90 translate-x-[13%] translate-y-[86.3%] w-[158.824%] sm:translate-y-[none] sm:translate-x-[none] sm:w-auto sm:rotate-0 space-y-3 font-semibold",
 					isLarge &&
