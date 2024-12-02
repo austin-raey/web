@@ -11,6 +11,7 @@
 astro-card {
 	--rotate: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
 		transLateZ(var(--translate-z));
+
 	--shine: radial-gradient(
 		farthest-corner circle at var(--pointer-x) var(--pointer-y),
 		hsla(50, 20%, 90%, 0.45) 0%,
@@ -27,9 +28,9 @@ astro-card {
 	@media (prefers-color-scheme: dark) {
 		--shine-lg: radial-gradient(
 			farthest-corner circle at var(--pointer-x) var(--pointer-y),
-			hsla(304, 23%, 65%, 0.33) 0%,
-			hsla(291, 34%, 68%, 0.15) 90%,
-			hsla(270, 13%, 3%, 0.95) 300%
+			hsla(312, 81%, 71%, 0.33) 0%,
+			hsla(309, 31%, 54%, 0.26) 90%,
+			hsla(305, 39%, 61%, 0.29) 130%
 		);
 	}
 

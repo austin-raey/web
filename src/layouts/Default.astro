@@ -8,7 +8,7 @@ interface Props {
 const { size = "small" } = Astro.props;
 ---
 
-<html class="h-full" lang="en">
+<html class="h-full bg-black" lang="en">
 	<Head>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta charset="utf-8" />
@@ -51,6 +51,7 @@ const { size = "small" } = Astro.props;
 	</Head>
 	<body
 		class:list={[
+			"bg-white dark:bg-black",
 			size === "small" &&
 				"h-full flex items-center justify-center overflow-hidden",
 			size === "large" &&
