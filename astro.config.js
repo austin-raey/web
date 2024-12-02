@@ -8,13 +8,6 @@ export default defineConfig({
 		inlineStylesheets: "always"
 	},
 	integrations: [tailwind()],
-	markdown: {
-		shikiConfig: {
-			theme: "dracula-soft",
-			wrap: true
-		},
-		syntaxHighlight: "prism"
-	},
 	output: "static",
 	security: {
 		checkOrigin: true

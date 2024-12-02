@@ -27,10 +27,7 @@ const isLarge = size === "large";
 					<Image
 						alt=""
 						aria-hidden="true"
-						class:list={[
-							"back layer-1 absolute transform-gpu left-0 top-0 -z-10 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-							isSmall && "rounded-xl rotate-90"
-						]}
+						class="back layer-1 absolute left-0 top-0 -z-10 size-full transform-gpu rounded-xl object-cover opacity-40"
 						decoding="async"
 						fetchpriority="high"
 						height={375}
@@ -42,10 +39,7 @@ const isLarge = size === "large";
 					<Image
 						alt=""
 						aria-hidden="true"
-						class:list={[
-							"back layer-2 absolute transform-gpu left-0 top-0 -z-20 size-full bg-center bg-repeat object-cover opacity-50 brightness-105",
-							isSmall && "rounded-xl rotate-90"
-						]}
+						class="back layer-2 absolute left-0 top-0 -z-20 size-full transform-gpu rounded-xl object-cover opacity-40"
 						decoding="async"
 						fetchpriority="high"
 						height={375}
@@ -69,10 +63,10 @@ const isLarge = size === "large";
 			{
 				isSmall && (
 					<div aria-hidden="true" class="pointer-events-none contents">
-						<div class="shine absolute left-0 top-0 z-30 size-full opacity-25 mix-blend-overlay brightness-90 contrast-200" />
+						<div class="shine absolute left-0 top-0 z-30 size-full rounded-xl opacity-50 mix-blend-overlay" />
 						<Image
 							alt=""
-							class="absolute left-0 top-0 z-20 size-full rounded-xl bg-repeat object-cover opacity-60 mix-blend-multiply brightness-105"
+							class="absolute left-0 top-0 z-20 size-full rounded-xl object-cover opacity-60 mix-blend-multiply brightness-105"
 							decoding="async"
 							fetchpriority="high"
 							height={375}
@@ -84,7 +78,7 @@ const isLarge = size === "large";
 						<Image
 							alt=""
 							aria-hidden="true"
-							class="absolute left-0 top-0 z-0 size-full rounded-xl bg-cover bg-center object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
+							class="absolute left-0 top-0 z-0 size-full rounded-xl object-cover opacity-25 blur-sm brightness-75 contrast-125 saturate-150"
 							decoding="async"
 							fetchpriority="high"
 							height={375}
@@ -99,11 +93,7 @@ const isLarge = size === "large";
 			{
 				isLarge && (
 					<div aria-hidden="true" class="pointer-events-none contents">
-						<div
-							class:list={[
-								"shine absolute left-0 top-0 z-30 size-full opacity-95 mix-blend-overlay brightness-90 contrast-200 hidden md:block md:rounded-xl"
-							]}
-						/>
+						<div class="shine absolute left-0 top-0 z-30 hidden size-full mix-blend-color-burn md:block md:rounded-xl" />
 					</div>
 				)
 			}

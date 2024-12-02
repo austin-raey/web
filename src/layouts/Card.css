@@ -9,9 +9,6 @@
 }
 
 astro-card {
-	--rotate: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
-		transLateZ(var(--translate-z));
-
 	--shine: radial-gradient(
 		farthest-corner circle at var(--pointer-x) var(--pointer-y),
 		hsla(50, 20%, 90%, 0.45) 0%,
@@ -46,9 +43,9 @@ astro-card {
 	&:not([data-size="large"]) {
 		.back,
 		.rotator {
-			transform: var(--rotate);
+			transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
+				transLateZ(var(--translate-z));
 		}
-
 		.shine {
 			background-image: var(--shine);
 		}
@@ -56,9 +53,9 @@ astro-card {
 
 	@screen md {
 		&[data-size="large"] {
-			.back,
 			.rotator {
-				transform: var(--rotate);
+				transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))
+					transLateZ(var(--translate-z));
 			}
 
 			.shine {
@@ -75,11 +72,11 @@ astro-card {
 		);
 
 		&.layer-1 {
-			--translate-z: -10px;
+			--translate-z: -3px;
 		}
 
 		&.layer-2 {
-			--translate-z: -20px;
+			--translate-z: -6px;
 		}
 	}
 
