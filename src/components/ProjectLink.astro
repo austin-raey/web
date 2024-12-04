@@ -1,0 +1,36 @@
+---
+import Icon, { type IconProperties } from "./Icon.astro";
+
+export interface Props {
+	description?: string;
+	href: string;
+	icons?: IconProperties[];
+	title: string;
+}
+const { description = "", href, icons = [], title } = Astro.props;
+---
+
+<a
+	class="relative flex h-full max-w-full transform-gpu items-center rounded-xl border border-black/20 bg-white/80 p-4 px-3 dark:border-white/30 dark:bg-black/50"
+	href={href}
+	rel="me external noopener noreferrer"
+	target="_blank"
+>
+	<article class="flex items-start gap-2">
+		<div
+			class="absolute bottom-0 right-0 m-1 shrink-0 text-center md:static md:m-0"
+		>
+			<h3 class="flex gap-0.5">
+				<span class="sr-only">Project relates to:</span>
+				{icons.map((icon) => <Icon class="size-6 md:size-8" {...icon} />)}
+			</h3>
+		</div>
+
+		<div class="space-y-0.5 pb-5 md:pb-0">
+			<h2 class="text-xl font-bold leading-none tracking-tight">
+				{title}
+			</h2>
+			<p class="text-xs opacity-75">{description}</p>
+		</div>
+	</article>
+</a>

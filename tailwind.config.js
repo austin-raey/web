@@ -17,7 +17,7 @@ export default {
 			},
 			iconSelector: String.raw`.{prefix}\/{name}`,
 			maskSelector: ".ic",
-			prefixes: ["ph"],
+			prefixes: ["ph", "logos"],
 			scale: 1.2
 		})
 	]
