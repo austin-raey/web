@@ -9,12 +9,16 @@ interface Props extends IconProperties {
 }
 
 const { class: className, name, title } = Astro.props;
-const iconSelector = name.startsWith("logos/") ? "i" : "ic";
 ---
 
 <span
 	aria-hidden={title ? undefined : "true"}
-	class:list={[iconSelector, name, !title && "pointer-events-none", className]}
+	class:list={[
+		name.startsWith("logos/") ? "i opacity-90" : "ic",
+		name,
+		!title && "pointer-events-none",
+		className
+	]}
 	title={title}
 >
 </span>
