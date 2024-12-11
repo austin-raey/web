@@ -8,7 +8,12 @@ interface Props {
 const { size = "small" } = Astro.props;
 ---
 
-<html class="h-full bg-black" lang="en">
+<html
+	class="h-full bg-black"
+	lang="en"
+	transition:animate="none"
+	transition:name="root"
+>
 	<Head>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta charset="utf-8" />
