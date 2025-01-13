@@ -1,5 +1,8 @@
 {
-	"[astro][html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact]": {
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
+	"[html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"editor.codeActionsOnSave": {
@@ -9,7 +12,7 @@
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
 	"editor.insertSpaces": false,
-	"eslint.useFlatConfig": true,
+	"eslint.runtime": "node",
 	"eslint.validate": [
 		"astro",
 		"html",

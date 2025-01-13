@@ -51,5 +51,8 @@ export default tseslint.config(
 			]
 		}
 	},
-	...tailwind.configs["flat/recommended"]
+	...tailwind.configs["flat/recommended"],
+	{
+		ignores: [".astro/", "dist/"]
+	}
 );
