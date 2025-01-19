@@ -4,6 +4,7 @@ const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		date: z.date(),
+		description: z.string().optional(),
 		icons: z.array(
 			z.enum([
 				"ph/bug-duotone",
@@ -13,7 +14,6 @@ const blog = defineCollection({
 				"ph/pencil-circle-duotone"
 			])
 		),
-		shortDescription: z.string().optional(),
 		title: z.string()
 	}),
 	type: "content"

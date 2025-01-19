@@ -4,7 +4,7 @@ import { ICON_TO_LABEL } from "~/layouts/Post.astro";
 import Icon from "./Icon.astro";
 
 type Props = CollectionEntry<"blog">;
-const { data: { date, icons = [], shortDescription = "", title } = {}, slug } =
+const { data: { date, description = "", icons = [], title } = {}, slug } =
 	Astro.props;
 
 const href = `/blog/${slug}`;
@@ -45,11 +45,7 @@ const href = `/blog/${slug}`;
 			>
 				{title}
 			</h2>
-			{
-				shortDescription !== "" && (
-					<p class="text-xs opacity-75">{shortDescription}</p>
-				)
-			}
+			{description !== "" && <p class="text-xs opacity-75">{description}</p>}
 		</div>
 	</article>
 </a>
