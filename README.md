@@ -5,7 +5,7 @@
 </div>
 <br />
 
-Code for my personal site, [`raey.link`](https://raey.link) (alias [`austinraey.link`](https://austinraey.link))
+Code for my personal site, [`raey.me`](https://raey.me) (alias [`austinraey.link`](https://austinraey.link), [`raey.link`](https://raey.link)).
 
 # Technologies
 

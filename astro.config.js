@@ -13,5 +13,5 @@ export default defineConfig({
 	security: {
 		checkOrigin: true
 	},
-	site: "https://raey.link"
+	site: "https://raey.me"
 });
