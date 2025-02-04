@@ -14,7 +14,7 @@ const { class: className, name, title } = Astro.props;
 <span
 	aria-hidden={title ? undefined : "true"}
 	class:list={[
-		name.startsWith("logos/") ? "i opacity-90" : "ic",
+		name.startsWith("logos--") ? "i opacity-90" : "ic",
 		name,
 		!title && "pointer-events-none",
 		className

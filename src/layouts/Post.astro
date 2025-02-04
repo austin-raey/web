@@ -13,16 +13,16 @@ const props = Astro.props;
 
 type ICON_NAME = CollectionEntry<"blog">["data"]["icons"][number];
 export const ICON_TO_LABEL: Record<ICON_NAME, string> = {
-	"ph/bug-duotone": "Bug Fix",
-	"ph/gear-fine-duotone": "JS Framework",
-	"ph/laptop-duotone": "Computer",
-	"ph/list-numbers-duotone": "Tutorial",
-	"ph/pencil-circle-duotone": "Personal"
+	"ph--bug-duotone": "Bug Fix",
+	"ph--gear-fine-duotone": "JS Framework",
+	"ph--laptop-duotone": "Computer",
+	"ph--list-numbers-duotone": "Tutorial",
+	"ph--pencil-circle-duotone": "Personal"
 };
 
 const crumbs = [
-	{ href: "/", icon: "ph/house-duotone", label: "Home" },
-	{ href: "/blog", icon: "ph/newspaper-clipping-duotone", label: "Blog" }
+	{ href: "/", icon: "ph--house-duotone", label: "Home" },
+	{ href: "/blog", icon: "ph--newspaper-clipping-duotone", label: "Blog" }
 ];
 ---
 

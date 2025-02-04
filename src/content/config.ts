@@ -7,11 +7,11 @@ const blog = defineCollection({
 		description: z.string().optional(),
 		icons: z.array(
 			z.enum([
-				"ph/bug-duotone",
-				"ph/gear-fine-duotone",
-				"ph/laptop-duotone",
-				"ph/list-numbers-duotone",
-				"ph/pencil-circle-duotone"
+				"ph--bug-duotone",
+				"ph--gear-fine-duotone",
+				"ph--laptop-duotone",
+				"ph--list-numbers-duotone",
+				"ph--pencil-circle-duotone"
 			])
 		),
 		title: z.string()

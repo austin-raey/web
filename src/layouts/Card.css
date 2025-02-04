@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 :root {
 	--pointer-x: 50%;
 	--pointer-y: 50%;
@@ -51,7 +53,7 @@ astro-card {
 		}
 	}
 
-	@screen md {
+	@variant sm {
 		&[data-size="large"] {
 			.rotator {
 				transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y))

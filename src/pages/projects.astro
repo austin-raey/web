@@ -4,14 +4,14 @@ import Breadcrumb from "~/components/Breadcrumb.astro";
 import ProjectLink from "~/components/ProjectLink.astro";
 import Card from "~/layouts/Card.astro";
 
-const crumbs = [{ href: "/", icon: "ph/house-duotone", label: "Home" }];
+const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
 const links: ProjectLinkProps[] = [
 	{
 		description: "My personal dotfiles for macOS and Windows",
 		href: "https://github.com/austin-raey/dotfiles",
 		icons: [
-			{ name: "ph/laptop-duotone", title: "Computer" },
-			{ name: "ph/terminal-duotone", title: "Dotfiles" }
+			{ name: "ph--laptop-duotone", title: "Computer" },
+			{ name: "ph--terminal-duotone", title: "Dotfiles" }
 		],
 		title: "Dotfiles"
 	},
@@ -20,8 +20,8 @@ const links: ProjectLinkProps[] = [
 			"A lightweight bun-based package upgrade tool that updates dependencies to their latest version",
 		href: "https://github.com/austin-raey/bskt",
 		icons: [
-			{ name: "logos/bun", title: "Bun" },
-			{ name: "ph/package-duotone", title: "Package Management" }
+			{ name: "logos--bun", title: "Bun" },
+			{ name: "ph--package-duotone", title: "Package Management" }
 		],
 		title: "bskt"
 	},
@@ -30,8 +30,8 @@ const links: ProjectLinkProps[] = [
 			"A minimal, enterprise-ready Next.js starter template with batteries included",
 		href: "https://github.com/austin-raey/before.tmp",
 		icons: [
-			{ name: "logos/nextjs-icon", title: "Next.js" },
-			{ name: "ph/newspaper-duotone", title: "Starter Template" }
+			{ name: "logos--nextjs-icon", title: "Next.js" },
+			{ name: "ph--newspaper-duotone", title: "Starter Template" }
 		],
 		title: "Before.tmp"
 	}

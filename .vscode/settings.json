@@ -34,6 +34,7 @@
 		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	],
 	"tailwindCSS.lint.recommendedVariantOrder": "error",
+	"tailwindCSS.experimental.configFile": "./src/layouts/Default.css",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib"
 }
