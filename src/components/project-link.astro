@@ -1,5 +1,5 @@
 ---
-import Icon, { type IconProperties } from "./Icon.astro";
+import Icon, { type IconProperties } from "./iconify.astro";
 
 export interface Props {
 	description?: string;
@@ -18,7 +18,7 @@ const { description = "", href, icons = [], title } = Astro.props;
 >
 	<article class="flex items-start gap-2">
 		<div
-			class="absolute bottom-0 right-0 m-1 shrink-0 text-center md:static md:m-0"
+			class="absolute right-0 bottom-0 m-1 shrink-0 text-center md:static md:m-0"
 		>
 			<h3 class="flex gap-0.5">
 				<span class="sr-only">Project relates to:</span>
@@ -27,7 +27,7 @@ const { description = "", href, icons = [], title } = Astro.props;
 		</div>
 
 		<div class="space-y-0.5 pb-5 md:pb-0">
-			<h2 class="text-xl font-bold leading-none tracking-tight">
+			<h2 class="text-xl leading-none font-bold tracking-tight">
 				{title}
 			</h2>
 			<p class="text-xs opacity-75">{description}</p>

@@ -2,17 +2,16 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
-	"[css][scss][postcss][html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact]": {
+	"[css][scss][postcss][html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact][yaml]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "always",
-		"source.organizeImports": "never"
+		"source.organizeImports": "always"
 	},
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
 	"editor.insertSpaces": false,
-	"eslint.runtime": "node",
 	"eslint.validate": [
 		"astro",
 		"html",
@@ -26,15 +25,6 @@
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
 	"npm.packageManager": "pnpm",
-	"prettier.documentSelectors": ["**/*.astro"],
-	"tailwindCSS.experimental.classRegex": [
-		["CLASSES \\=([^;]*);", "'([^']*)'"],
-		["CLASSES \\=([^;]*);", "\"([^\"]*)\""],
-		["CLASSES \\=([^;]*);", "\\`([^\\`]*)\\`"],
-		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-	],
-	"tailwindCSS.lint.recommendedVariantOrder": "error",
-	"tailwindCSS.experimental.configFile": "./src/layouts/Default.css",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib"
 }

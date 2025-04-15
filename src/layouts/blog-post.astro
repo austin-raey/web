@@ -1,12 +1,16 @@
 ---
 import type { CollectionEntry } from "astro:content";
+
 import { AstroSeo } from "@astrolib/seo";
-import Breadcrumb from "~/components/Breadcrumb.astro";
-import Icon from "~/components/Icon.astro";
-import Card from "./Card.astro";
-import "./Post.css";
+
+import Crumbs from "~/components/crumbs.astro";
+import Icon from "~/components/iconify.astro";
+
+import "./blog-post.css";
+import Card from "./contact-card.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
+	icons: CollectionEntry<"blog">["data"]["icons"];
 	slug: CollectionEntry<"blog">["slug"];
 };
 const props = Astro.props;
@@ -87,7 +91,7 @@ const crumbs = [
 				</time>
 			</div>
 
-			<Breadcrumb crumbs={crumbs} />
+			<Crumbs crumbs={crumbs} />
 		</div>
 
 		<h2

@@ -1,8 +1,9 @@
 ---
-import type { Props as ProjectLinkProps } from "~/components/ProjectLink.astro";
 import Breadcrumb from "~/components/Breadcrumb.astro";
-import ProjectLink from "~/components/ProjectLink.astro";
-import Card from "~/layouts/Card.astro";
+import ProjectLink, {
+	type Props as ProjectLinkProps
+} from "~/components/project-link.astro";
+import ContactCard from "~/layouts/contact-card.astro";
 
 const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
 const links: ProjectLinkProps[] = [
@@ -38,7 +39,7 @@ const links: ProjectLinkProps[] = [
 ];
 ---
 
-<Card size="large">
+<ContactCard size="large">
 	<header class="space-y-3">
 		<div class="flex items-start justify-between">
 			<h1 class="text-3xl font-extrabold">Projects</h1>
@@ -76,4 +77,4 @@ const links: ProjectLinkProps[] = [
 			</div>
 		</menu>
 	</main>
-</Card>
+</ContactCard>

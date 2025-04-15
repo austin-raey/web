@@ -1,7 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { ICON_TO_LABEL } from "~/layouts/Post.astro";
-import Icon from "./Icon.astro";
+
+import { ICON_TO_LABEL } from "~/layouts/blog-post.astro";
+
+import Icon from "./iconify.astro";
 
 type Props = CollectionEntry<"blog">;
 const { data: { date, description = "", icons = [], title } = {}, slug } =
@@ -39,7 +41,7 @@ const href = `/blog/${slug}`;
 
 		<div class="space-y-0.5">
 			<h2
-				class="text-xl font-bold leading-none tracking-tight"
+				class="text-xl leading-none font-bold tracking-tight"
 				data-transition-name={`blog-title-${slug}`}
 				transition:name={`blog-title-${slug}`}
 			>

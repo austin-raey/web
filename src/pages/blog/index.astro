@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import BlogLink from "~/components/BlogLink.astro";
-import Breadcrumb from "~/components/Breadcrumb.astro";
-import Icon from "~/components/Icon.astro";
-import Card from "~/layouts/Card.astro";
-import { ICON_TO_LABEL } from "~/layouts/Post.astro";
+
+import BlogLink from "~/components/blog-link.astro";
+import Crumbs from "~/components/crumbs.astro";
+import Icon from "~/components/iconify.astro";
+import { ICON_TO_LABEL } from "~/layouts/blog-post.astro";
+import Card from "~/layouts/contact-card.astro";
 
 const posts = await getCollection("blog");
 const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
@@ -13,7 +14,7 @@ const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
 <Card size="large">
 	<header class="flex items-start justify-between">
 		<h1 class="text-3xl font-extrabold">Blog</h1>
-		<Breadcrumb crumbs={crumbs} />
+		<Crumbs crumbs={crumbs} />
 	</header>
 
 	<main class="space-y-3">

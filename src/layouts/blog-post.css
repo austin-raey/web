@@ -1,0 +1,55 @@
+@reference "tailwindcss";
+
+.post {
+	article,
+	section {
+		@apply flex flex-col gap-3;
+	}
+
+	section:not(:first-of-type) {
+		@apply mt-8;
+	}
+
+	h2 {
+		@apply text-2xl font-bold;
+	}
+
+	a {
+		@apply text-blue-500 underline underline-offset-2 dark:text-blue-300;
+	}
+
+	p > code {
+		@apply rounded-md border border-black/10 bg-white/50 px-1 py-0.5 text-sm text-gray-700 dark:border-white/30 dark:bg-black/50 dark:text-gray-50;
+	}
+
+	pre {
+		@apply my-3 max-w-full overflow-x-scroll rounded-2xl p-3 opacity-95;
+
+		span {
+			@apply text-shadow-none;
+		}
+	}
+
+	.tags {
+		@apply flex max-w-max flex-col gap-1 py-3 text-sm leading-none;
+
+		ul {
+			@apply ml-0 flex list-none gap-3 space-y-0;
+
+			li {
+				@apply cursor-pointer font-semibold;
+			}
+		}
+	}
+
+	ul,
+	ol {
+		@apply ml-8 space-y-3;
+	}
+	ol {
+		@apply list-decimal;
+	}
+	ul {
+		@apply list-disc;
+	}
+}

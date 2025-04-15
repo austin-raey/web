@@ -1,9 +1,9 @@
 ---
-import Card from "~/layouts/Card.astro";
-import Icon from "../components/Icon.astro";
+import Icon from "~/components/iconify.astro";
+import ContactCard from "~/layouts/contact-card.astro";
 ---
 
-<Card>
+<ContactCard>
 	<header>
 		<figure>
 			<figcaption>
@@ -14,7 +14,7 @@ import Icon from "../components/Icon.astro";
 			</figcaption>
 			<img
 				alt="Portrait of Austin Raey"
-				class="absolute right-0 top-0 m-5 size-24 rounded-[40%]"
+				class="absolute top-0 right-0 m-5 size-24 rounded-[40%]"
 				fetchpriority="high"
 				loading="eager"
 				src="/portrait.avif"
@@ -133,4 +133,4 @@ import Icon from "../components/Icon.astro";
 			</li>
 		</menu>
 	</footer>
-</Card>
+</ContactCard>

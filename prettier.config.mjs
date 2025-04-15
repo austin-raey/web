@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @type {import("prettier").Config} */
 export default {
 	endOfLine: "lf",
@@ -9,9 +11,10 @@ export default {
 			}
 		}
 	],
-	plugins: ["prettier-plugin-astro"],
+	plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
 	singleQuote: false,
-	tabWidth: 2,
+
+	tailwindStylesheet: "./src/global.css",
 	trailingComma: "none",
 	useTabs: true
 };

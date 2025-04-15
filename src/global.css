@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@plugin "@iconify/tailwind4" {
+	prefixes: ph, logos;
+	scale: 1.2;
+}
+
+@layer components {
+	.iconify,
+	.iconify-color {
+		vertical-align: text-bottom;
+	}
+}

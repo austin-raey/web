@@ -1,0 +1,16 @@
+{
+	"configurations": [
+		{
+			"command": "pnpm dev",
+			"name": "Development Server",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "pnpm preview",
+			"name": "Preview Server",
+			"request": "launch",
+			"type": "node-terminal"
+		}
+	]
+}
