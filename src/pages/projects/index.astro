@@ -1,0 +1,113 @@
+---
+import IconBun from "~icons/logos/bun";
+import IconNextjs from "~icons/logos/nextjs-icon";
+import IconBlueprint from "~icons/ph/blueprint-duotone";
+import IconHouseDuotone from "~icons/ph/house-duotone";
+import IconLaptop from "~icons/ph/laptop-duotone";
+import IconNewspaper from "~icons/ph/newspaper-duotone";
+import IconPackage from "~icons/ph/package-duotone";
+import IconTerminal from "~icons/ph/terminal-duotone";
+
+import Breadcrumb from "~/components/breadcrumb.astro";
+import Card from "~/layouts/card/layout.astro";
+
+import ProjectLink from "./_/components/project-link.astro";
+
+const CRUMBS = [
+	{ href: "/", icon: IconHouseDuotone, label: "Home" },
+	{ href: "/projects", icon: IconBlueprint, label: "Projects" }
+];
+
+const links = [
+	{
+		description: "My personal dotfiles for macOS and Windows",
+		href: "https://github.com/austin-raey/dotfiles",
+		icons: [
+			{ icon: IconLaptop, title: "Computer" },
+			{ icon: IconTerminal, title: "Dotfiles" }
+		],
+		title: "Dotfiles"
+	},
+	{
+		description:
+			"A lightweight bun-based package upgrade tool that updates dependencies to their latest version",
+		href: "https://github.com/austin-raey/bskt",
+		icons: [
+			{ icon: IconBun, title: "Bun" },
+			{ icon: IconPackage, title: "Package Management" }
+		],
+		title: "bskt"
+	},
+	{
+		description:
+			"A minimal, enterprise-ready Next.js starter template with batteries included",
+		href: "https://github.com/austin-raey/before.tmp",
+		icons: [
+			{ icon: IconNextjs, title: "Next.js" },
+			{ icon: IconNewspaper, title: "Starter Template" }
+		],
+		title: "Before.tmp"
+	}
+];
+---
+
+<Card size="large">
+	<header>
+		<div>
+			<h1>Projects</h1>
+			<p>
+				Listed are some personal projects I've created for fun or for personal
+				use.
+			</p>
+		</div>
+		<Breadcrumb crumbs={CRUMBS} />
+	</header>
+
+	<main>
+		<nav>
+			<div>
+				{
+					links
+						.filter((_, index) => index % 2 === 0)
+						.map((link) => <ProjectLink {...link} />)
+				}
+			</div>
+			<div>
+				{
+					links
+						.filter((_, index) => index % 2 === 1)
+						.map((link) => <ProjectLink {...link} />)
+				}
+			</div>
+		</nav>
+	</main>
+</Card>
+
+<style>
+	header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	p {
+		max-width: 35ch;
+	}
+
+	nav {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+		max-width: 60ch;
+
+		> div {
+			display: grid;
+			grid-template-rows: max-content;
+			gap: 0.5rem;
+		}
+
+		@media screen and (max-width: 640px) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

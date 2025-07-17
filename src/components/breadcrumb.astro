@@ -1,0 +1,81 @@
+---
+interface Props {
+	crumbs: {
+		href: string;
+		icon?: JSX.Element;
+		label: string;
+	}[];
+}
+import type { JSX } from "astro/jsx-runtime";
+
+import IconCaretRight from "~icons/ph/caret-right-duotone";
+
+import Link from "~/components/link.astro";
+
+const { crumbs = [] } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb navigation" transition:name="breadcrumb">
+	<ol>
+		{
+			crumbs.map((crumb) => (
+				<li>
+					<Link href={crumb.href}>
+						{crumb.icon && <crumb.icon />}
+						{crumb.label}
+					</Link>
+					{crumbs.at(-1) !== crumb && <IconCaretRight />}
+				</li>
+			))
+		}
+	</ol>
+</nav>
+
+<style>
+	nav,
+	ol {
+		max-height: max-content;
+		max-width: max-content;
+		height: 1.5rem;
+	}
+
+	nav {
+		background: var(--link-bg);
+		border-radius: 0.75rem;
+		border: var(--link-border);
+		color: hsl(0 0% 0% / 0.75);
+		flex-shrink: 0;
+		font-size: 0.875rem;
+		font-weight: 600;
+		padding: 0.5rem 0.75rem;
+
+		a:hover {
+			color: hsl(0 0% 0% / 1);
+			transition: all 0.2s ease-in-out;
+		}
+	}
+
+	ol {
+		display: flex;
+		align-items: center;
+	}
+
+	li {
+		max-width: 15ch;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		&:not(:last-child) {
+			margin-right: 0.25rem;
+		}
+
+		@media screen and (max-width: 768px) {
+			max-width: 100%;
+
+			&:not(:last-child) {
+				flex-shrink: 0;
+			}
+		}
+	}
+</style>

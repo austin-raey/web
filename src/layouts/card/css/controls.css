@@ -1,0 +1,44 @@
+.controls {
+	position: absolute;
+	bottom: -2.5rem;
+	right: 0;
+
+	@media screen and (max-width: 520px) {
+		display: none;
+	}
+}
+
+astro-card[data-size="large"] .controls {
+	bottom: -1rem;
+	right: 2rem;
+}
+
+.controls button {
+	font-size: 0.75rem;
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid color-mix(in lch, currentColor, transparent 90%);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.5rem;
+	opacity: 0.5;
+	transition:
+		opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.controls button:hover {
+	opacity: 1;
+	transform: scale(1.05);
+}
+
+.controls button:active {
+	opacity: 1;
+	transform: scale(0.95);
+}
+astro-card[data-motion="true"] .controls [data-motion="true"] {
+	display: none;
+}
+
+astro-card[data-motion="false"] .controls [data-motion="false"] {
+	display: none;
+}

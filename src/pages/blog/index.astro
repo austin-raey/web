@@ -1,54 +1,65 @@
 ---
+import { AstroSeo } from "@astrolib/seo";
 import { getCollection } from "astro:content";
+import IconHouseDuotone from "~icons/ph/house-duotone";
+import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
-import BlogLink from "~/components/blog-link.astro";
-import Crumbs from "~/components/crumbs.astro";
-import Icon from "~/components/iconify.astro";
-import { ICON_TO_LABEL } from "~/layouts/blog-post.astro";
-import Card from "~/layouts/contact-card.astro";
+import Breadcrumb from "~/components/breadcrumb.astro";
+import Card from "~/layouts/card/layout.astro";
 
-const posts = await getCollection("blog");
-const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
+import BlogLink from "./_/components/blog-link.astro";
+
+const collection = await getCollection("blog");
+const posts = collection.sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const CRUMBS = [
+	{ href: "/", icon: IconHouseDuotone, label: "Home" },
+	{ href: "/blog", icon: IconNewsPaperClipping, label: "Blog" }
+];
 ---
 
 <Card size="large">
-	<header class="flex items-start justify-between">
-		<h1 class="text-3xl font-extrabold">Blog</h1>
-		<Crumbs crumbs={crumbs} />
-	</header>
-
-	<main class="space-y-3">
-		<p class="md:w-2/3">
-			Here I post my thoughts on things, tutorials, and fixes to random nonsense
-			I encounter when using computers (so I don't forget!).
-		</p>
-
-		<div class="flex flex-wrap gap-1 text-xs font-semibold">
-			<span class="sr-only">Legend for categories:</span>
+	<AstroSeo
+		additionalMetaTags={[
 			{
-				Object.keys(ICON_TO_LABEL)
-					.sort((a, b) =>
-						ICON_TO_LABEL[a as keyof typeof ICON_TO_LABEL] >
-						ICON_TO_LABEL[b as keyof typeof ICON_TO_LABEL]
-							? 1
-							: -1
-					)
-					.map((icon) => (
-						<figure class="rounded-xl border border-black/20 bg-white/20 px-2 py-1 dark:bg-black/20">
-							<Icon
-								name={icon}
-								title={`${ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]} Icon`}
-							/>
-							<figcaption class="inline-block">
-								{ICON_TO_LABEL[icon as keyof typeof ICON_TO_LABEL]}
-							</figcaption>
-						</figure>
-					))
+				content: "Austin Raey",
+				name: "author"
+			},
+			{
+				content:
+					"blog, software engineering, frontend, full-stack, devops, javascript, typescript",
+				name: "keywords"
 			}
-		</div>
+		]}
+		canonical={new URL(Astro.url, Astro.site).toString()}
+		description="Austin Raey's blog - thoughts on software engineering, tutorials, and tech solutions"
+		openGraph={{
+			description:
+				"Austin Raey's blog - thoughts on software engineering, tutorials, and tech solutions",
+			site_name: "Austin Raey",
+			title: "Blog",
+			type: "website",
+			url: Astro.url.toString()
+		}}
+		slot="seo"
+		title="Blog"
+	/>
 
-		<nav>
-			<ol class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+	<header>
+		<div>
+			<h1>Blog</h1>
+			<p style="max-width:60ch;">
+				Here I post my thoughts on things, tutorials, and fixes to random
+				nonsense I encounter when using computers (so I don't forget!).
+			</p>
+		</div>
+		<Breadcrumb crumbs={CRUMBS} />
+	</header>
+	<main>
+		<nav aria-label="Blog posts">
+			<ol>
 				{
 					posts.map((post) => (
 						<li>
@@ -60,3 +71,28 @@ const crumbs = [{ href: "/", icon: "ph--house-duotone", label: "Home" }];
 		</nav>
 	</main>
 </Card>
+
+<style>
+	nav {
+		margin-top: 1rem;
+	}
+
+	ol {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, 1fr);
+
+		@media screen and (max-width: 1024px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media screen and (max-width: 640px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	header {
+		display: flex;
+		justify-content: space-between;
+	}
+</style>

@@ -1,136 +1,219 @@
 ---
-import Icon from "~/components/iconify.astro";
-import ContactCard from "~/layouts/contact-card.astro";
+import { AstroSeo } from "@astrolib/seo";
+import IconBlueprint from "~icons/ph/blueprint-duotone";
+import IconGitHub from "~icons/ph/github-logo-duotone";
+import IconInstagram from "~icons/ph/instagram-logo-duotone";
+import IconLinkedIn from "~icons/ph/linkedin-logo-duotone";
+import IconMapPin from "~icons/ph/map-pin-duotone";
+import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
+import IconShirtFolded from "~icons/ph/shirt-folded-duotone";
+import IconThreads from "~icons/ph/threads-logo-duotone";
+
+import Link from "~/components/link.astro";
+import Card from "~/layouts/card/layout.astro";
 ---
 
-<ContactCard>
-	<header>
-		<figure>
-			<figcaption>
-				<h1 class="text-3xl font-extrabold">
-					<span class="block text-4xl leading-8">Austin</span>
-					<span class="inline-block">Raey</span>
-				</h1>
-			</figcaption>
-			<img
-				alt="Portrait of Austin Raey"
-				class="absolute top-0 right-0 m-5 size-24 rounded-[40%]"
-				fetchpriority="high"
-				loading="eager"
-				src="/portrait.avif"
-			/>
-		</figure>
-	</header>
-
+<Card>
+	<AstroSeo
+		additionalMetaTags={[
+			{
+				content: "Austin Raey",
+				name: "author"
+			}
+		]}
+		canonical={new URL(Astro.url, Astro.site).toString()}
+		description="Austin Raey’s contact card"
+		openGraph={{
+			description: "Austin Raey’s contact card",
+			images: [
+				{
+					alt: "Portrait of Austin Raey",
+					height: 100,
+					url: "/portrait.avif",
+					width: 100
+				}
+			],
+			site_name: "Austin Raey",
+			title: "Austin Raey",
+			type: "profile",
+			url: Astro.url.toString()
+		}}
+		slot="seo"
+		title="Austin Raey"
+	/>
 	<main>
-		<div>
-			<Icon name="ph--map-pin-duotone" />
-			<span><span class="sr-only">Located in:</span> North Carolina</span>
-		</div>
-		<div>
-			<Icon name="ph--shirt-folded-duotone" />
-			<span><span class="sr-only">Occupation:</span> Software Engineer</span>
-		</div>
-		<ul class="ml-5 space-y-0.5 text-xs font-normal tracking-tight">
-			<li>
-				<span class="sr-only">Specializing in:</span>
-				<ul class="flex gap-0.5">
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">Frontend</li>
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">Full-Stack</li>
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">DevOps</li>
-				</ul>
-			</li>
-			<li>
-				<span class="sr-only">Proficient in:</span>
-				<ul class="flex gap-0.5">
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">JavaScript</li>
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">TypeScript</li>
-					<li class="rounded-xl bg-white/30 p-0.5 px-1">Frameworks</li>
-				</ul>
-			</li>
-		</ul>
-	</main>
+		<article>
+			<figure>
+				<img
+					alt="Portrait of Austin Raey"
+					fetchpriority="high"
+					height="100"
+					loading="eager"
+					src="/portrait.avif"
+					width="100"
+				/>
+				<figcaption>
+					<h1>
+						<span>Austin</span>
+						<span>Raey</span>
+					</h1>
+				</figcaption>
+			</figure>
 
-	<footer>
-		<menu class="flex flex-wrap gap-1">
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="https://github.com/austin-raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's GitHub profile"
-				>
-					<Icon name="ph--github-logo-duotone" /> austin-raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="https://www.threads.net/@austin.raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's Threads profile"
-				>
-					<Icon name="ph--threads-logo-duotone" /> austin.raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="https://www.instagram.com/austin.raey"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's Instagram profile"
-				>
-					<Icon name="ph--instagram-logo-duotone" /> austin.raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="https://www.linkedin.com/in/austin-raey/"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's LinkedIn profile"
-				>
-					<Icon name="ph--linkedin-logo-duotone" /> austin-raey
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="mailto:austin@raey.me"
-					rel="me external noopener noreferrer"
-					target="_blank"
-					title="Austin's email"
-				>
-					<Icon name="ph--mailbox-duotone" />
-					Email
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="/blog"
-					rel="me"
-					title="Austin's blog"
-				>
-					<Icon name="ph--newspaper-clipping-duotone" />
-					Blog
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline-block rounded-xl border border-black/20 bg-white/20 px-2 py-0.5"
-					href="/projects"
-					rel="me"
-					title="Austin's personal projects"
-				>
-					<Icon name="ph--blueprint-duotone" />
-					Projects
-				</a>
-			</li>
-		</menu>
-	</footer>
-</ContactCard>
+			<section>
+				<p>
+					<IconMapPin />
+					<span class="sr-only">Located in:</span> North Carolina
+				</p>
+				<p>
+					<IconShirtFolded />
+					<span class="sr-only">Occupation:</span> Software Engineer
+				</p>
+				<dl>
+					<dt class="sr-only">Specializing in:</dt>
+					<dd>Frontend</dd>
+					<dd>Full-Stack</dd>
+					<dd>DevOps</dd>
+					<dt class="sr-only">Proficient in:</dt>
+					<dd>JavaScript</dd>
+					<dd>TypeScript</dd>
+					<dd>Frameworks</dd>
+				</dl>
+			</section>
+
+			<footer>
+				<nav aria-labelledby="socials">
+					<h3 class="sr-only" id="socials">Socials</h3>
+					<Link
+						href="https://github.com/austin-raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's GitHub profile"
+						variant="button"
+					>
+						<IconGitHub /> austin-raey
+					</Link>
+					<Link
+						href="https://www.threads.net/@austin.raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's Threads profile"
+						variant="button"
+					>
+						<IconThreads /> austin.raey
+					</Link>
+					<Link
+						href="https://www.instagram.com/austin.raey"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's Instagram profile"
+						variant="button"
+					>
+						<IconInstagram /> austin.raey
+					</Link>
+					<Link
+						href="https://www.linkedin.com/in/austin-raey/"
+						rel="me external noopener noreferrer"
+						target="_blank"
+						title="Austin's LinkedIn profile"
+						variant="button"
+					>
+						<IconLinkedIn /> austin-raey
+					</Link>
+				</nav>
+				<nav aria-labelledby="links">
+					<h3 class="sr-only" id="links">Links</h3>
+					<Link
+						href="/blog"
+						priority="high"
+						rel="me"
+						title="Austin's blog"
+						variant="button"
+					>
+						<IconNewsPaperClipping />
+						Blog
+					</Link>
+					<Link
+						href="/projects"
+						priority="high"
+						rel="me"
+						title="Austin's personal projects"
+						variant="button"
+					>
+						<IconBlueprint />
+						Projects
+					</Link>
+				</nav>
+			</footer>
+		</article>
+	</main>
+</Card>
+
+<style>
+	footer {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	dl {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		margin-left: 1.2rem;
+		max-width: 33ch;
+	}
+
+	dd {
+		border-radius: 0.3rem;
+		border: 0.5px solid color-mix(in srgb, currentColor 20%, transparent);
+		color: #222d;
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.0125rem;
+		line-height: 1.1;
+		padding: 0.15rem 0.3rem;
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		margin: 1rem 0;
+
+		p {
+			font-weight: 600;
+		}
+	}
+
+	nav,
+	ul {
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	img {
+		border-radius: 33%;
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 1rem;
+		border-top: 3px solid #fff9;
+		border-right: 3px solid #ddd9;
+		border-bottom: 3px solid #ccc9;
+		border-left: 3px solid #ddd9;
+		opacity: 0.95;
+	}
+
+	h1 {
+		span {
+			display: block;
+			line-height: 0.9;
+		}
+
+		> :last-child {
+			font-weight: 900;
+			font-size: 2rem;
+		}
+	}
+</style>

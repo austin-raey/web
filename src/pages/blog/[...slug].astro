@@ -1,23 +1,203 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { AstroSeo } from "@astrolib/seo";
+import { getCollection, render } from "astro:content";
+import IconHouseDuotone from "~icons/ph/house-duotone";
+import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
-import BlogPost from "~/layouts/blog-post.astro";
+import Breadcrumb from "~/components/breadcrumb.astro";
+import Card from "~/layouts/card/layout.astro";
 
-type Props = CollectionEntry<"blog">;
+import KindToIcon, { KIND_TO_LABEL } from "./_/components/kind-to-icon.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
 	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post
+		params: { slug: post.id },
+		props: { post }
 	}));
 }
 
-const post = Astro.props;
-const { Content } = await post.render();
-const props = { ...post.data, slug: post.slug };
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const CRUMBS = [
+	{ href: "/", icon: IconHouseDuotone, label: "Home" },
+	{ href: "/blog", icon: IconNewsPaperClipping, label: "Blog" },
+	{ href: `/blog/${post.id}`, label: post.data.title }
+];
 ---
 
-<BlogPost {...props}>
-	<Content />
-</BlogPost>
+<Card size="large">
+	<AstroSeo
+		additionalMetaTags={[
+			{
+				content: "Austin Raey",
+				name: "author"
+			},
+			{
+				content: post.data.kind.join(", "),
+				name: "keywords"
+			}
+		]}
+		canonical={new URL(Astro.url, Astro.site).toString()}
+		description={post.data.description}
+		openGraph={{
+			article: {
+				authors: ["Austin Raey"],
+				publishedTime: post.data.date.toISOString(),
+				tags: post.data.kind
+			},
+			description: post.data.description,
+			site_name: "Austin Raey",
+			title: post.data.title,
+			type: "article",
+			url: Astro.url.toString()
+		}}
+		slot="seo"
+		title={post.data.title}
+	/>
+
+	<header>
+		<div>
+			<div>
+				<h1 transition:name={`blog-title-${post.id}`}>
+					{post.data.title}
+				</h1>
+				<time
+					datetime={post.data.date.toISOString().split("T")[0]}
+					transition:name={`blog-time-${post.id}`}
+				>
+					Written on {
+						post.data.date.toLocaleDateString("en-US", {
+							day: "numeric",
+							month: "long",
+							year: "numeric"
+						})
+					}
+				</time>
+			</div>
+
+			<h3 transition:name={`blog-tags-${post.id}`}>
+				{
+					post.data.kind.map((kind) => (
+						<span>
+							<KindToIcon {kind} />
+							{KIND_TO_LABEL[kind]}
+						</span>
+					))
+				}
+			</h3>
+		</div>
+
+		<Breadcrumb crumbs={CRUMBS} />
+	</header>
+
+	<main class="post">
+		<article>
+			<Content />
+		</article>
+	</main>
+</Card>
+
+<style>
+	header {
+		display: flex;
+		justify-content: space-between;
+
+		@media screen and (max-width: 768px) {
+			flex-direction: column;
+			gap: 1rem;
+
+			> div {
+				order: 1;
+			}
+		}
+	}
+
+	time {
+		color: hsl(0 0% 0% / 0.75);
+		font-size: 0.875rem;
+		font-weight: 500;
+		margin-top: 0.25rem;
+	}
+
+	h3 {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+
+		span {
+			align-items: center;
+			display: flex;
+			gap: 0.25rem;
+		}
+
+		svg {
+			width: 2rem;
+			height: 2rem;
+		}
+	}
+
+	article {
+		padding-bottom: 3rem;
+	}
+
+	:global(.post) {
+		.tags {
+			margin: 1rem 0;
+			font-size: 0.875rem;
+
+			ul {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+		}
+		a {
+			color: oklch(62.3% 0.214 259.815);
+			font-weight: 600;
+			text-decoration: underline;
+			transition: color 0.2s ease-in-out;
+			text-underline-offset: 0.125rem;
+			text-decoration-thickness: 2px;
+		}
+
+		p > code {
+			background-color: oklch(100% 0 0 / 0.5);
+			border-radius: 0.25rem;
+			padding: 0.125rem 0.25rem;
+			font-family: monospace;
+			font-size: 0.875rem;
+			border: 1px solid oklch(100% 0 0 / 1);
+		}
+
+		section {
+			margin: 1rem 0;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		pre {
+			border: 2px solid oklch(100% 0 0 / 0.5);
+			border-radius: 0.5rem;
+			border-style: solid;
+			border-spacing: 5px;
+			padding: 0.5rem;
+			scrollbar-color: #fffa transparent;
+
+			span {
+				text-shadow: none;
+			}
+		}
+
+		ol {
+			list-style: decimal;
+			margin-left: 1.5rem;
+
+			> li {
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
+</style>

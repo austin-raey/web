@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import Link from "~/components/link.astro";
+
+import KindToIcon from "./kind-to-icon.astro";
+
+type Props = CollectionEntry<"blog">;
+const { data: { date, description = "", kind, title } = {}, id } = Astro.props;
+
+const href = `/blog/${id}`;
+---
+
+<Link href={href} variant="button">
+	<article transition:name={`blog-tags-${id}`}>
+		<h3>
+			<span class="sr-only">Categories:</span>
+			<span>{kind?.map((k) => <KindToIcon kind={k} />)}</span>
+			<time
+				datetime={date?.toISOString().split("T")[0]}
+				transition:name={`blog-time-${id}`}
+			>
+				<span class="sr-only">Written on</span>
+				{date?.toLocaleDateString()}
+			</time>
+		</h3>
+		<div transition:name={`blog-title-${id}`}>
+			<h2>
+				{title}
+			</h2>
+			{description !== "" && <h4>{description}</h4>}
+		</div>
+	</article>
+</Link>
+
+<style>
+	h2 {
+		margin: 0.125em 0;
+	}
+
+	h3 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5em 0;
+		flex-shrink: 0;
+	}
+
+	article {
+		font-size: 0.875em;
+		font-weight: 300;
+		display: flex;
+		align-items: center;
+		padding: 0.5rem;
+		gap: 1em;
+		pointer-events: none;
+	}
+
+	time {
+		font-weight: 300;
+		font-size: 0.75em;
+		letter-spacing: 0.025em;
+	}
+
+	article :global(svg) {
+		width: 2em;
+		height: 2em;
+	}
+</style>

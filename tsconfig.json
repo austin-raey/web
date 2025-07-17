@@ -3,7 +3,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"~/*": ["src/*"]
-		}
+		},
+		"types": ["unplugin-icons/types/astro"]
 	},
 	"exclude": ["dist"],
 	"extends": "astro/tsconfigs/strict",

@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+	prefetch?: boolean;
+	priority?: "high" | "low";
+	variant?: "button" | "link";
+}
+
+const {
+	prefetch = true,
+	priority = "low",
+	variant = "link",
+	...rest
+} = Astro.props;
+
+let prefetchValue = "false";
+if (prefetch) {
+	prefetchValue = priority === "high" ? "viewport" : "hover";
+}
+
+const attributes: Props = {
+	"data-astro-prefetch": prefetchValue,
+	...rest
+};
+---
+
+<a
+	{...attributes}
+	class:list={[variant]}
+	data-astro-prefetch={attributes["data-astro-prefetch"]}
+>
+	<slot />
+</a>
+
+<style>
+	@import "./button.css";
+
+	a > :global(svg) {
+		margin-right: 0.125em;
+	}
+</style>

@@ -1,0 +1,47 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+import type { CollectionEntry } from "astro:content";
+
+import IconBugDuotone from "~icons/ph/bug-duotone";
+import IconGearFineDuotone from "~icons/ph/gear-fine-duotone";
+import IconLaptopDuotone from "~icons/ph/laptop-duotone";
+import IconListNumbersDuotone from "~icons/ph/list-numbers-duotone";
+import IconPencilCircleDuotone from "~icons/ph/pencil-circle-duotone";
+
+interface Props {
+	kind: CollectionEntry<"blog">["data"]["kind"][number];
+}
+const { kind } = Astro.props;
+
+const icons: Record<Props["kind"], JSX.Element> = {
+	bug: IconBugDuotone,
+	computer: IconLaptopDuotone,
+	framework: IconGearFineDuotone,
+	personal: IconPencilCircleDuotone,
+	tutorial: IconListNumbersDuotone
+};
+
+export const KIND_TO_LABEL: Record<Props["kind"], string> = {
+	bug: "Bug Report",
+	computer: "Computer",
+	framework: "JS Framework",
+	personal: "Personal",
+	tutorial: "Tutorial"
+};
+
+const IconComponent = kind ? icons[kind] : undefined;
+---
+
+{
+	IconComponent && (
+		<span aria-label={KIND_TO_LABEL[kind]} title={KIND_TO_LABEL[kind]}>
+			<IconComponent />
+		</span>
+	)
+}
+
+<style>
+	span {
+		display: inline-block;
+	}
+</style>

@@ -1,12 +1,7 @@
 .astro/
-.dev.vars*
 .DS_Store
 .env
-.env.production
-.wrangler
+*-debug.log*
+*-error.log*
 dist/
 node_modules/
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*

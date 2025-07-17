@@ -1,0 +1,101 @@
+---
+import IconArrowsClockwiseDuotone from "~icons/ph/arrows-clockwise-duotone.astro";
+
+import Button from "~/components/button.astro";
+import Global from "~/layouts/global.astro";
+
+export interface Props {
+	size?: "default" | "large";
+}
+
+export const KEY_MOTION = "astro-motion";
+
+const { size = "default" } = Astro.props;
+---
+
+<Global>
+	<slot name="seo" slot="seo" />
+
+	<astro-card
+		data-motion="true"
+		data-size={size}
+		transition:animate="initial"
+		transition:name="card"
+	>
+		<div class="controls">
+			<Button variant="custom">
+				<IconArrowsClockwiseDuotone />
+				<span data-motion="false">Disable Motion</span>
+				<span data-motion="true">Enable Motion</span>
+			</Button>
+		</div>
+
+		<div class="rotate">
+			<div aria-hidden="true" class="shine overlay"></div>
+			<img
+				alt=""
+				aria-hidden="true"
+				class="bg overlay"
+				fetchpriority="high"
+				height="643"
+				loading="eager"
+				src="/bg.avif"
+				width="1024"
+			/>
+			<img
+				alt=""
+				aria-hidden="true"
+				class="texture overlay"
+				fetchpriority="high"
+				height="643"
+				loading="eager"
+				src="/texture.avif"
+				width="1024"
+			/>
+
+			<div class="content">
+				<slot />
+			</div>
+		</div>
+	</astro-card>
+</Global>
+
+<!--
+NOTE / Observations on includes for scripts and styles:
+
+For page scripts (non-exhaustively):
+	- You can import via the `src` attribute of the `<script>` tag, or
+	- import them via an import statement in the body of the `<script>` tag, like below, or
+	- simply write the script direclty in the body of the `<script>` tag below.
+
+For styles (non-exhaustively):
+	- You can import them via Astro's "Component Script" (between the `---` lines),
+	- or you can import them directly in the `<style>` tag using `@import`,
+	- or you can write the styles directly in the `<style>` tag below.
+
+Especially for *styles*, some of Astro's built-in scoping features are lost when importing
+via the Component Script - so it is done below for a more predictable experience.
+
+This does mean that in these style files, `:global` may be necessary for some styling needs.
+-->
+<script define:vars={{ KEY_MOTION }} is:inline>
+	function initializeMotion() {
+		const value = localStorage.getItem(KEY_MOTION) === "true";
+		document
+			.querySelector("astro-card")
+			?.setAttribute("data-motion", value.toString());
+	}
+
+	initializeMotion();
+
+	document.addEventListener("astro:after-swap", initializeMotion);
+</script>
+<script>
+	import "./js";
+</script>
+
+<style>
+	@import "./css/reset.css";
+	@import "./css/layout.css";
+	@import "./css/controls.css";
+</style>

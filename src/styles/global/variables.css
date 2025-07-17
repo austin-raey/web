@@ -1,0 +1,15 @@
+:root {
+	--media-md: 768px;
+	/* TODO: These `--link` variables need to be moved probably  */
+	--link-border: 1px solid color-mix(in lch, currentColor 20%, transparent 50%);
+	--link-bg: linear-gradient(
+		135deg,
+		color-mix(in lch, transparent 10%, oklch(1 0 0) 75%),
+		color-mix(in lch, transparent 15%, oklch(1 0 0) 25%)
+	);
+	--link-bg-hover: linear-gradient(
+		135deg,
+		color-mix(in lch, transparent 15%, oklch(1 0 0) 75%),
+		color-mix(in lch, transparent 10%, oklch(1 0 0) 25%)
+	);
+}

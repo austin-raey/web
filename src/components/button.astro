@@ -1,0 +1,19 @@
+---
+interface Props extends HTMLAttributes<"button"> {
+	variant?: "button" | "custom" | "link";
+}
+const { variant = "button", ...rest } = Astro.props;
+---
+
+<button class:list={[variant]} {...rest}>
+	<slot />
+</button>
+
+<style>
+	@import "./button.css";
+
+	button > :global(svg) {
+		margin-right: 0.125em;
+		flex-shrink: 0;
+	}
+</style>
