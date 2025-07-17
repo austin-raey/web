@@ -24,10 +24,6 @@ export class AstroCard extends HTMLElement {
 		this.controlsManager = new ControlsManager(this);
 	}
 
-	connectedCallback() {
-		console.log("AstroCard connected", this.dataset.motion);
-	}
-
 	disconnectedCallback() {
 		this.controlsManager.cleanup();
 		this.rotationManager.cleanup();

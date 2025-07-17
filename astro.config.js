@@ -21,7 +21,9 @@ export default defineConfig({
 			HTML: {
 				"html-minifier-terser": {
 					collapseInlineTagWhitespace: true,
-					collapseWhitespace: true
+					collapseWhitespace: true,
+					minifyCSS: false,
+					sortAttributes: true
 				}
 			}
 		})

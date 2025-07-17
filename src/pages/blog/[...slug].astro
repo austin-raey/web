@@ -142,6 +142,7 @@ const CRUMBS = [
 		padding-bottom: 3rem;
 	}
 
+	/* TODO: Move these into a seperate file */
 	:global(.post) {
 		.tags {
 			margin: 1rem 0;
@@ -153,6 +154,7 @@ const CRUMBS = [
 				flex-wrap: wrap;
 			}
 		}
+
 		a {
 			color: oklch(62.3% 0.214 259.815);
 			font-weight: 600;
@@ -198,6 +200,13 @@ const CRUMBS = [
 			> li {
 				margin-bottom: 0.5rem;
 			}
+		}
+
+		em,
+		strong,
+		p > code,
+		a {
+			margin: 0 0.25rem;
 		}
 	}
 </style>
