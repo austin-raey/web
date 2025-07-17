@@ -80,7 +80,8 @@ This does mean that in these style files, `:global` may be necessary for some st
 -->
 <script define:vars={{ KEY_MOTION }} is:inline>
 	function initializeMotion() {
-		const value = localStorage.getItem(KEY_MOTION) === "true";
+		const storage = globalThis.localStorage.getItem(KEY_MOTION);
+		const value = storage === "true" || storage === null;
 		document
 			.querySelector("astro-card")
 			?.setAttribute("data-motion", value.toString());

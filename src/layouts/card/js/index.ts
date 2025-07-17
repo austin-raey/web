@@ -13,8 +13,9 @@ export class AstroCard extends HTMLElement {
 		super();
 
 		this.size = this.dataset.size as Props["size"];
-		const localStorageMotion = localStorage.getItem(KEY_MOTION) === "true";
-		this.motionDisabled = localStorageMotion
+		const storage = globalThis.localStorage.getItem(KEY_MOTION);
+		const canHaveMotion = storage === "true" || storage === null;
+		this.motionDisabled = canHaveMotion
 			? globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches ||
 				this.dataset.motion === "false"
 			: true;
