@@ -11,7 +11,7 @@ export async function GET(context: AstroGlobal) {
 	const site = context.site!;
 
 	return rss({
-		customData: `<language>en-us</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate><image><title>Austin Raey</title><url>${site}portrait.avif</url><link>${site}</link></image>`,
+		customData: `<language>en-us</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate><image><title>Austin Raey</title><url>${site}/assets/portrait.avif</url><link>${site}</link></image>`,
 		description:
 			"Austin Raey's blog about web development, design, and technology.",
 

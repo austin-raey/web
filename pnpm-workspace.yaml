@@ -1,2 +1,6 @@
+onlyBuiltDependencies:
+  - sharp
+
 saveDev: true
+
 saveExact: true

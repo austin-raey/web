@@ -1,5 +1,6 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
+import { Image } from "astro:assets";
 import IconBlueprint from "~icons/ph/blueprint-duotone";
 import IconGitHub from "~icons/ph/github-logo-duotone";
 import IconInstagram from "~icons/ph/instagram-logo-duotone";
@@ -29,7 +30,7 @@ import Card from "~/layouts/card/layout.astro";
 				{
 					alt: "Portrait of Austin Raey",
 					height: 100,
-					url: "/portrait.avif",
+					url: "/assets/portrait.avif",
 					width: 100
 				}
 			],
@@ -44,12 +45,12 @@ import Card from "~/layouts/card/layout.astro";
 	<main>
 		<article>
 			<figure>
-				<img
+				<Image
 					alt="Portrait of Austin Raey"
 					fetchpriority="high"
 					height="100"
 					loading="eager"
-					src="/portrait.avif"
+					src="/assets/portrait.avif"
 					width="100"
 				/>
 				<figcaption>

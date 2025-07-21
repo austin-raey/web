@@ -6,7 +6,7 @@
 	@media screen and (max-width: 768px) {
 		&:has(astro-card[data-size="large"]) {
 			overflow: initial;
-			background-color: hsl(0 0% 95%);
+			background-color: oklch(96.715% 0.00011 271.152);
 		}
 	}
 }

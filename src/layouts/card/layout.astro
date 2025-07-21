@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import IconArrowsClockwiseDuotone from "~icons/ph/arrows-clockwise-duotone.astro";
 
 import Button from "~/components/button.astro";
@@ -32,24 +33,24 @@ const { size = "default" } = Astro.props;
 
 		<div class="rotate">
 			<div aria-hidden="true" class="shine overlay"></div>
-			<img
+			<Image
 				alt=""
 				aria-hidden="true"
 				class="bg overlay"
 				fetchpriority="high"
 				height="643"
 				loading="eager"
-				src="/bg.avif"
+				src="/assets/bg.avif"
 				width="1024"
 			/>
-			<img
+			<Image
 				alt=""
 				aria-hidden="true"
 				class="texture overlay"
 				fetchpriority="high"
 				height="643"
 				loading="eager"
-				src="/texture.avif"
+				src="/assets/texture.avif"
 				width="1024"
 			/>
 

@@ -43,14 +43,14 @@ const { crumbs = [] } = Astro.props;
 		background: var(--link-bg);
 		border-radius: 0.75rem;
 		border: var(--link-border);
-		color: hsl(0 0% 0% / 0.75);
+		color: oklch(0 0 0 / 0.75);
 		flex-shrink: 0;
 		font-size: 0.875rem;
 		font-weight: 600;
 		padding: 0.5rem 0.75rem;
 
 		a:hover {
-			color: hsl(0 0% 0% / 1);
+			color: oklch(0 0 0 / 1);
 			transition: all 0.2s ease-in-out;
 		}
 	}
