@@ -10,7 +10,7 @@ import Card from "~/layouts/card/layout.astro";
 import BlogLink from "./_/components/blog-link.astro";
 
 const collection = await getCollection("blog");
-const posts = collection.sort(
+const posts = collection.toSorted(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 

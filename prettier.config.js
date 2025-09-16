@@ -15,4 +15,4 @@ export default {
 	singleQuote: false,
 	trailingComma: "none",
 	useTabs: true
-}
+};

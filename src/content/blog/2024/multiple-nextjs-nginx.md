@@ -82,7 +82,8 @@ Here's a rough outline of the steps to get this working:
    	}
 
    	# The new app assets will be served from /v2, as configured in `next.config.js`.
-   	# Because we changed the API routes to match `assetPrefix` (v2/api), this configuration item also applies to them.
+   	# Because we changed the API routes to match `assetPrefix` (v2/api),
+   	# this configuration item also applies to them.
    	location /v2 {
    		proxy_pass http://localhost:3001;
    	}
