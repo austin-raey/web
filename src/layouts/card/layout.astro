@@ -4,12 +4,9 @@ import IconArrowsClockwiseDuotone from "~icons/ph/arrows-clockwise-duotone.astro
 
 import Button from "~/components/button.astro";
 import Global from "~/layouts/global.astro";
-
 export interface Props {
 	size?: "default" | "large";
 }
-
-export const KEY_MOTION = "astro-motion";
 
 const { size = "default" } = Astro.props;
 ---
@@ -36,21 +33,22 @@ const { size = "default" } = Astro.props;
 			<Image
 				alt=""
 				aria-hidden="true"
-				class="bg overlay"
-				fetchpriority="high"
-				height="643"
-				loading="eager"
-				src="/assets/bg.avif"
-				width="1024"
-			/>
-			<Image
-				alt=""
-				aria-hidden="true"
 				class="texture overlay"
 				fetchpriority="high"
 				height="643"
 				loading="eager"
 				src="/assets/texture.avif"
+				width="1024"
+			/>
+
+			<Image
+				alt=""
+				aria-hidden="true"
+				class="bg overlay"
+				fetchpriority="high"
+				height="643"
+				loading="eager"
+				src="/assets/bg.avif"
 				width="1024"
 			/>
 
@@ -79,9 +77,9 @@ via the Component Script - so it is done below for a more predictable experience
 
 This does mean that in these style files, `:global` may be necessary for some styling needs.
 -->
-<script define:vars={{ KEY_MOTION }} is:inline>
+<script is:inline>
 	function initializeMotion() {
-		const storage = globalThis.localStorage.getItem(KEY_MOTION);
+		const storage = globalThis.localStorage.getItem("astro-motion");
 		const value = storage === "true" || storage === null;
 		document
 			.querySelector("astro-card")

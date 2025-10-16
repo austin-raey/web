@@ -1,6 +1,6 @@
 import type { AstroCard } from ".";
 
-import { KEY_MOTION } from "../layout.astro";
+import { KEY_MOTION } from "../js";
 
 export class ControlsManager {
 	#controls: HTMLDivElement;

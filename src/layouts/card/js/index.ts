@@ -1,6 +1,8 @@
-import { KEY_MOTION, type Props } from "../layout.astro";
+import { type Props } from "../layout.astro";
 import { ControlsManager } from "./controls.js";
 import { RotationManager } from "./rotation.js";
+
+export const KEY_MOTION = "astro-motion";
 
 export class AstroCard extends HTMLElement {
 	controlsManager: ControlsManager;

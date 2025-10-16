@@ -1,5 +1,6 @@
-import sitemap from "@astrojs/sitemap";
 // @ts-check
+
+import sitemap from "@astrojs/sitemap";
 import compress from "@playform/compress";
 import { defineConfig } from "astro/config";
 import Icons from "unplugin-icons/vite";
