@@ -1,0 +1,7 @@
+[install]
+backend = "hardlink"
+exact = true
+linker = "isolated"
+
+[run]
+bun = true
