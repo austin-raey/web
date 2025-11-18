@@ -1,4 +1,7 @@
 {
+	"dependencies": {
+		"@astrojs/mdx": "^4.3.11"
+	},
 	"devDependencies": {
 		"@astrojs/rss": "4.0.13",
 		"@astrojs/sitemap": "3.6.0",
@@ -33,10 +36,8 @@
 		"build": "astro build",
 		"dev": "bunx --bun astro dev",
 		"lint": "eslint --fix",
-		"preview": "bun run build && wrangler dev"
+		"preview": "bun run build && wrangler dev",
+		"wrangler": "wrangler"
 	},
-	"type": "module",
-	"dependencies": {
-		"@astrojs/mdx": "^4.3.11"
-	}
+	"type": "module"
 }
