@@ -9,13 +9,6 @@ export default defineConfig({
 	build: {
 		inlineStylesheets: "always"
 	},
-
-	// // I would add this, however, this seems to cause resizing the page
-	// // to be slow / janky.
-	// experimental: {
-	// 	clientPrerender: true
-	// },
-
 	integrations: [
 		sitemap(),
 		compress({
@@ -24,11 +17,27 @@ export default defineConfig({
 					collapseInlineTagWhitespace: true,
 					collapseWhitespace: true,
 					minifyCSS: false,
+					removeComments: true,
 					sortAttributes: true
 				}
 			}
 		})
 	],
+
+	markdown: {
+		shikiConfig: {
+			themes: {
+				dark: "catppuccin-macchiato",
+				light: "catppuccin-latte"
+			}
+		}
+	},
+
+	// // I would add this, however, this seems to cause resizing the page
+	// // to be slow / janky.
+	// experimental: {
+	// 	clientPrerender: true
+	// },
 
 	output: "static",
 
@@ -36,6 +45,8 @@ export default defineConfig({
 		defaultStrategy: "hover",
 		prefetchAll: true
 	},
+
+	scopedStyleStrategy: "where",
 
 	security: {
 		checkOrigin: true
@@ -49,7 +60,8 @@ export default defineConfig({
 		plugins: [
 			Icons({
 				compiler: "astro",
-				defaultClass: "i"
+				defaultClass: "i",
+				defaultStyle: "vertical-align: text-bottom;"
 			})
 		]
 	}

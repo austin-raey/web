@@ -2,23 +2,23 @@
 :global(html, body) {
 	overflow: hidden;
 	min-height: 100svh;
+}
 
-	@media screen and (max-width: 768px) {
-		&:has(astro-card[data-size="large"]) {
-			overflow: initial;
-			background-color: oklch(96.715% 0.00011 271.152);
-		}
+@media screen and (max-width: 768px) {
+	:global(html, body):has(astro-card[data-size="large"]) {
+		overflow: initial;
+		background-color: oklch(96.715% 0.00011 271.152);
 	}
 }
 
 :global(body) {
 	display: grid;
 	place-items: center;
+}
 
-	@media screen and (max-width: 768px) {
-		&:has(astro-card[data-size="large"]) {
-			display: block;
-		}
+@media screen and (max-width: 768px) {
+	:global(body):has(astro-card[data-size="large"]) {
+		display: block;
 	}
 }
 

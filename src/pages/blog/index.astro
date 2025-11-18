@@ -87,7 +87,16 @@ const CRUMBS = [
 		}
 
 		@media screen and (max-width: 640px) {
+			gap: 0.25rem;
 			grid-template-columns: 1fr;
+		}
+
+		li {
+			display: flex;
+		}
+
+		a {
+			flex-grow: 1;
 		}
 	}
 

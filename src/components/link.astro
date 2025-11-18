@@ -26,9 +26,9 @@ const attributes: Props = {
 ---
 
 <a
-	{...attributes}
-	class:list={[variant]}
+	class:list={variant}
 	data-astro-prefetch={attributes["data-astro-prefetch"]}
+	{...rest}
 >
 	<slot />
 </a>

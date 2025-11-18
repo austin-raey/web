@@ -1,41 +1,39 @@
 {
 	"devDependencies": {
-		"@astrojs/rss": "4.0.12",
+		"@astrojs/rss": "4.0.13",
 		"@astrojs/sitemap": "3.6.0",
 		"@astrolib/seo": "1.0.0-beta.8",
-		"@eslint/js": "9.37.0",
-		"@iconify-json/logos": "1.2.9",
+		"@eslint/js": "9.39.1",
+		"@iconify-json/logos": "1.2.10",
 		"@iconify-json/ph": "1.2.2",
 		"@playform/compress": "0.2.0",
-		"@typescript-eslint/parser": "8.46.1",
-		"astro": "5.14.5",
+		"@typescript-eslint/parser": "8.47.0",
+		"astro": "5.15.9",
 		"astro-capo": "0.0.1",
-		"eslint": "9.37.0",
+		"eslint": "9.39.1",
 		"eslint-config-prettier": "10.1.8",
-		"eslint-plugin-astro": "1.3.1",
+		"eslint-plugin-astro": "1.5.0",
 		"eslint-plugin-perfectionist": "4.15.1",
-		"eslint-plugin-unicorn": "61.0.2",
-		"isomorphic-dompurify": "2.29.0",
-		"marked": "16.4.0",
+		"eslint-plugin-unicorn": "62.0.0",
+		"isomorphic-dompurify": "2.32.0",
+		"marked": "17.0.0",
 		"prettier": "3.6.2",
 		"prettier-plugin-astro": "0.14.1",
 		"typescript": "5.9.3",
-		"typescript-eslint": "8.46.1",
-		"unplugin-icons": "22.4.2",
-		"wrangler": "4.43.0"
+		"typescript-eslint": "8.47.0",
+		"unplugin-icons": "22.5.0",
+		"wrangler": "4.49.0"
 	},
 	"engines": {
-		"bun": "1.3.0",
+		"bun": "1.3.2",
 		"node": ">=24"
 	},
-	"packageManager": "bun@1.3.0",
+	"packageManager": "bun@1.3.2",
 	"scripts": {
-		"astro": "astro",
 		"build": "astro build",
-		"dev": "astro dev",
+		"dev": "bunx --bun astro dev",
 		"lint": "eslint --fix",
-		"preview": "astro build && wrangler dev",
-		"wrangler": "wrangler"
+		"preview": "bun run build && wrangler dev"
 	},
 	"type": "module"
 }

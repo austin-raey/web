@@ -5,12 +5,14 @@
 	"[css][scss][postcss][html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact][yaml]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+	"biome.enabled": false,
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
 	"editor.insertSpaces": false,
+	"eslint.enable": true,
 	"eslint.validate": [
 		"astro",
 		"html",
@@ -27,6 +29,7 @@
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
 	"npm.packageManager": "pnpm",
+	"prettier.enable": true,
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib"
 }

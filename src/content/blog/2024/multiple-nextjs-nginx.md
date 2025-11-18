@@ -18,7 +18,7 @@ kind: ["tutorial", "framework"]
 
 ## Background
 
-Recently at work, it has come up that we want to incrementally update _specific_ paths in our app with the latest version of NEXT.JS (15). The old app is also based on an older version of NEXT.JS (11), but would require non-trivial changes to upgrade &mdash; so we are opting to rebuild the app from scratch.
+Recently at work, it has come up that we want to incrementally update _specific_ paths in our app with the latest version of NEXT.JS (15). The old app is also based on an older version of NEXT.JS (10), but would require non-trivial changes to upgrade &mdash; so we are opting to rebuild the app from scratch.
 
 Prior to this, other upgrades or rewrites had allowed us to directly host the app on a new subdomain and server, because they were small enough to do it all at once. This time, however, we do not have this luxury.
 
