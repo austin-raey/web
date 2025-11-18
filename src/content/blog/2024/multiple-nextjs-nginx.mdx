@@ -5,40 +5,35 @@ date: 2024-11-23
 kind: ["tutorial", "framework"]
 ---
 
+import RelatedLinks from "~/components/mdx/related-links.astro";
 import TLDR from "~/components/mdx/tldr.astro";
 
-<div class="tags" role="region" aria-label="Relevant technologies">
-	Relevant technologies:
-	<ul>
-		<li>
-			<a
-				href="https://nginx.org/"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				NGINX
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://nextjs.org/"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				NEXT.JS
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://www.docker.com/"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				Docker
-			</a>
-		</li>
-	</ul>
-</div>
+<RelatedLinks
+	links={[
+		{
+			title: "Multi-Zones",
+			href: "https://nextjs.org/docs/app/building-your-application/deploying/multi-zones"
+		},
+		{
+			title: "NGINX Documentation",
+			href: "https://nginx.org/en/docs/",
+			description:
+				"Official NGINX documentation for reverse proxy configuration"
+		},
+		{
+			title: "assetPrefix - Next.js",
+			href: "https://nextjs.org/docs/app/api-reference/next-config-js/assetPrefix",
+			description:
+				"Next.js configuration option for serving assets from a different path"
+		},
+		{
+			title: "Docker",
+			href: "https://www.docker.com/",
+			description:
+				"Containerization platform that can help manage multiple instances"
+		}
+	]}
+/>
 
 <TLDR>
 	If you want to run multiple NEXT.JS instances on the same server, you can use

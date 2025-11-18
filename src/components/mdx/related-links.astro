@@ -1,0 +1,61 @@
+---
+import IconLink from "~icons/ph/link";
+
+interface Props {
+	links: {
+		description?: string;
+		href: string;
+		title: string;
+	}[];
+}
+
+const { links } = Astro.props;
+---
+
+<aside aria-labelledby="related-links-heading" class="related-links">
+	<h4 id="related-links-heading">
+		<IconLink aria-hidden="true" /> Related Links
+	</h4>
+	<nav aria-label="Related articles">
+		<ul>
+			{
+				links.map((link) => (
+					<li>
+						<a href={link.href} rel="noopener noreferrer" target="_blank">
+							{link.title}
+						</a>
+						{link.description && <p>{link.description}</p>}
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</aside>
+
+<style>
+	.related-links {
+		margin: 1.5rem -1rem;
+		padding: 1rem;
+		font-size: 0.85rem;
+	}
+
+	h4 {
+		font-size: 1.25em;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	li {
+		margin-top: 0.5rem;
+	}
+
+	p {
+		font-size: 0.9em;
+	}
+</style>

@@ -5,40 +5,29 @@ date: 2025-11-18
 kind: ["bug"]
 ---
 
+import RelatedLinks from "~/components/mdx/related-links.astro";
 import UnderConstruction from "~/components/mdx/under-construction.astro";
 
-<div class="tags">
-	Relevant technologies:
-	<ul>
-		<li>
-			<a
-				href="https://nodejs.org"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				Node
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://nextjs.org/"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				NEXT.JS
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://www.docker.com/"
-				rel="external noopener noreferrer"
-				target="_blank"
-			>
-				Docker
-			</a>
-		</li>
-	</ul>
-</div>
+<RelatedLinks
+	links={[
+		{
+			title: "Node.js Memory Leaks",
+			href: "https://nodejs.org/en/docs/guides/diagnostics/memory-leaks/"
+		},
+		{
+			title: "Next.js Memory Management",
+			href: "https://nextjs.org/docs/app/building-your-application/optimizing-performance#memory-management"
+		},
+		{
+			title: "Heap Profiling with Chrome DevTools",
+			href: "https://developers.google.com/web/tools/chrome-devtools/memory-problems"
+		},
+		{
+			title: "Docker Memory Limits",
+			href: "https://docs.docker.com/config/containers/resource_constraints/#memory"
+		}
+	]}
+/>
 
 <UnderConstruction />
 
