@@ -36,8 +36,7 @@
 		"build": "astro build",
 		"dev": "bunx --bun astro dev",
 		"lint": "eslint --fix",
-		"preview": "bun run build && wrangler dev",
-		"wrangler": "wrangler"
+		"preview": "bun run build && wrangler dev"
 	},
 	"type": "module"
 }
