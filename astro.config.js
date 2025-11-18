@@ -16,8 +16,6 @@ export default defineConfig({
 		compress({
 			HTML: {
 				"html-minifier-terser": {
-					collapseInlineTagWhitespace: true,
-					collapseWhitespace: true,
 					minifyCSS: false,
 					removeComments: true,
 					sortAttributes: true
