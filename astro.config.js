@@ -1,5 +1,6 @@
 // @ts-check
 
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import compress from "@playform/compress";
 import { defineConfig } from "astro/config";
@@ -10,6 +11,7 @@ export default defineConfig({
 		inlineStylesheets: "always"
 	},
 	integrations: [
+		mdx(),
 		sitemap(),
 		compress({
 			HTML: {
@@ -46,8 +48,6 @@ export default defineConfig({
 		prefetchAll: true
 	},
 
-	scopedStyleStrategy: "where",
-
 	security: {
 		checkOrigin: true
 	},
@@ -60,8 +60,7 @@ export default defineConfig({
 		plugins: [
 			Icons({
 				compiler: "astro",
-				defaultClass: "i",
-				defaultStyle: "vertical-align: text-bottom;"
+				defaultClass: "i"
 			})
 		]
 	}

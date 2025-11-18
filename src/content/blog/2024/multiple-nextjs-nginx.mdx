@@ -5,14 +5,47 @@ date: 2024-11-23
 kind: ["tutorial", "framework"]
 ---
 
-<div class="tags">
+import TLDR from "~/components/mdx/tldr.astro";
+
+<div class="tags" role="region" aria-label="Relevant technologies">
 	Relevant technologies:
 	<ul>
-		<li><a href="https://nginx.org/" rel="external noopener noreferrer" target="_blank">NGINX</a></li>
-		<li><a href="https://nextjs.org/" rel="external noopener noreferrer" target="_blank">NEXT.JS</a></li>
-		<li><a href="https://www.docker.com/" rel="external noopener noreferrer" target="_blank">Docker</a></li>
-  </ul>
+		<li>
+			<a
+				href="https://nginx.org/"
+				rel="external noopener noreferrer"
+				target="_blank"
+			>
+				NGINX
+			</a>
+		</li>
+		<li>
+			<a
+				href="https://nextjs.org/"
+				rel="external noopener noreferrer"
+				target="_blank"
+			>
+				NEXT.JS
+			</a>
+		</li>
+		<li>
+			<a
+				href="https://www.docker.com/"
+				rel="external noopener noreferrer"
+				target="_blank"
+			>
+				Docker
+			</a>
+		</li>
+	</ul>
 </div>
+
+<TLDR>
+	If you want to run multiple NEXT.JS instances on the same server, you can use
+	the `assetPrefix` configuration option in NEXT.JS to serve build artifacts
+	from different directories. Then, you can configure NGINX to proxy requests to
+	the correct instance based on the path.
+</TLDR>
 
 <section>
 
@@ -48,7 +81,12 @@ In our case, we use NGINX to proxy requests to the correct instance based on the
 
 Thankfully, NEXT.JS has a configuration option to change the directory where it serves its build artifacts from &mdash; `assetPrefix`. This in tandem with NGINX allows us to serve the correct assets for each instance per path with no strange configuration rot. I'm sure this could also apply to other reverse proxies, but I have not tried it because NGINX is what we use.
 
-<small>**Note**: NEXT.JS doesn't seem to note in its documentation when the `assetPrefix` configuration was first added. From a quick Google search, the earliest I could find was [from at least **version 9.5.2**](https://stackoverflow.com/questions/63347780/nextjs-assetprefix-and-basepath-prefix-not-taking-effect).</small>
+<small>
+	**Note**: NEXT.JS doesn't seem to note in its documentation when the
+	`assetPrefix` configuration was first added. From a quick Google search, the
+	earliest I could find was [from at least **version
+	9.5.2**](https://stackoverflow.com/questions/63347780/nextjs-assetprefix-and-basepath-prefix-not-taking-effect).
+</small>
 
 Here's a rough outline of the steps to get this working:
 

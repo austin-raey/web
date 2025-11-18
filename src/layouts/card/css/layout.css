@@ -88,7 +88,7 @@ astro-card[data-size="large"] .rotate {
 
 /* Large card background adjustments */
 astro-card[data-size="large"] .bg {
-	filter: blur(20px);
+	filter: blur(30px) opacity(0.85);
 }
 
 /* Texture overlay */
@@ -100,7 +100,7 @@ astro-card[data-size="large"] .bg {
 }
 
 astro-card[data-size="large"] .texture {
-	opacity: 0.0875;
+	opacity: 0;
 }
 
 /* Shine effect */

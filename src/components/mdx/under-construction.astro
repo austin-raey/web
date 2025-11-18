@@ -1,0 +1,60 @@
+---
+import IconWarning from "~icons/ph/warning";
+---
+
+<aside
+	aria-label="This article is under construction. I probably got busy."
+	class="under-construction"
+	role="note"
+>
+	<IconWarning aria-hidden="true" />
+
+	<h2>Under Construction</h2>
+</aside>
+
+<style>
+	.under-construction {
+		color: oklch(65% 0.2 45);
+		position: relative;
+		padding: 3rem;
+		margin: 0 -1rem !important;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		> svg {
+			width: 5rem;
+			height: 100%;
+			opacity: 0.75;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				135deg,
+				oklch(100% 0.1 60 / 0.5),
+				oklch(100% 0.05 60 / 0.05)
+			);
+			backdrop-filter: blur(10px) saturate(200%) hue-rotate(-30deg);
+			border: 1px solid oklch(80% 0.08 60 / 0.5);
+			border-left: none;
+			border-right: none;
+			z-index: -1;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(
+				circle at 20% 50%,
+				oklch(80% 0.15 60 / 0.15),
+				transparent 50%
+			);
+			z-index: -1;
+		}
+	}
+</style>

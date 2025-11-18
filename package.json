@@ -35,5 +35,8 @@
 		"lint": "eslint --fix",
 		"preview": "bun run build && wrangler dev"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@astrojs/mdx": "^4.3.11"
+	}
 }
