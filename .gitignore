@@ -1,8 +1,6 @@
 .astro/
 .DS_Store
-.env
-*-debug.log*
-*-error.log*
+.env*
+.wrangler/
 dist/
 node_modules/
-.wrangler/

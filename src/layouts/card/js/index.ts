@@ -1,6 +1,6 @@
 import { type Props } from "../layout.astro";
-import { ControlsManager } from "./controls.js";
-import { RotationManager } from "./rotation.js";
+import { ControlsManager } from "./controls";
+import { RotationManager } from "./rotation";
 
 export const KEY_MOTION = "astro-motion";
 

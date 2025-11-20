@@ -184,12 +184,18 @@ const CRUMBS = [
 		}
 
 		pre {
-			background: var(--link-bg) !important;
-			backdrop-filter: blur(10px) saturate(200%) hue-rotate(10deg);
-			border: 1px solid oklch(100% 0 0 / 0.2);
+			background: linear-gradient(
+				135deg,
+				oklch(100% 0 0 / 0.75),
+				oklch(100% 0 0 / 0.55)
+			) !important;
+			backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+			border: 1px solid oklch(0 0 0 / 0.1);
 			border-radius: 0.5rem;
 			padding: 0.5rem;
 			scrollbar-color: #fffa transparent;
+			max-width: max-content;
+			max-height: 30ch;
 
 			span {
 				text-shadow: none;

@@ -10,7 +10,7 @@ import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 import IconShirtFolded from "~icons/ph/shirt-folded-duotone";
 import IconThreads from "~icons/ph/threads-logo-duotone";
 
-import Link from "~/components/link.astro";
+import Anchor from "~/components/anchor.astro";
 import Card from "~/layouts/card/layout.astro";
 ---
 
@@ -85,65 +85,61 @@ import Card from "~/layouts/card/layout.astro";
 			<footer>
 				<nav aria-labelledby="socials">
 					<h3 class="sr-only" id="socials">Socials</h3>
-					<Link
+					<Anchor
 						href="https://github.com/austin-raey"
 						rel="me external noopener noreferrer"
 						target="_blank"
 						title="Austin's GitHub profile"
-						variant="button"
 					>
 						<IconGitHub aria-hidden="true" /> austin-raey
-					</Link>
-					<Link
+					</Anchor>
+					<Anchor
 						href="https://www.threads.net/@austin.raey"
 						rel="me external noopener noreferrer"
 						target="_blank"
 						title="Austin's Threads profile"
-						variant="button"
 					>
 						<IconThreads aria-hidden="true" /> austin.raey
-					</Link>
-					<Link
+					</Anchor>
+					<Anchor
 						href="https://www.instagram.com/austin.raey"
 						rel="me external noopener noreferrer"
 						target="_blank"
 						title="Austin's Instagram profile"
-						variant="button"
 					>
 						<IconInstagram aria-hidden="true" /> austin.raey
-					</Link>
-					<Link
+					</Anchor>
+					<Anchor
 						href="https://www.linkedin.com/in/austin-raey/"
 						rel="me external noopener noreferrer"
 						target="_blank"
 						title="Austin's LinkedIn profile"
-						variant="button"
 					>
 						<IconLinkedIn aria-hidden="true" /> austin-raey
-					</Link>
+					</Anchor>
 				</nav>
 				<nav aria-labelledby="links">
 					<h3 class="sr-only" id="links">Links</h3>
-					<Link
+					<Anchor
 						href="/blog"
+						prefetch
 						priority="high"
 						rel="me"
 						title="Austin's blog"
-						variant="button"
 					>
 						<IconNewsPaperClipping aria-hidden="true" />
 						Blog
-					</Link>
-					<Link
+					</Anchor>
+					<Anchor
 						href="/projects"
+						prefetch
 						priority="high"
 						rel="me"
 						title="Austin's personal projects"
-						variant="button"
 					>
 						<IconBlueprint aria-hidden="true" />
 						Projects
-					</Link>
+					</Anchor>
 				</nav>
 			</footer>
 		</article>
@@ -167,6 +163,8 @@ import Card from "~/layouts/card/layout.astro";
 
 	dd {
 		border-radius: 0.3rem;
+		background: oklch(100% 0 0 / 0.25);
+		backdrop-filter: hue-rotate(-10deg) blur(1px) saturate(250%);
 		border: 0.5px solid color-mix(in srgb, currentColor 20%, transparent);
 		color: #222d;
 		font-size: 0.7rem;
@@ -217,5 +215,9 @@ import Card from "~/layouts/card/layout.astro";
 			font-weight: 900;
 			font-size: 3rem;
 		}
+	}
+
+	a {
+		font-size: 0.875rem;
 	}
 </style>

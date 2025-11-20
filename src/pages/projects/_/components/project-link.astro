@@ -1,7 +1,7 @@
 ---
 import type { JSX } from "astro/jsx-runtime";
 
-import Link from "~/components/link.astro";
+import Anchor from "~/components/anchor.astro";
 
 export interface Props {
 	description?: string;
@@ -12,12 +12,7 @@ export interface Props {
 const { description = "", href, icons = [], title } = Astro.props;
 ---
 
-<Link
-	href={href}
-	rel="me external noopener noreferrer"
-	target="_blank"
-	variant="button"
->
+<Anchor href={href} rel="me external noopener noreferrer" target="_blank">
 	<article>
 		<h3>
 			<span class="sr-only">Project relates to:</span>
@@ -37,7 +32,7 @@ const { description = "", href, icons = [], title } = Astro.props;
 			<h4>{description}</h4>
 		</div>
 	</article>
-</Link>
+</Anchor>
 
 <style>
 	article {

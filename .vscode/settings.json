@@ -2,17 +2,16 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
-	"[css][scss][postcss][html][javascript][javascriptreact][json][jsonc][typescript][typescriptreact][yaml]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
 	"biome.enabled": false,
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
 	"editor.insertSpaces": false,
 	"eslint.enable": true,
+	"eslint.runtime": "bun",
 	"eslint.validate": [
 		"astro",
 		"html",

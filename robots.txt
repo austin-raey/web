@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+Sitemap: https://raey.me/sitemap-index.xml

@@ -8,9 +8,7 @@ interface Props {
 }
 import type { JSX } from "astro/jsx-runtime";
 
-import IconCaretRight from "~icons/ph/caret-right-duotone";
-
-import Link from "~/components/link.astro";
+import IconCaretRight from "~icons/ph/caret-right";
 
 const { crumbs = [] } = Astro.props;
 ---
@@ -20,11 +18,11 @@ const { crumbs = [] } = Astro.props;
 		{
 			crumbs.map((crumb) => (
 				<li>
-					<Link href={crumb.href}>
-						{crumb.icon && <crumb.icon />}
+					<a href={crumb.href}>
+						{crumb.icon && <crumb.icon aria-hidden="true" />}
 						{crumb.label}
-					</Link>
-					{crumbs.at(-1) !== crumb && <IconCaretRight />}
+					</a>
+					{crumbs.at(-1) !== crumb && <IconCaretRight aria-hidden="true" />}
 				</li>
 			))
 		}
@@ -32,50 +30,46 @@ const { crumbs = [] } = Astro.props;
 </nav>
 
 <style>
-	nav,
-	ol {
-		max-height: max-content;
-		max-width: max-content;
-		height: 1.5rem;
-	}
-
 	nav {
-		background: var(--link-bg);
-		border-radius: 0.75rem;
-		border: var(--link-border);
-		color: oklch(0 0 0 / 0.75);
-		flex-shrink: 0;
+		color: oklch(0 0 0 / 0.66);
 		font-size: 0.875rem;
-		font-weight: 600;
-		padding: 0.5rem 0.75rem;
+		overflow: hidden;
 
 		a:hover {
 			color: oklch(0 0 0 / 1);
-			transition: all 0.2s ease-in-out;
+			transition: all 0.1s ease-in-out;
 		}
 	}
 
 	ol {
 		display: flex;
 		align-items: center;
+		background: linear-gradient(
+			to right,
+			oklch(100% 0 0 / 0.66),
+			oklch(100% 0 0 / 0.33)
+		);
+		border: 1px solid oklch(0 0 0 / 0.1);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.5rem;
+		max-width: max-content;
 	}
 
 	li {
-		max-width: 15ch;
-		overflow: hidden;
+		max-width: 20ch;
+		flex-shrink: 0;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-
-		&:not(:last-child) {
-			margin-right: 0.25rem;
-		}
+		overflow: hidden;
+		margin-right: 0.125rem;
 
 		@media screen and (max-width: 768px) {
 			max-width: 100%;
+		}
 
-			&:not(:last-child) {
-				flex-shrink: 0;
-			}
+		&:last-child {
+			flex-shrink: 1;
+			margin-right: 0;
 		}
 	}
 </style>

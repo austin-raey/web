@@ -1,5 +1,4 @@
 // @ts-check
-
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import compress from "@playform/compress";
@@ -23,7 +22,6 @@ export default defineConfig({
 			}
 		})
 	],
-
 	markdown: {
 		shikiConfig: {
 			themes: {
@@ -32,28 +30,10 @@ export default defineConfig({
 			}
 		}
 	},
-
-	// // I would add this, however, this seems to cause resizing the page
-	// // to be slow / janky.
-	// experimental: {
-	// 	clientPrerender: true
-	// },
-
 	output: "static",
 
-	prefetch: {
-		defaultStrategy: "hover",
-		prefetchAll: true
-	},
-
-	security: {
-		checkOrigin: true
-	},
-
 	site: "https://raey.me",
-
 	trailingSlash: "never",
-
 	vite: {
 		plugins: [
 			Icons({

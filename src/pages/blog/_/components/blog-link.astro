@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import Link from "~/components/link.astro";
+import Anchor from "~/components/anchor.astro";
 
 import KindToIcon from "./kind-to-icon.astro";
 
@@ -11,7 +11,7 @@ const { data: { date, description = "", kind, title } = {}, id } = Astro.props;
 const href = `/blog/${id}`;
 ---
 
-<Link href={href} variant="button">
+<Anchor href={href}>
 	<article transition:name={`blog-tags-${id}`}>
 		<h3>
 			<span class="sr-only">Categories:</span>
@@ -31,7 +31,7 @@ const href = `/blog/${id}`;
 			{description !== "" && <h4>{description}</h4>}
 		</div>
 	</article>
-</Link>
+</Anchor>
 
 <style>
 	h2 {

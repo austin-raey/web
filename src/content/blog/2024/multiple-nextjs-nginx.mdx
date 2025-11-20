@@ -8,6 +8,13 @@ kind: ["tutorial", "framework"]
 import RelatedLinks from "~/components/mdx/related-links.astro";
 import TLDR from "~/components/mdx/tldr.astro";
 
+<TLDR>
+	If you want to run multiple NEXT.JS instances on the same server, you can use
+	the `assetPrefix` configuration option in NEXT.JS to serve build artifacts
+	from different directories. Then, you can configure NGINX to proxy requests to
+	the correct instance based on the path.
+</TLDR>
+
 <RelatedLinks
 	links={[
 		{
@@ -34,13 +41,6 @@ import TLDR from "~/components/mdx/tldr.astro";
 		}
 	]}
 />
-
-<TLDR>
-	If you want to run multiple NEXT.JS instances on the same server, you can use
-	the `assetPrefix` configuration option in NEXT.JS to serve build artifacts
-	from different directories. Then, you can configure NGINX to proxy requests to
-	the correct instance based on the path.
-</TLDR>
 
 <section>
 

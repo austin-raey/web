@@ -2,7 +2,6 @@ import type { AstroGlobal } from "astro";
 
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
 
 export async function GET(context: AstroGlobal) {
@@ -19,7 +18,7 @@ export async function GET(context: AstroGlobal) {
 			blog.map(async (post) => ({
 				author: "Austin Raey",
 				categories: post.data.kind || [],
-				content: DOMPurify.sanitize(await marked.parse(post.body || "")),
+				content: await marked.parse(post.body || ""),
 				guid: `/blog/${post.id}/`,
 				link: `/blog/${post.id}/`,
 				...post.data
