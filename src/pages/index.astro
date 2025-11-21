@@ -161,34 +161,33 @@ import Card from "~/layouts/card/layout.astro";
 	footer {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: var(--spacing-xs);
 	}
 
 	dl {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.25rem;
+		gap: var(--spacing-xs);
 		margin-left: 1.2rem;
 		max-width: 33ch;
 	}
 
 	dd {
-		border-radius: 0.3rem;
+		border-radius: var(--spacing-xs);
 		background: oklch(100% 0 0 / 0.25);
-		backdrop-filter: hue-rotate(-10deg) blur(1px) saturate(250%);
 		border: 0.5px solid color-mix(in srgb, currentColor 20%, transparent);
-		color: #222d;
 		font-size: 0.7rem;
 		font-weight: 500;
 		letter-spacing: 0.0125rem;
 		line-height: 1.1;
-		padding: 0.15rem 0.3rem;
+		padding: var(--spacing-xs);
+		position: relative;
 	}
 
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: var(--spacing-xs);
 		margin: 1rem 0;
 
 		p {
@@ -199,7 +198,7 @@ import Card from "~/layouts/card/layout.astro";
 	nav,
 	ul {
 		display: flex;
-		gap: 0.25rem;
+		gap: var(--spacing-xs);
 	}
 
 	img {
@@ -208,10 +207,10 @@ import Card from "~/layouts/card/layout.astro";
 		right: 0;
 		top: 0;
 		margin: 1rem;
-		border-top: 3px solid #fff9;
-		border-right: 3px solid #ddd9;
-		border-bottom: 3px solid #ccc9;
-		border-left: 3px solid #ddd9;
+		border-top: 3px solid oklch(100% 0 0 / 0.75);
+		border-right: 3px solid oklch(90% 0 0 / 0.75);
+		border-bottom: 3px solid oklch(85% 0 0 / 0.75);
+		border-left: 3px solid oklch(90% 0 0 / 0.75);
 		opacity: 0.95;
 	}
 

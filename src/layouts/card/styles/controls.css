@@ -17,8 +17,9 @@ astro-card[data-size="large"] .controls {
 	font-size: 0.75rem;
 	display: inline-flex;
 	align-items: center;
+	gap: var(--spacing-xs);
 	border: 1px solid color-mix(in lch, currentColor, transparent 90%);
-	padding: 0.25rem 0.5rem;
+	padding: var(--spacing-xs) var(--spacing-sm);
 	border-radius: 0.5rem;
 	opacity: 0.5;
 	transition:
@@ -28,12 +29,12 @@ astro-card[data-size="large"] .controls {
 
 .controls button:hover {
 	opacity: 1;
-	transform: scale(1.05);
+	transform: scale(1.03);
 }
 
 .controls button:active {
 	opacity: 1;
-	transform: scale(0.95);
+	transform: scale(0.97);
 }
 astro-card[data-motion="true"] .controls [data-motion="true"] {
 	display: none;

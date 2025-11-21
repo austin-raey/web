@@ -31,13 +31,11 @@ const { crumbs = [] } = Astro.props;
 
 <style>
 	nav {
-		color: oklch(0 0 0 / 0.66);
 		font-size: 0.875rem;
 		overflow: hidden;
 		font-weight: 500;
 
 		a:hover {
-			color: oklch(0 0 0 / 1);
 			transition: all 0.1s ease-in-out;
 		}
 	}
@@ -51,7 +49,7 @@ const { crumbs = [] } = Astro.props;
 			oklch(100% 0 0 / 0.33)
 		);
 		border: 1px solid oklch(0 0 0 / 0.1);
-		padding: 0.25rem 0.5rem;
+		padding: var(--spacing-xs) var(--spacing-sm);
 		border-radius: 0.75rem;
 		max-width: max-content;
 	}

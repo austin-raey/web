@@ -29,23 +29,21 @@ const attributes: Props = {
 	}
 
 	a {
-		color: oklch(0.25 0.02 240);
 		border-radius: 0.75rem;
-		position: relative;
-		overflow: hidden;
+		display: block;
 		font-weight: 600;
-		padding: 0.25rem 0.5rem;
+		padding: var(--spacing-xs) var(--spacing-sm);
 
-		/* Glassomorphic background */
 		background: linear-gradient(
 			135deg,
-			oklch(100% 0 0 / 0.75),
-			oklch(100% 0 0 / 0.25)
+			oklch(100% 0 0 / 0.5),
+			oklch(100% 0 0 / 0.05)
 		);
-		backdrop-filter: blur(10px) hue-rotate(-10deg) saturate(150%) opacity(10%);
+		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
 		border: 1px solid oklch(0 0 0 / 0.125);
 
 		transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		transform: translateY(0) scale(1);
 	}
 
 	a:hover {
@@ -54,13 +52,14 @@ const attributes: Props = {
 			oklch(100% 0 0 / 0.75),
 			oklch(100% 0 0 / 0.25)
 		);
-		border-color: oklch(0 0 0 / 0.4);
-		box-shadow: 0 8px 16px oklch(0 0 0 / 0.15);
-		transform: translateY(-2px);
+		border-color: color-mix(in oklch, var(--color-link), black 20%);
+		box-shadow: 0 4px 8px
+			color-mix(in oklch, var(--color-link), transparent 90%);
+		transform: translateY(-2px) scale(1.02);
 	}
 
 	a:active {
-		transform: translateY(0);
+		transform: translateY(2px) scale(0.98);
 		box-shadow: 0 8px 16px oklch(0 0 0 / 0.1);
 	}
 </style>
