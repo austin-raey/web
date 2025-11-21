@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import IconBlueprint from "~icons/ph/blueprint-duotone";
 import IconGitHub from "~icons/ph/github-logo-duotone";
 import IconInstagram from "~icons/ph/instagram-logo-duotone";
+import IconLinkDuotone from "~icons/ph/link-duotone";
 import IconLinkedIn from "~icons/ph/linkedin-logo-duotone";
 import IconMapPin from "~icons/ph/map-pin-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
@@ -42,7 +43,7 @@ import Card from "~/layouts/card/layout.astro";
 		slot="seo"
 		title="Austin Raey"
 	/>
-	<main>
+	<main transition:name="content">
 		<article>
 			<figure>
 				<Image
@@ -118,7 +119,7 @@ import Card from "~/layouts/card/layout.astro";
 						<IconLinkedIn aria-hidden="true" /> austin-raey
 					</Anchor>
 				</nav>
-				<nav aria-labelledby="links">
+				<nav aria-labelledby="links" transition:name="breadcrumb">
 					<h3 class="sr-only" id="links">Links</h3>
 					<Anchor
 						href="/blog"
@@ -139,6 +140,16 @@ import Card from "~/layouts/card/layout.astro";
 					>
 						<IconBlueprint aria-hidden="true" />
 						Projects
+					</Anchor>
+					<Anchor
+						href="/links"
+						prefetch
+						priority="high"
+						rel="me"
+						title="Links I think are cool"
+					>
+						<IconLinkDuotone aria-hidden="true" />
+						Links
 					</Anchor>
 				</nav>
 			</footer>

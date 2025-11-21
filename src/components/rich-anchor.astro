@@ -1,0 +1,80 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+import type { HTMLAttributes } from "astro/types";
+
+import IconArrowSquareOutFill from "~icons/ph/arrow-square-out-fill";
+
+import Anchor from "~/components/anchor.astro";
+
+export interface Props extends HTMLAttributes<"a"> {
+	description?: string;
+	href: string;
+	icons: { icon: JSX.Element; title: string }[];
+	title: string;
+}
+const { description = "", href, icons = [], title, ...rest } = Astro.props;
+---
+
+<Anchor {...rest} href={href} target="_blank">
+	<article>
+		<h4>
+			<span class="sr-only">Project relates to:</span>
+			{
+				icons.map((icon) => (
+					<span title={icon.title}>
+						<icon.icon />
+					</span>
+				))
+			}
+		</h4>
+
+		<div class="link-info">
+			<h3>{title}</h3>
+			<h5>{description}</h5>
+		</div>
+	</article>
+	<IconArrowSquareOutFill aria-hidden="true" />
+</Anchor>
+
+<style>
+	article {
+		display: flex;
+		gap: 0.5rem;
+		padding: 0.5rem;
+	}
+
+	h3,
+	h4 {
+		line-height: 1;
+	}
+
+	h4 {
+		display: flex;
+		flex-shrink: 0;
+		gap: 0.5rem;
+	}
+
+	h5 {
+		max-width: 40ch;
+	}
+
+	article :global(svg) {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.link-info {
+		flex-grow: 1;
+	}
+
+	a > svg {
+		width: 1rem;
+		height: 1rem;
+		opacity: 0.5;
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0.5rem;
+		pointer-events: none;
+	}
+</style>

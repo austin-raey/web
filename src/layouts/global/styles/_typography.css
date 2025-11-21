@@ -36,6 +36,13 @@ h4 {
 	line-height: 1.2;
 }
 
+h5 {
+	font-size: 0.75rem;
+	font-weight: 400;
+	letter-spacing: -0.0125rem;
+	line-height: 1.2;
+}
+
 p {
 	font-size: 0.9rem;
 	line-height: 1.5;

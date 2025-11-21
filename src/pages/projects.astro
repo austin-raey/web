@@ -4,14 +4,12 @@ import IconNextjs from "~icons/logos/nextjs-icon";
 import IconBlueprint from "~icons/ph/blueprint-duotone";
 import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconLaptop from "~icons/ph/laptop-duotone";
-import IconNewspaper from "~icons/ph/newspaper-duotone";
 import IconPackage from "~icons/ph/package-duotone";
 import IconTerminal from "~icons/ph/terminal-duotone";
 
 import Breadcrumb from "~/components/breadcrumb.astro";
+import RichAnchor from "~/components/rich-anchor.astro";
 import Card from "~/layouts/card/layout.astro";
-
-import ProjectLink from "./_/components/project-link.astro";
 
 const CRUMBS = [
 	{ href: "/", icon: IconHouseDuotone, label: "Home" },
@@ -23,8 +21,8 @@ const links = [
 		description: "My personal dotfiles for macOS and Windows",
 		href: "https://github.com/austin-raey/dotfiles",
 		icons: [
-			{ icon: IconLaptop, title: "Computer" },
-			{ icon: IconTerminal, title: "Dotfiles" }
+			{ icon: IconLaptop, title: "Relates to Computers" },
+			{ icon: IconTerminal, title: "Relates to Dotfiles" }
 		],
 		title: "Dotfiles"
 	},
@@ -33,8 +31,8 @@ const links = [
 			"A lightweight bun-based package upgrade tool that updates dependencies to their latest version",
 		href: "https://github.com/austin-raey/bskt",
 		icons: [
-			{ icon: IconBun, title: "Bun" },
-			{ icon: IconPackage, title: "Package Management" }
+			{ icon: IconBun, title: "Relates to Bun" },
+			{ icon: IconPackage, title: "Relates to Package Management" }
 		],
 		title: "bskt"
 	},
@@ -43,8 +41,8 @@ const links = [
 			"A minimal, enterprise-ready Next.js starter template with batteries included",
 		href: "https://github.com/austin-raey/before.tmp",
 		icons: [
-			{ icon: IconNextjs, title: "Next.js" },
-			{ icon: IconNewspaper, title: "Starter Template" }
+			{ icon: IconNextjs, title: "Relates to Next.js" },
+			{ icon: IconBlueprint, title: "Starter Template" }
 		],
 		title: "Before.tmp"
 	}
@@ -63,20 +61,24 @@ const links = [
 		<Breadcrumb crumbs={CRUMBS} />
 	</header>
 
-	<main>
+	<main transition:name="content">
 		<nav>
 			<div>
 				{
 					links
 						.filter((_, index) => index % 2 === 0)
-						.map((link) => <ProjectLink {...link} />)
+						.map((link) => (
+							<RichAnchor {...link} rel="me external noopener noreferrer" />
+						))
 				}
 			</div>
 			<div>
 				{
 					links
 						.filter((_, index) => index % 2 === 1)
-						.map((link) => <ProjectLink {...link} />)
+						.map((link) => (
+							<RichAnchor {...link} rel="me external noopener noreferrer" />
+						))
 				}
 			</div>
 		</nav>

@@ -1,0 +1,113 @@
+---
+import IconApple from "~icons/logos/apple";
+import IconComputerTowerDuotone from "~icons/ph/computer-tower-duotone";
+import IconHouseDuotone from "~icons/ph/house-duotone";
+import IconLinkDuotone from "~icons/ph/link-duotone";
+import IconPaintBrushDuotone from "~icons/ph/paint-brush-duotone";
+
+import type { Props as RichAnchorProps } from "~/components/rich-anchor.astro";
+
+import Breadcrumb from "~/components/breadcrumb.astro";
+import RichAnchor from "~/components/rich-anchor.astro";
+import Card from "~/layouts/card/layout.astro";
+
+const CRUMBS = [
+	{ href: "/", icon: IconHouseDuotone, label: "Home" },
+	{ href: "/links", icon: IconLinkDuotone, label: "Links" }
+];
+
+const links: RichAnchorProps[] = [
+	{
+		description: "Blog post about implementing liquid glass with CSS and SVG",
+		href: "https://kube.io/blog/liquid-glass-css-svg/",
+		icons: [
+			{
+				icon: IconApple,
+				title: "Relates to Apple"
+			},
+			{
+				icon: IconPaintBrushDuotone,
+				title: "Relates to Links"
+			}
+		],
+		title: "Liquid Glass on Web"
+	},
+	{
+		description:
+			"An excellent mini-ITX case with a unique design and great build quality.",
+		href: "https://formdt1.com",
+		icons: [
+			{
+				icon: IconComputerTowerDuotone,
+				title: "Relates to Computers"
+			}
+		],
+		title: "FormD T1"
+	}
+];
+---
+
+<Card size="large">
+	<header>
+		<div>
+			<h1>Links</h1>
+			<p>
+				Here are some links to articles, resources, and projects I think are
+				cool, in no particular order.
+			</p>
+		</div>
+		<Breadcrumb crumbs={CRUMBS} />
+	</header>
+
+	<main transition:name="content">
+		<nav>
+			<div>
+				{
+					links
+						.filter((_, index) => index % 2 === 0)
+						.map((link) => (
+							<RichAnchor {...link} rel="external noopener noreferrer" />
+						))
+				}
+			</div>
+			<div>
+				{
+					links
+						.filter((_, index) => index % 2 === 1)
+						.map((link) => (
+							<RichAnchor {...link} rel="external noopener noreferrer" />
+						))
+				}
+			</div>
+		</nav>
+	</main>
+</Card>
+
+<style>
+	header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	p {
+		max-width: 35ch;
+	}
+
+	nav {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+		max-width: 60ch;
+
+		> div {
+			display: grid;
+			grid-template-rows: max-content;
+			gap: 0.5rem;
+		}
+
+		@media screen and (max-width: 640px) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
