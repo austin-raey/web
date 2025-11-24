@@ -1,0 +1,114 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import IconApple from "~icons/logos/apple";
+import IconBookBookmarkDuotone from "~icons/ph/book-bookmark-duotone";
+import IconComputerTowerDuotone from "~icons/ph/computer-tower-duotone";
+import IconPaintBrushDuotone from "~icons/ph/paint-brush-duotone";
+
+import type { Props as RichAnchorProps } from "~/components/rich-anchor.astro";
+
+import RichAnchor from "~/components/rich-anchor.astro";
+import Layout from "~/layouts/landing/layout.astro";
+
+const CRUMBS = [
+	{ href: "/bookmarks", icon: IconBookBookmarkDuotone, label: "Bookmarks" }
+];
+
+const links: RichAnchorProps[] = [
+	{
+		description: "Blog post about implementing liquid glass with CSS and SVG",
+		href: "https://kube.io/blog/liquid-glass-css-svg/",
+		icons: [
+			{
+				icon: IconApple,
+				title: "Relates to Apple"
+			},
+			{
+				icon: IconPaintBrushDuotone,
+				title: "Relates to Links"
+			}
+		],
+		title: "Liquid Glass on Web"
+	},
+	{
+		description:
+			"An excellent mini-ITX case with a unique design and great build quality.",
+		href: "https://formdt1.com",
+		icons: [
+			{
+				icon: IconComputerTowerDuotone,
+				title: "Relates to Computers"
+			}
+		],
+		title: "FormD T1"
+	}
+];
+---
+
+<Layout
+	crumbs={CRUMBS}
+	description="Here are some links to articles, resources, and projects I think are cool, in no particular order."
+	title="Bookmarks"
+>
+	<AstroSeo
+		additionalMetaTags={[
+			{
+				content:
+					"bookmarks, software engineering, frontend, full-stack, devops, computers",
+				name: "keywords"
+			}
+		]}
+		canonical={new URL(Astro.url, Astro.site).toString()}
+		description="Austin's bookmarks related to software engineering, frontend, full-stack, devops, and other cool stuff"
+		openGraph={{
+			description:
+				"Austin's bookmarks related to software engineering, frontend, full-stack, devops, and other cool stuff",
+			site_name: "Austin Raey",
+			title: "Austin Raey's bookmarks",
+			type: "website",
+			url: Astro.url.toString()
+		}}
+		slot="seo"
+		title="Austin Raey's bookmarks"
+	/>
+
+	<nav>
+		<div>
+			{
+				links
+					.filter((_, index) => index % 2 === 0)
+					.map((link) => (
+						<RichAnchor {...link} rel="external noopener noreferrer" />
+					))
+			}
+		</div>
+		<div>
+			{
+				links
+					.filter((_, index) => index % 2 === 1)
+					.map((link) => (
+						<RichAnchor {...link} rel="external noopener noreferrer" />
+					))
+			}
+		</div>
+	</nav>
+</Layout>
+
+<style>
+	nav {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+		max-width: 60ch;
+
+		> div {
+			display: grid;
+			grid-template-rows: max-content;
+			gap: 0.5rem;
+		}
+
+		@media screen and (max-width: 640px) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

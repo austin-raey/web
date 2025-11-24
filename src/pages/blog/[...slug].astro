@@ -4,7 +4,7 @@ import { getCollection, render } from "astro:content";
 import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
-import Breadcrumb from "~/components/breadcrumb.astro";
+import Breadcrumbs from "~/components/breadcrumbs.astro";
 import Card from "~/layouts/card/layout.astro";
 
 import KindToIcon, { KIND_TO_LABEL } from "./_/components/kind-to-icon.astro";
@@ -54,7 +54,7 @@ const CRUMBS = [
 			url: Astro.url.toString()
 		}}
 		slot="seo"
-		title={post.data.title}
+		title={` Austin Raey's blog | ${post.data.title}`}
 	/>
 
 	<header>
@@ -89,7 +89,7 @@ const CRUMBS = [
 			</h3>
 		</div>
 
-		<Breadcrumb crumbs={CRUMBS} />
+		<Breadcrumbs crumbs={CRUMBS} />
 	</header>
 
 	<main class="post">

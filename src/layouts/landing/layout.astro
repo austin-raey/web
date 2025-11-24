@@ -1,0 +1,61 @@
+---
+import IconHouseDuotone from "~icons/ph/house-duotone";
+
+import Breadcrumbs, {
+	type Breadcrumb as BreadcrumbType
+} from "~/components/breadcrumbs.astro";
+import Card from "~/layouts/card/layout.astro";
+
+const CRUMBS: BreadcrumbType[] = [
+	{ href: "/", icon: IconHouseDuotone, label: "Home" }
+];
+
+interface Props {
+	children?: unknown;
+	crumbs: BreadcrumbType[];
+	description: string;
+	title: string;
+}
+
+const { crumbs = [], description = "", title = "" } = Astro.props;
+---
+
+<Card size="large">
+	<slot name="seo" />
+
+	<header>
+		<div>
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</div>
+		<Breadcrumbs crumbs={[...CRUMBS, ...crumbs]} />
+	</header>
+
+	<main transition:name="content">
+		<slot />
+	</main>
+</Card>
+
+<style>
+	header {
+		display: flex;
+		justify-content: space-between;
+
+		@media screen and (max-width: 768px) {
+			flex-direction: column;
+			gap: 1rem;
+
+			> div {
+				order: 1;
+			}
+		}
+	}
+
+	p {
+		max-width: 75%;
+	}
+
+	main {
+		margin-top: 1rem;
+	}
+</style>

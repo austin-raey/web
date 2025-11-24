@@ -1,11 +1,9 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
 import { getCollection } from "astro:content";
-import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
-import Breadcrumb from "~/components/breadcrumb.astro";
-import Card from "~/layouts/card/layout.astro";
+import LayoutLanding from "~/layouts/landing/layout.astro";
 
 import BlogLink from "./_/components/blog-link.astro";
 
@@ -14,13 +12,14 @@ const posts = collection.toSorted(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
-const CRUMBS = [
-	{ href: "/", icon: IconHouseDuotone, label: "Home" },
-	{ href: "/blog", icon: IconNewsPaperClipping, label: "Blog" }
-];
+const CRUMBS = [{ href: "/blog", icon: IconNewsPaperClipping, label: "Blog" }];
 ---
 
-<Card size="large">
+<LayoutLanding
+	crumbs={CRUMBS}
+	description="Here I post my thoughts on things, tutorials, and fixes to random nonsense I encounter when using computers (so I don't forget!)."
+	title="Blog"
+>
 	<AstroSeo
 		additionalMetaTags={[
 			{
@@ -34,49 +33,32 @@ const CRUMBS = [
 			}
 		]}
 		canonical={new URL(Astro.url, Astro.site).toString()}
-		description="Austin Raey's blog - thoughts on software engineering, tutorials, and tech solutions"
+		description="Austin's thoughts on software engineering, tutorials, and tech solutions"
 		openGraph={{
 			description:
-				"Austin Raey's blog - thoughts on software engineering, tutorials, and tech solutions",
+				"Austin's thoughts on software engineering, tutorials, and tech solutions",
 			site_name: "Austin Raey",
-			title: "Blog",
+			title: "Austin Raey's blog",
 			type: "website",
 			url: Astro.url.toString()
 		}}
 		slot="seo"
-		title="Blog"
+		title="Austin Raey's blog"
 	/>
-
-	<header>
-		<div>
-			<h1>Blog</h1>
-			<p style="max-width:60ch;">
-				Here I post my thoughts on things, tutorials, and fixes to random
-				nonsense I encounter when using computers (so I don't forget!).
-			</p>
-		</div>
-		<Breadcrumb crumbs={CRUMBS} />
-	</header>
-	<main transition:name="content">
-		<nav aria-label="Blog posts">
-			<ol>
-				{
-					posts.map((post) => (
-						<li>
-							<BlogLink {...post} />
-						</li>
-					))
-				}
-			</ol>
-		</nav>
-	</main>
-</Card>
+	<nav aria-label="Blog posts">
+		<ol>
+			{
+				posts.map((post) => (
+					<li>
+						<BlogLink {...post} />
+					</li>
+				))
+			}
+		</ol>
+	</nav>
+</LayoutLanding>
 
 <style>
-	nav {
-		margin-top: 1rem;
-	}
-
 	ol {
 		display: grid;
 		gap: 1rem;
@@ -97,20 +79,6 @@ const CRUMBS = [
 
 		a {
 			flex-grow: 1;
-		}
-	}
-
-	header {
-		display: flex;
-		justify-content: space-between;
-
-		@media screen and (max-width: 768px) {
-			flex-direction: column;
-			gap: 1rem;
-
-			> div {
-				order: 1;
-			}
 		}
 	}
 </style>

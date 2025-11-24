@@ -1,10 +1,11 @@
 ---
+export interface Breadcrumb {
+	href: string;
+	icon?: JSX.Element;
+	label: string;
+}
 interface Props {
-	crumbs: {
-		href: string;
-		icon?: JSX.Element;
-		label: string;
-	}[];
+	crumbs: Breadcrumb[];
 }
 import type { JSX } from "astro/jsx-runtime";
 
@@ -34,6 +35,7 @@ const { crumbs = [] } = Astro.props;
 		font-size: 0.875rem;
 		overflow: hidden;
 		font-weight: 500;
+		flex-shrink: 0;
 
 		a:hover {
 			transition: all 0.1s ease-in-out;

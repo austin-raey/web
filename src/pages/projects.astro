@@ -1,20 +1,16 @@
 ---
+import { AstroSeo } from "@astrolib/seo";
 import IconBun from "~icons/logos/bun";
 import IconNextjs from "~icons/logos/nextjs-icon";
 import IconBlueprint from "~icons/ph/blueprint-duotone";
-import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconLaptop from "~icons/ph/laptop-duotone";
 import IconPackage from "~icons/ph/package-duotone";
 import IconTerminal from "~icons/ph/terminal-duotone";
 
-import Breadcrumb from "~/components/breadcrumb.astro";
 import RichAnchor from "~/components/rich-anchor.astro";
-import Card from "~/layouts/card/layout.astro";
+import Layout from "~/layouts/landing/layout.astro";
 
-const CRUMBS = [
-	{ href: "/", icon: IconHouseDuotone, label: "Home" },
-	{ href: "/projects", icon: IconBlueprint, label: "Projects" }
-];
+const CRUMBS = [{ href: "/projects", icon: IconBlueprint, label: "Projects" }];
 
 const links = [
 	{
@@ -49,62 +45,60 @@ const links = [
 ];
 ---
 
-<Card size="large">
-	<header>
-		<div>
-			<h1>Projects</h1>
-			<p>
-				Listed are some personal projects I've created for fun or for personal
-				use.
-			</p>
-		</div>
-		<Breadcrumb crumbs={CRUMBS} />
-	</header>
+<Layout
+	crumbs={CRUMBS}
+	description="Listed are some personal projects I've created for fun or for personal use."
+	title="Projects"
+>
+	<AstroSeo
+		additionalMetaTags={[
+			{
+				content: "Austin Raey",
+				name: "author"
+			},
+			{
+				content:
+					"projects, software engineering, frontend, full-stack, devops, computer",
+				name: "keywords"
+			}
+		]}
+		canonical={new URL(Astro.url, Astro.site).toString()}
+		description="Austin's personal projects related to software engineering, frontend, full-stack, devops, and computers"
+		openGraph={{
+			description:
+				"Austin's personal projects related to software engineering, frontend, full-stack, devops, and computers",
+			site_name: "Austin Raey",
+			title: "Austin Raey's projects",
+			type: "website",
+			url: Astro.url.toString()
+		}}
+		slot="seo"
+		title="Austin Raey's projects"
+	/>
 
-	<main transition:name="content">
-		<nav>
-			<div>
-				{
-					links
-						.filter((_, index) => index % 2 === 0)
-						.map((link) => (
-							<RichAnchor {...link} rel="me external noopener noreferrer" />
-						))
-				}
-			</div>
-			<div>
-				{
-					links
-						.filter((_, index) => index % 2 === 1)
-						.map((link) => (
-							<RichAnchor {...link} rel="me external noopener noreferrer" />
-						))
-				}
-			</div>
-		</nav>
-	</main>
-</Card>
+	<nav>
+		<div>
+			{
+				links
+					.filter((_, index) => index % 2 === 0)
+					.map((link) => (
+						<RichAnchor {...link} rel="me external noopener noreferrer" />
+					))
+			}
+		</div>
+		<div>
+			{
+				links
+					.filter((_, index) => index % 2 === 1)
+					.map((link) => (
+						<RichAnchor {...link} rel="me external noopener noreferrer" />
+					))
+			}
+		</div>
+	</nav>
+</Layout>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 1rem;
-
-		@media screen and (max-width: 768px) {
-			flex-direction: column;
-			gap: 1rem;
-
-			> div {
-				order: 1;
-			}
-		}
-	}
-
-	p {
-		max-width: 35ch;
-	}
-
 	nav {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);

@@ -2,9 +2,9 @@
 import { AstroSeo } from "@astrolib/seo";
 import { Image } from "astro:assets";
 import IconBlueprint from "~icons/ph/blueprint-duotone";
+import IconBookBookmarkDuotone from "~icons/ph/book-bookmark-duotone";
 import IconGitHub from "~icons/ph/github-logo-duotone";
 import IconInstagram from "~icons/ph/instagram-logo-duotone";
-import IconLinkDuotone from "~icons/ph/link-duotone";
 import IconLinkedIn from "~icons/ph/linkedin-logo-duotone";
 import IconMapPin from "~icons/ph/map-pin-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
@@ -21,12 +21,16 @@ import Card from "~/layouts/card/layout.astro";
 			{
 				content: "Austin Raey",
 				name: "author"
+			},
+			{
+				content: "software engineer, frontend, full-stack, devops",
+				name: "keywords"
 			}
 		]}
 		canonical={new URL(Astro.url, Astro.site).toString()}
-		description="Austin Raey’s contact card"
+		description="Austin Raey's contact card"
 		openGraph={{
-			description: "Austin Raey’s contact card",
+			description: "Austin Raey's contact card",
 			images: [
 				{
 					alt: "Portrait of Austin Raey",
@@ -142,14 +146,14 @@ import Card from "~/layouts/card/layout.astro";
 						Projects
 					</Anchor>
 					<Anchor
-						href="/links"
+						href="/bookmarks"
 						prefetch
 						priority="high"
 						rel="me"
 						title="Links I think are cool"
 					>
-						<IconLinkDuotone aria-hidden="true" />
-						Links
+						<IconBookBookmarkDuotone aria-hidden="true" />
+						Bookmarks
 					</Anchor>
 				</nav>
 			</footer>
