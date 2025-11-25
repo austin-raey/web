@@ -14,19 +14,19 @@ const { links } = Astro.props;
 ---
 
 <aside aria-labelledby="related-links-heading" class="related-links">
-	<h4 id="related-links-heading">
+	<h3 id="related-links-heading">
 		<IconLink aria-hidden="true" /> Related Links
-	</h4>
+	</h3>
 	<nav aria-label="Related articles">
 		<ul>
 			{
 				links.map((link) => (
 					<li>
 						<a href={link.href} rel="noopener noreferrer" target="_blank">
-							{link.title}
 							<IconArrowSquareOutFill aria-hidden="true" />
+							<h4>{link.title}</h4>
+							{link.description && <p>{link.description}</p>}
 						</a>
-						{link.description && <p>{link.description}</p>}
 					</li>
 				))
 			}
@@ -35,27 +35,65 @@ const { links } = Astro.props;
 </aside>
 
 <style>
-	.related-links {
-		font-size: 0.85rem;
-	}
+	ul {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--spacing-sm);
 
-	h4 {
-		font-size: 1.25em;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	a:hover {
-		text-decoration: underline;
+		@media screen and (max-width: 768px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 
 	li {
-		margin-top: 0.5rem;
+		display: grid;
+	}
+
+	h3 {
+		font-size: 1rem;
+		margin-bottom: var(--spacing-sm);
+	}
+
+	h4 {
+		font-size: 0.875rem;
+	}
+
+	a {
+		border: 1px solid oklch(80% 0 0 / 0.5);
+		color: inherit;
+		background: linear-gradient(
+			135deg,
+			oklch(100% 0 0 / 0.5),
+			oklch(100% 0 0 / 0.05)
+		);
+		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+		text-decoration: none;
+		display: block;
+		padding: var(--spacing-sm);
+		border-radius: var(--spacing-xs);
+		position: relative;
+
+		& > h4 {
+			color: var(--color-link);
+			text-decoration: underline;
+			margin-bottom: var(--spacing-xxs);
+		}
+
+		& > svg {
+			width: 1rem;
+			height: 1rem;
+			opacity: 0.5;
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: var(--spacing-xs);
+			pointer-events: none;
+			color: var(--color-link);
+		}
 	}
 
 	p {
-		font-size: 0.9em;
+		font-size: 0.75rem;
+		max-width: 40ch;
 	}
 </style>

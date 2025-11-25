@@ -34,7 +34,7 @@ const IconComponent = kind ? icons[kind] : undefined;
 
 {
 	IconComponent && (
-		<span aria-label={KIND_TO_LABEL[kind]} title={KIND_TO_LABEL[kind]}>
+		<span title={KIND_TO_LABEL[kind]}>
 			<IconComponent />
 		</span>
 	)

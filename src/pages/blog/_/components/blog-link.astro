@@ -13,7 +13,7 @@ const href = `/blog/${id}`;
 
 <Anchor href={href}>
 	<article transition:name={`blog-tags-${id}`}>
-		<h3>
+		<div aria-describedby="post-title" class="categories">
 			<span class="sr-only">Categories:</span>
 			<span>{kind?.map((k) => <KindToIcon kind={k} />)}</span>
 			<time
@@ -23,26 +23,36 @@ const href = `/blog/${id}`;
 				<span class="sr-only">Written on</span>
 				{date?.toLocaleDateString()}
 			</time>
-		</h3>
-		<div transition:name={`blog-title-${id}`}>
-			<h2>
+		</div>
+		<div id="post-title" transition:name={`blog-title-${id}`}>
+			<h2 class="title">
 				{title}
 			</h2>
-			{description !== "" && <h4>{description}</h4>}
+			{description !== "" && <h3 class="description">{description}</h3>}
 		</div>
 	</article>
 </Anchor>
 
 <style>
-	h2 {
-		margin: 0.125em 0;
+	.title {
+		margin-bottom: var(--spacing-xs);
+		font-size: 1.25rem;
 	}
 
-	h3 {
+	.description {
+		font-size: 0.75rem;
+		letter-spacing: -0.0125rem;
+		max-width: 45ch;
+		font-weight: 500;
+	}
+
+	.categories {
 		display: flex;
 		flex-direction: column;
+		font-size: 1rem;
 		align-items: center;
-		gap: 0.5em 0;
+		align-self: flex-start;
+		gap: var(--spacing-xxs) 0;
 		flex-shrink: 0;
 	}
 

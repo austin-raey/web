@@ -60,7 +60,10 @@ const CRUMBS = [
 	<header>
 		<div>
 			<div>
-				<h1 transition:name={`blog-title-${post.id}`}>
+				<h1
+					aria-labelledby="post-title"
+					transition:name={`blog-title-${post.id}`}
+				>
 					{post.data.title}
 				</h1>
 				<time
@@ -77,7 +80,11 @@ const CRUMBS = [
 				</time>
 			</div>
 
-			<h3 transition:name={`blog-tags-${post.id}`}>
+			<h2
+				class="labels"
+				id="post-labels"
+				transition:name={`blog-tags-${post.id}`}
+			>
 				{
 					post.data.kind.map((kind) => (
 						<span>
@@ -86,7 +93,7 @@ const CRUMBS = [
 						</span>
 					))
 				}
-			</h3>
+			</h2>
 		</div>
 
 		<Breadcrumbs crumbs={CRUMBS} />
@@ -123,9 +130,10 @@ const CRUMBS = [
 		margin-top: var(--spacing-xs);
 	}
 
-	h3 {
+	.labels {
 		display: flex;
 		gap: 1rem;
+		font-size: 1.25rem;
 		margin-top: 1rem;
 
 		span {
