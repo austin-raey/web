@@ -51,8 +51,8 @@ const { crumbs = [] } = Astro.props;
 			oklch(100% 0 0 / 0.33)
 		);
 		border: 1px solid oklch(0 0 0 / 0.1);
-		padding: var(--spacing-xs) var(--spacing-sm);
-		border-radius: 0.75rem;
+		padding: var(--size-2) var(--size-4);
+		border-radius: var(--size-3);
 		max-width: max-content;
 	}
 
@@ -62,7 +62,7 @@ const { crumbs = [] } = Astro.props;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
-		margin-right: 0.125rem;
+		margin-right: var(--size-1);
 
 		@media screen and (max-width: 768px) {
 			max-width: 100%;

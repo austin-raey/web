@@ -51,8 +51,8 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 	}
 
 	.title {
-		font-size: 1.25rem;
-		margin: 0;
+		font-size: 1.125rem;
+		margin-right: var(--size-2);
 	}
 
 	.description {
@@ -71,7 +71,7 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-xxs);
+		gap: var(--size-1);
 	}
 
 	a > svg {
@@ -81,7 +81,7 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 		position: absolute;
 		top: 0;
 		right: 0;
-		margin: var(--spacing-sm);
+		margin: var(--size-2);
 		pointer-events: none;
 	}
 

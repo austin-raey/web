@@ -128,19 +128,19 @@ const CRUMBS = [
 	time {
 		font-size: 0.875rem;
 		font-weight: 500;
-		margin-top: var(--spacing-xs);
+		margin-top: var(--size-2);
 	}
 
 	.labels {
 		display: flex;
 		gap: 1rem;
 		font-size: 1.25rem;
-		margin-top: 1rem;
+		margin-top: var(--size-4);
 
 		span {
 			align-items: center;
 			display: flex;
-			gap: var(--spacing-xs);
+			gap: var(--size-2);
 		}
 
 		svg {
@@ -150,7 +150,7 @@ const CRUMBS = [
 	}
 
 	article {
-		padding-bottom: 3rem;
+		padding-bottom: var(--size-12);
 	}
 
 	/* TODO: Move these into a seperate file */
@@ -177,18 +177,17 @@ const CRUMBS = [
 
 		p > code {
 			background-color: oklch(100% 0 0 / 0.25);
-			padding: 0.125rem var(--spacing-xs);
+			padding: 0.125rem var(--size-2);
 			font-family: monospace;
-			font-size: 0.875em;
 			border: 0.5px solid oklch(100% 0 0 / 1);
 			border-radius: 0.5em;
 		}
 
 		section:not([class]) {
-			margin: 2.5rem 0;
+			margin: var(--size-8) 0;
 			display: flex;
 			flex-direction: column;
-			gap: 0.5rem;
+			gap: var(--size-3);
 		}
 
 		ol {

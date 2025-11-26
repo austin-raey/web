@@ -17,9 +17,9 @@ astro-card[data-size="large"] .controls {
 	font-size: 0.75rem;
 	display: inline-flex;
 	align-items: center;
-	gap: var(--spacing-xs);
+	gap: var(--size-2);
 	border: 1px solid color-mix(in lch, currentColor, transparent 90%);
-	padding: var(--spacing-xs) var(--spacing-sm);
+	padding: var(--size-2) var(--size-3);
 	border-radius: 0.5rem;
 	opacity: 0.5;
 	transition:
