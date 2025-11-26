@@ -1,6 +1,7 @@
 ---
-import IconArrowSquareOutFill from "~icons/ph/arrow-square-out-fill";
 import IconLink from "~icons/ph/link";
+
+import RichAnchor from "../rich-anchor.astro";
 
 interface Props {
 	links: {
@@ -22,11 +23,11 @@ const { links } = Astro.props;
 			{
 				links.map((link) => (
 					<li>
-						<a href={link.href} rel="noopener noreferrer" target="_blank">
-							<IconArrowSquareOutFill aria-hidden="true" />
-							<h4>{link.title}</h4>
-							{link.description && <p>{link.description}</p>}
-						</a>
+						<RichAnchor
+							description={link.description}
+							href={link.href}
+							title={link.title}
+						/>
 					</li>
 				))
 			}
@@ -56,40 +57,6 @@ const { links } = Astro.props;
 
 	h4 {
 		font-size: 0.875rem;
-	}
-
-	a {
-		border: 1px solid oklch(80% 0 0 / 0.5);
-		color: inherit;
-		background: linear-gradient(
-			135deg,
-			oklch(100% 0 0 / 0.5),
-			oklch(100% 0 0 / 0.05)
-		);
-		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
-		text-decoration: none;
-		display: block;
-		padding: var(--spacing-sm);
-		border-radius: var(--spacing-xs);
-		position: relative;
-
-		& > h4 {
-			color: var(--color-link);
-			text-decoration: underline;
-			margin-bottom: var(--spacing-xxs);
-		}
-
-		& > svg {
-			width: 1rem;
-			height: 1rem;
-			opacity: 0.5;
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin: var(--spacing-xs);
-			pointer-events: none;
-			color: var(--color-link);
-		}
 	}
 
 	p {

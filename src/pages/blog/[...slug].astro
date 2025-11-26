@@ -5,6 +5,7 @@ import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
 import Breadcrumbs from "~/components/breadcrumbs.astro";
+import CodeBlock from "~/components/mdx/code-block.astro";
 import Card from "~/layouts/card/layout.astro";
 
 import KindToIcon, { KIND_TO_LABEL } from "./_/components/kind-to-icon.astro";
@@ -101,7 +102,7 @@ const CRUMBS = [
 
 	<main class="post">
 		<article>
-			<Content />
+			<Content components={{ pre: CodeBlock }} />
 		</article>
 	</main>
 </Card>
@@ -188,25 +189,6 @@ const CRUMBS = [
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
-		}
-
-		pre {
-			background: linear-gradient(
-				135deg,
-				oklch(100% 0 0 / 0.75),
-				oklch(100% 0 0 / 0.55)
-			) !important;
-			backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
-			border: 1px solid oklch(0 0 0 / 0.1);
-			border-radius: 0.5rem;
-			padding: 0.5rem;
-			scrollbar-color: #fffa transparent;
-			max-width: max-content;
-			max-height: 30ch;
-
-			span {
-				text-shadow: none;
-			}
 		}
 
 		ol {

@@ -42,11 +42,15 @@ const attributes: Props = {
 		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
 		border: 1px solid oklch(0 0 0 / 0.125);
 
-		transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		transform: translateY(0) scale(1);
+		text-decoration: none;
+
+		color: var(--color-text);
 	}
 
-	a:hover {
+	a:hover,
+	a:focus-within {
 		background: linear-gradient(
 			-135deg,
 			oklch(100% 0 0 / 0.75),
@@ -55,11 +59,12 @@ const attributes: Props = {
 		border-color: color-mix(in oklch, var(--color-link), black 20%);
 		box-shadow: 0 4px 8px
 			color-mix(in oklch, var(--color-link), transparent 90%);
-		transform: translateY(-2px) scale(1.02);
+		transform: translateY(-2.5px) scale(1.02);
+		color: var(--color-link);
 	}
 
 	a:active {
-		transform: translateY(2px) scale(0.98);
+		transform: translateY(2.5px) scale(0.98);
 		box-shadow: 0 8px 16px oklch(0 0 0 / 0.1);
 	}
 </style>

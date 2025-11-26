@@ -1,0 +1,110 @@
+---
+const props = Astro.props;
+// import IconArrowsOutSimple from "~icons/ph/arrows-out-simple";
+import IconClipboardText from "~icons/ph/clipboard-text";
+---
+
+<code-block>
+	<div class="controls">
+		<button title="Copy code" type="button">
+			<span class="sr-only">Copy code</span>
+			<IconClipboardText aria-hidden="true" />
+		</button>
+		<!-- <button title="Expand code block" type="button">
+			<span class="sr-only">Expand code block</span>
+			<IconArrowsOutSimple aria-hidden="true" />
+		</button> -->
+	</div>
+	<pre {...props}><slot /></pre>
+</code-block>
+
+<style>
+	code-block {
+		position: relative;
+		max-width: max-content;
+		display: block;
+	}
+
+	.controls {
+		color: var(--color-text);
+		position: absolute;
+		display: flex;
+		gap: 0.5rem;
+		top: 0;
+		right: 0;
+		margin: var(--spacing-sm);
+		z-index: 10;
+
+		& button {
+			color: inherit;
+			background: linear-gradient(to bottom right, #ffffff, #f0f0f0a0);
+			padding: var(--spacing-xxs);
+			border: 1px solid color-mix(in oklch, var(--color-text) 20%, transparent);
+			border-radius: var(--spacing-xs);
+			transition: background 0.2s ease-in-out;
+			transform: scale(1) translateY(0);
+
+			&:hover {
+				background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
+			}
+		}
+	}
+
+	pre {
+		background: linear-gradient(
+			135deg,
+			oklch(100% 0 0 / 0.75),
+			oklch(100% 0 0 / 0.55)
+		) !important;
+		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+		border: 1px solid oklch(0 0 0 / 0.1);
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+		padding-right: 2rem;
+		scrollbar-color: #0004 transparent;
+		scrollbar-width: thin;
+		max-width: max-content;
+		max-height: 30ch;
+		transition:
+			max-height 0.2s ease-in-out,
+			max-width 0.2s ease-in-out;
+
+		span {
+			text-shadow: none;
+		}
+
+		&.expanded {
+			max-height: none;
+			max-width: 100%;
+		}
+	}
+</style>
+
+<script>
+	class CodeBlock extends HTMLElement {
+		#controls = this.querySelector(".controls");
+		#pre = this.querySelector("pre");
+
+		connectedCallback() {
+			const copyButton = this.#controls?.firstElementChild;
+			// const expandButton = this.#controls?.lastElementChild;
+
+			copyButton?.addEventListener("click", this.#copy);
+			// expandButton?.addEventListener("click", this.#expand);
+		}
+
+		#copy = () => {
+			const code = this.#pre?.textContent;
+			if (code) {
+				navigator.clipboard.writeText(code);
+			}
+		};
+
+		// #expand = () => {
+		// 	console.log("expanding", this.#pre);
+		// 	this.#pre?.classList.toggle("expanded");
+		// };
+	}
+
+	customElements.define("code-block", CodeBlock);
+</script>

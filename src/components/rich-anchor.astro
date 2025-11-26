@@ -9,7 +9,7 @@ import Anchor from "~/components/anchor.astro";
 export interface Props extends HTMLAttributes<"a"> {
 	description?: string;
 	href: string;
-	icons: { icon: JSX.Element; title: string }[];
+	icons?: { icon: JSX.Element; title: string }[];
 	title: string;
 }
 const { description = "", href, icons = [], title, ...rest } = Astro.props;
@@ -20,11 +20,12 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 		<div class="icons">
 			<span class="sr-only">Project relates to:</span>
 			{
-				icons.map((icon) => (
-					<span title={icon.title}>
-						<icon.icon />
-					</span>
-				))
+				icons.length > 0 &&
+					icons.map((icon) => (
+						<span title={icon.title}>
+							<icon.icon />
+						</span>
+					))
 			}
 		</div>
 
@@ -74,9 +75,9 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 	}
 
 	a > svg {
-		width: 1rem;
-		height: 1rem;
-		opacity: 0.5;
+		width: 1.05rem;
+		height: 1.05rem;
+		opacity: 0.75;
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -84,7 +85,9 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 		pointer-events: none;
 	}
 
-	a:hover > svg {
-		color: color-mix(in oklch, var(--color-link), black 50%);
+	a:hover {
+		& > svg {
+			color: color-mix(in oklch, var(--color-link), black 25%);
+		}
 	}
 </style>
