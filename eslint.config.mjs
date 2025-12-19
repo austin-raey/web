@@ -4,13 +4,10 @@ import prettier from "eslint-config-prettier/flat";
 import astro from "eslint-plugin-astro";
 import perfectionist from "eslint-plugin-perfectionist";
 import unicorn from "eslint-plugin-unicorn";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-	{
-		ignores: [".astro/**", "dist/**", "node_modules/**"]
-	},
 	eslint.configs.recommended,
 	tseslint.configs.strict,
 	tseslint.configs.stylistic,
@@ -33,5 +30,6 @@ export default defineConfig(
 				}
 			]
 		}
-	}
+	},
+	globalIgnores([".astro/**", "dist/**", "node_modules/**"])
 );
