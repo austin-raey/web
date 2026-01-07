@@ -5,6 +5,7 @@ import IconHouseDuotone from "~icons/ph/house-duotone";
 import IconNewsPaperClipping from "~icons/ph/newspaper-clipping-duotone";
 
 import Breadcrumbs from "~/components/breadcrumbs.astro";
+import Anchor from "~/components/mdx/anchor.astro";
 import CodeBlock from "~/components/mdx/code-block.astro";
 import Card from "~/layouts/card/layout.astro";
 
@@ -101,14 +102,13 @@ const CRUMBS = [
 	</header>
 
 	<main class="post">
-		<article>
-			<Content components={{ pre: CodeBlock }} />
-		</article>
+		<Content components={{ a: Anchor, pre: CodeBlock }} />
 	</main>
 </Card>
 
 <style>
 	header {
+		padding-top: var(--size-4);
 		display: flex;
 		justify-content: space-between;
 		gap: 2rem;
@@ -154,7 +154,7 @@ const CRUMBS = [
 	}
 
 	/* TODO: Move these into a seperate file */
-	:global(.post) {
+	.post {
 		.tags {
 			margin: 1rem 0;
 			font-size: 0.875rem;
@@ -166,15 +166,6 @@ const CRUMBS = [
 			}
 		}
 
-		a {
-			color: var(--color-link);
-			font-weight: 600;
-			text-decoration: underline;
-			transition: color 0.2s ease-in-out;
-			text-underline-offset: 0.125rem;
-			text-decoration-thickness: 2px;
-		}
-
 		p > code {
 			background-color: oklch(100% 0 0 / 0.25);
 			padding: 0.125rem var(--size-2);
@@ -184,19 +175,42 @@ const CRUMBS = [
 		}
 
 		section:not([class]) {
-			margin: var(--size-8) 0;
+			margin: var(--size-8) auto;
 			display: flex;
 			flex-direction: column;
 			gap: var(--size-3);
+			max-width: 70ch;
 		}
 
 		ol {
 			list-style: decimal;
-			margin-left: 1.5rem;
+			margin-left: var(--size-4);
 
 			> li {
 				margin-bottom: 0.5rem;
 			}
 		}
+
+		ul {
+			list-style: disc;
+			margin-left: var(--size-4);
+
+			> li {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		h2:not(.title) {
+			font-size: 2rem;
+		}
+
+		h3:not(.description) {
+			font-size: 1.5rem;
+			padding-top: var(--size-2);
+		}
+	}
+
+	h1 {
+		font-size: 2.5rem;
 	}
 </style>

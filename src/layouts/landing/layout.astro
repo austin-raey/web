@@ -21,7 +21,7 @@ const { crumbs = [], description = "", title = "" } = Astro.props;
 ---
 
 <Card size="large">
-	<slot name="seo" />
+	<slot name="seo" slot="seo" />
 
 	<header>
 		<div>
@@ -40,6 +40,7 @@ const { crumbs = [], description = "", title = "" } = Astro.props;
 	header {
 		display: flex;
 		justify-content: space-between;
+		padding-top: var(--size-4);
 
 		@media screen and (max-width: 768px) {
 			flex-direction: column;

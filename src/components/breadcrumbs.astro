@@ -14,7 +14,11 @@ import IconCaretRight from "~icons/ph/caret-right";
 const { crumbs = [] } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb navigation" transition:name="breadcrumb">
+<nav
+	aria-label="Breadcrumb navigation"
+	transition:animate="fade"
+	transition:name="breadcrumb"
+>
 	<ol>
 		{
 			crumbs.map((crumb) => (
@@ -33,6 +37,7 @@ const { crumbs = [] } = Astro.props;
 <style>
 	nav {
 		font-size: 0.875rem;
+
 		overflow: hidden;
 		font-weight: 500;
 		flex-shrink: 0;
@@ -51,12 +56,13 @@ const { crumbs = [] } = Astro.props;
 			oklch(100% 0 0 / 0.33)
 		);
 		border: 1px solid oklch(0 0 0 / 0.1);
-		padding: var(--size-2) var(--size-4);
+		padding: var(--size-1) var(--size-3);
 		border-radius: var(--size-3);
 		max-width: max-content;
 	}
 
 	li {
+		font-weight: 600;
 		max-width: 20ch;
 		flex-shrink: 0;
 		text-overflow: ellipsis;
@@ -71,6 +77,10 @@ const { crumbs = [] } = Astro.props;
 		&:last-child {
 			flex-shrink: 1;
 			margin-right: 0;
+		}
+
+		a:hover {
+			color: var(--color-link);
 		}
 	}
 </style>

@@ -1,0 +1,96 @@
+---
+title: My Thoughts on Dependencies
+description: Reflections on managing dependencies in modern web development.
+date: 2026-01-05
+kind: ["personal"]
+---
+
+import RelatedLinks from "~/components/mdx/related-links.astro";
+import TLDR from "~/components/mdx/tldr.astro";
+import InlineFootnote from "~/components/mdx/inline-footnote.astro";
+
+<TLDR>
+	In my experience, less is more when it comes to dependencies. Each added
+	depedency is liability. Dependencies should be added only when they help hit
+	requirements that would otherwise be unweildy to maintain in-house. In any
+	case, careful consideration should be given.
+</TLDR>
+
+<section>
+
+## Introduction
+
+I figure I'd throw my two cents in on the extremely tired topic of dependencies as it pertains to web development; specifically "packages". I'll be referring to these as "dependencies" or "packages", but think of these as the things you install via a package manager like NPM, PNPM, yarn, bun, etcetera. I am certainly shouting into the void here, but I'd like to just document my thoughts on this (and practice writing!).
+
+It is no secret that it's [kind of a meme](https://www.npmjs.com/package/is-even) that NPM and the JavaScript ecosystem in general can quickly blow up any project with a massive number of dependencies. Through a project's lifecycle, if you're not careful, you can easily end up with something unmanageable.
+
+Personally, it even irks me when installing otherwise immutable (I'll also call them "first-party") depedencies like `next` or `react` and seeing a multi-thousand line lockfile (sometimes tens of thousands!) (or rather, hundreds if using `bun`) get generated. On must wonder how much electricity and network bits are wasted every year globally installing all these. To be fair though, there is not much we can do about to reduce bloat on these otherwise "immutable" ones, other than choosing another framework or tool. We don't always have that luxury. Also, these large frameworks (usually) follow good practices in terms of maintenance and security - so you can concern yourself a little less with what choices they make.
+
+In a vaccum - I suppose there is no problem having 3 dependencies or 3,000, so long as they produce a working project that is secure and works. The issue, as with many things in life, comes down to maintenance, risk management, and ownership (i.e., things that happen over time).
+
+There is also a pie in the sky thought that, in theory, more dependencies is actually better - as each dependency added for whatever feature you're building will be thoroughly vetted by some community (for security, performance, accessibility, etc.) - freeing you to focus on your product. In practice though, many factors work against this ideal.
+
+</section>
+
+<section>
+## My Thoughts
+
+<small>
+	Everything I write here is purely my opinion and likely mutable. But there are
+	a finite number of characters I am willing to type on this topic. As with many
+	things, there is so much additional context or nuance that could be added that
+	change or modify my opinions on these things. But here are some of my core
+	beliefs:
+</small>
+
+In my opinion, dependencies should almost never be added to an application unless they are solving an issue that would otherwise be very time-consuming to build in-house. And I would really, really consider carefully your ability to create functionality that you consider impossible or unweildy as well - often times, a simpler solution with simpler requirements is possible, or, the "complicated" thing is actually not so complicated to write after all.
+
+Any dependency added is more liability. While you are offloading some work to a 3rd party, the buck stops with you if something breaks in the application. If that something breaking is due to a dependency, it is often times _not_ trivial to fix, and now it's your problem to debug, fix, or work around. Your PM or Product Owner does not care you used TanStack Table for their data view, they just want it to work.
+
+<small>
+	*To be fair in this contrived example, this line of thought is potentially a
+	bit toxic - I think if Tanstack provides you with a lot of value, it could be
+	worth pushing back and asking for more time to integrate it properly.*
+</small>
+
+When dependencies are added, the following is likely to come into play as time goes on.
+
+### Maintenance Burden:
+
+Immutable dependencies will need to be updated over time. This can happen for many reasons, such as security concerns, performance considerations, or new features - or worse, pressure from 3rd parties. Often times, these updates can introduce breaking changes or require significant effort to integrate. This is especially true for dependencies which themselves depend on your framework.
+
+Even something as simple as a framework upgrade can cause several downline dependencies to start throwing peer dependency warnings. While often times these are harmless, they can also indicate that some features you rely on may break -- and unfortunately, it's up to you now to test and verify this.
+
+These problems are often magnified the older the project is. They come in several flavors:
+
+- <InlineFootnote id="1" /> The dependency has new configuration /
+  implementation hurdles you need to consider if you want to have it work
+  properly, requiring you to revisit documentation
+- The dependency is no longer maintained by the original author(s)
+- The dependency has breaking changes you depended on before and now need to adapt
+- Rarer to see nowawdays, but sometimes a completely new pattern of usage is introduced that requires a larger rewrite (e.g., class to functional components in React)
+
+It's certainly not limited to these and can compound on each other, especially with time and amount. The easiest way to avoid this is to not have the dependency in the first place. You'll even run into these issues anyways if you keep deps to a minimum and only use first party ones, although those issues tend to be resolved more quickly and with less friction.
+
+<InlineFootnote id="1">
+	In my experience, this is the most common issue I run into, even with smaller
+	updates and/or well-maintained dependencies.
+</InlineFootnote>
+
+### Risk Surface:
+
+Each dependency added implicitly introduces more issues of the same kind you already face with your in-house code. External dependencies (even first-party/immutable ones) introduces lines of code you haven't written or reviewed. These often manifest as more and more _time_ passes, and requirements begin to stack:
+
+    - **Security Vulnerabilities:** Each dependency is additional attack surface, and no one has the time to audit every line of code in every dependency you use. <small>*Well, maybe some people do.*</small>
+
+    - **Supply Chain Attacks:** Any single depenedency (or their dependencies) can be compromised potentially, and a malicious version can be published to the package registry. Even if the dependencies code is simple or secure, a compromised account can easily change that reality
+
+    - **Performance Considerations:** Each dependency might not be tuned to the degree you need it to be for your application. Also in general, adding too many client / application facing dependencies can bloat your bundle and increase execution time. For JAMStack applications (e.g., Cloudflare or Vercel), this can increase your costs quickly.
+
+    - **Accessibility Considerations:** You may properly set up your application for accessibility, but jerry-rigging a dependency to be accessible might require hacky workarounds.
+
+    - **Business Requirements:** Sometimes a third party dependency might almost align with everything you need your feature to do, except maybe one or two things. However, in my experience, sometimes those one or two things are not trivial to implement under the dependency and require significant hacky workarounds (sorry, `@radix-ui`). This also implicity (or explicitly? lol) lead to a time sink where you could've just built the feature yourself once you realized this isn't going to work out.
+
+    - **Vendor Lock-in:** Relying heavily on a specific dependency will require a significant rewrite should it ever need to be replaced (deprecation, better alternatives, etc.). Rewrite complexity increases with the complexity/usage of the dependency.
+
+</section>

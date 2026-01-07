@@ -1,0 +1,20 @@
+---
+// This anchor is specifically for MDX content.
+const props = Astro.props;
+import IconArrowSquareOutFill from "~icons/ph/arrow-square-out-fill";
+---
+
+<a {...props} rel="noopener noreferrer" target="_blank"
+	><slot /> <IconArrowSquareOutFill /></a
+>
+
+<style>
+	a {
+		color: var(--color-link);
+		font-weight: 600;
+		text-decoration: underline;
+		transition: color 0.2s ease-in-out;
+		text-underline-offset: 0.125rem;
+		text-decoration-thickness: 2px;
+	}
+</style>

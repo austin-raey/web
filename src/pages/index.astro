@@ -47,121 +47,124 @@ import Card from "~/layouts/card/layout.astro";
 		slot="seo"
 		title="Austin Raey"
 	/>
+
 	<main transition:name="content">
-		<article>
-			<figure>
-				<Image
-					alt="Portrait of Austin Raey"
-					fetchpriority="high"
-					height="100"
-					loading="eager"
-					src="/assets/portrait.avif"
-					width="100"
-				/>
-				<figcaption>
-					<h1>
-						<span>Austin</span>
-						<span>Raey</span>
-					</h1>
-				</figcaption>
-			</figure>
+		<figure>
+			<Image
+				alt="Portrait of Austin Raey"
+				fetchpriority="high"
+				height="100"
+				loading="eager"
+				src="/assets/portrait.avif"
+				width="100"
+			/>
+			<figcaption>
+				<h1>
+					<span>Austin</span>
+					<span>Raey</span>
+				</h1>
+			</figcaption>
+		</figure>
 
-			<section>
-				<p>
-					<IconMapPin />
-					<span class="sr-only">Located in:</span> North Carolina
-				</p>
-				<p>
-					<IconShirtFolded />
-					<span class="sr-only">Occupation:</span> Software Engineer
-				</p>
-				<dl>
-					<dt class="sr-only">Specializing in:</dt>
-					<dd>Frontend</dd>
-					<dd>Full-Stack</dd>
-					<dd>DevOps</dd>
-					<dt class="sr-only">Proficient in:</dt>
-					<dd>JavaScript</dd>
-					<dd>TypeScript</dd>
-					<dd>Frameworks</dd>
-				</dl>
-			</section>
+		<section>
+			<p>
+				<IconMapPin />
+				<span class="sr-only">Located in:</span> North Carolina
+			</p>
+			<p>
+				<IconShirtFolded />
+				<span class="sr-only">Occupation:</span> Software Engineer
+			</p>
+			<dl>
+				<dt class="sr-only">Specializing in:</dt>
+				<dd>Frontend</dd>
+				<dd>Full-Stack</dd>
+				<dd>DevOps</dd>
+				<dt class="sr-only">Proficient in:</dt>
+				<dd>JavaScript</dd>
+				<dd>TypeScript</dd>
+				<dd>Frameworks</dd>
+			</dl>
+		</section>
 
-			<footer>
-				<nav aria-labelledby="socials">
-					<h2 class="sr-only" id="socials">Socials</h2>
-					<Anchor
-						href="https://github.com/austin-raey"
-						rel="me external noopener noreferrer"
-						target="_blank"
-						title="Austin's GitHub profile"
-					>
-						<IconGitHub aria-hidden="true" /> austin-raey
-					</Anchor>
-					<Anchor
-						href="https://www.threads.net/@austin.raey"
-						rel="me external noopener noreferrer"
-						target="_blank"
-						title="Austin's Threads profile"
-					>
-						<IconThreads aria-hidden="true" /> austin.raey
-					</Anchor>
-					<Anchor
-						href="https://www.instagram.com/austin.raey"
-						rel="me external noopener noreferrer"
-						target="_blank"
-						title="Austin's Instagram profile"
-					>
-						<IconInstagram aria-hidden="true" /> austin.raey
-					</Anchor>
-					<Anchor
-						href="https://www.linkedin.com/in/austin-raey/"
-						rel="me external noopener noreferrer"
-						target="_blank"
-						title="Austin's LinkedIn profile"
-					>
-						<IconLinkedIn aria-hidden="true" /> austin-raey
-					</Anchor>
-				</nav>
-				<nav aria-labelledby="links" transition:name="breadcrumb">
-					<h2 class="sr-only" id="links">Links</h2>
-					<Anchor
-						href="/blog"
-						prefetch
-						priority="high"
-						rel="me"
-						title="Austin's blog"
-					>
-						<IconNewsPaperClipping aria-hidden="true" />
-						Blog
-					</Anchor>
-					<Anchor
-						href="/projects"
-						prefetch
-						priority="high"
-						rel="me"
-						title="Austin's personal projects"
-					>
-						<IconBlueprint aria-hidden="true" />
-						Projects
-					</Anchor>
-					<Anchor
-						href="/bookmarks"
-						prefetch
-						priority="high"
-						rel="me"
-						title="Links I think are cool"
-					>
-						<IconBookBookmarkDuotone aria-hidden="true" />
-						Bookmarks
-					</Anchor>
-				</nav>
-			</footer>
-		</article>
+		<footer>
+			<nav aria-labelledby="socials">
+				<h2 class="sr-only" id="socials">Socials</h2>
+				<Anchor
+					href="https://github.com/austin-raey"
+					rel="me external noopener noreferrer"
+					target="_blank"
+					title="Austin's GitHub profile"
+				>
+					<IconGitHub aria-hidden="true" /> austin-raey
+				</Anchor>
+				<Anchor
+					href="https://www.threads.net/@austin.raey"
+					rel="me external noopener noreferrer"
+					target="_blank"
+					title="Austin's Threads profile"
+				>
+					<IconThreads aria-hidden="true" /> austin.raey
+				</Anchor>
+				<Anchor
+					href="https://www.instagram.com/austin.raey"
+					rel="me external noopener noreferrer"
+					target="_blank"
+					title="Austin's Instagram profile"
+				>
+					<IconInstagram aria-hidden="true" /> austin.raey
+				</Anchor>
+				<Anchor
+					href="https://www.linkedin.com/in/austin-raey/"
+					rel="me external noopener noreferrer"
+					target="_blank"
+					title="Austin's LinkedIn profile"
+				>
+					<IconLinkedIn aria-hidden="true" /> austin-raey
+				</Anchor>
+			</nav>
+			<nav aria-labelledby="links" transition:name="breadcrumb">
+				<h2 class="sr-only" id="links">Links</h2>
+				<Anchor
+					href="/blog"
+					prefetch
+					priority="high"
+					rel="me"
+					title="Austin's blog"
+				>
+					<IconNewsPaperClipping aria-hidden="true" />
+					Blog
+				</Anchor>
+				<Anchor
+					href="/projects"
+					prefetch
+					priority="high"
+					rel="me"
+					title="Austin's personal projects"
+				>
+					<IconBlueprint aria-hidden="true" />
+					Projects
+				</Anchor>
+				<Anchor
+					href="/bookmarks"
+					prefetch
+					priority="high"
+					rel="me"
+					title="Links I think are cool"
+				>
+					<IconBookBookmarkDuotone aria-hidden="true" />
+					Bookmarks
+				</Anchor>
+			</nav>
+		</footer>
 	</main>
 </Card>
 
 <style>
+	main {
+		padding-top: 1rem;
+	}
+
 	footer {
 		display: flex;
 		flex-direction: column;
@@ -182,7 +185,6 @@ import Card from "~/layouts/card/layout.astro";
 		border: 0.5px solid color-mix(in srgb, currentColor 20%, transparent);
 		font-size: var(--size-3);
 		font-weight: 500;
-		letter-spacing: var(--size-0-125);
 		line-height: 1.1;
 		padding: var(--size-1);
 		position: relative;

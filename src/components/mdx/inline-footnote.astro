@@ -1,0 +1,70 @@
+---
+import IconArrowBendRightDown from "~icons/ph/arrow-bend-right-down";
+import IconArrowBendRightUp from "~icons/ph/arrow-bend-right-up";
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+const hasChildren = Astro.slots.default !== undefined;
+---
+
+<div
+	class="footnote"
+	id={hasChildren ? `footnote-ref-${id}` : `footnote-${id}`}
+>
+	{
+		!hasChildren && (
+			<a class="footnote-ref" href={`#footnote-ref-${id}`}>
+				<sup>
+					[{id}]<IconArrowBendRightDown />
+				</sup>
+			</a>
+		)
+	}
+	{
+		hasChildren && (
+			<div class="footnote-content">
+				<a class="footnote-ref" href={`#footnote-${id}`}>
+					[{id}]<IconArrowBendRightUp />:
+				</a>
+
+				<slot />
+			</div>
+		)
+	}
+</div>
+
+<style>
+	.footnote {
+		display: inline-block;
+
+		.footnote-ref {
+			color: var(--color-link);
+			font-weight: 600;
+
+			svg {
+				width: var(--size-4);
+				height: var(--size-4);
+				margin-left: var(--size-0);
+			}
+		}
+	}
+	.footnote-content {
+		border-radius: var(--size-1);
+		padding: var(--size-2) var(--size-3);
+		display: inline-block;
+		font-size: var(--size-3);
+		background: linear-gradient(
+			135deg,
+			oklch(100% 0 0 / 0.5),
+			oklch(100% 0 0 / 0.05)
+		);
+		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+		border: 1px solid oklch(80% 0 0 / 0.05);
+
+		> p {
+			display: inline;
+		}
+	}
+</style>

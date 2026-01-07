@@ -41,7 +41,6 @@ const href = `/blog/${id}`;
 
 	.description {
 		font-size: 0.75rem;
-		letter-spacing: -0.0125rem;
 		max-width: 45ch;
 		font-weight: 500;
 	}
@@ -67,9 +66,16 @@ const href = `/blog/${id}`;
 	}
 
 	time {
-		font-weight: 500;
+		font-weight: 600;
 		font-size: 0.75em;
-		letter-spacing: 0.025em;
+		background: linear-gradient(
+			135deg,
+			oklch(85% 0 0 / 0.25),
+			oklch(90% 0 0 / 0.05)
+		);
+		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+		border-radius: var(--size-2);
+		padding: var(--size-0-5) var(--size-1);
 	}
 
 	article :global(svg) {

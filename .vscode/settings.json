@@ -2,6 +2,9 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
+	"[md][mdx]": {
+		"editor.defaultFormatter": "unifiedjs.vscode-mdx"
+	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
@@ -26,6 +29,7 @@
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
+	"mdx.server.enable": true,
 	"npm.packageManager": "pnpm",
 	"prettier.enable": true,
 	"typescript.enablePromptUseWorkspaceTsdk": true,
