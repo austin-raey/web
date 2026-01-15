@@ -85,12 +85,42 @@ Each dependency added implicitly introduces more issues of the same kind you alr
 
     - **Supply Chain Attacks:** Any single depenedency (or their dependencies) can be compromised potentially, and a malicious version can be published to the package registry. Even if the dependencies code is simple or secure, a compromised account can easily change that reality
 
-    - **Performance Considerations:** Each dependency might not be tuned to the degree you need it to be for your application. Also in general, adding too many client / application facing dependencies can bloat your bundle and increase execution time. For JAMStack applications (e.g., Cloudflare or Vercel), this can increase your costs quickly.
+    - **Performance Considerations:** Each dependency might not be tuned to the degree you need it to be for your application. Also in general, adding too many client / application facing dependencies can bloat your bundle and increase execution time. For JAMStack applications (e.g., Cloudflare or Vercel), this can increase your costs quickly. It also could tank your Lighthouse scores if you get too overzelaous.
 
     - **Accessibility Considerations:** You may properly set up your application for accessibility, but jerry-rigging a dependency to be accessible might require hacky workarounds.
 
     - **Business Requirements:** Sometimes a third party dependency might almost align with everything you need your feature to do, except maybe one or two things. However, in my experience, sometimes those one or two things are not trivial to implement under the dependency and require significant hacky workarounds (sorry, `@radix-ui`). This also implicity (or explicitly? lol) lead to a time sink where you could've just built the feature yourself once you realized this isn't going to work out.
 
     - **Vendor Lock-in:** Relying heavily on a specific dependency will require a significant rewrite should it ever need to be replaced (deprecation, better alternatives, etc.). Rewrite complexity increases with the complexity/usage of the dependency.
+
+    - **Test Cases:** This could be less of a problem if your tests are not brittle, however, sometimes package updates cause tests to fail and debugging / fixing the issue can be difficult.
+
+</section>
+
+<section>
+## When I like dependencies
+
+<small>
+	I think it goes without saying, but of course dependencies are somewhat
+	crucial to development. For instance, things like Astro, SvelteKit, Next.js,
+	Tanstack... all provide enormous value. You probably don't want to waste your
+	time remaking these yourself, and in large teams, I'd imagine such a thing
+	would be detrimental due to knowledge silos.
+</small>
+
+I'll enjoy adding a depenedency to a project for a few reasons:
+
+- It is a third party service that I'm using the app (think: analytics, authentication, etc.).
+- The dependency itself doesn't have a lot of dependencies. This reduces bloat and complexity.
+- It saves time by providing out-of-the-box functionality that would otherwise take significant effort to implement. For example, proper `aria` accessibility is difficult to do right.
+- Component libraries like Radix / React Aria / Headless are pretty useful for scaffolding projects, although sometimes I grow a little tired of these. The more flexible it is, the better.
+  - One anecdote I can give is I once had to integrate a combobox that had some complex business logic, and despite us using `shadcn-ui` in our app, this integration entirely fell short. It ended up being easier making our own.
+
+</section>
+
+<section>
+## Closing Thoughts
+
+I think above all else, don't underestimate your ability to make your own features. A lot of times, the functionality is simple enough -- there's no need to bloat a repository to acheive it. I think there is a certain elegance in keeping things simple.
 
 </section>
