@@ -9,6 +9,9 @@ type Props = CollectionEntry<"blog">;
 const { data: { date, description = "", kind, title } = {}, id } = Astro.props;
 
 const href = `/blog/${id}`;
+const formattedDate = date
+	? new Date(date.toISOString().split("T")[0].replaceAll("-", "/"))
+	: undefined;
 ---
 
 <Anchor href={href}>
@@ -17,11 +20,11 @@ const href = `/blog/${id}`;
 			<span class="sr-only">Categories:</span>
 			<span>{kind?.map((k) => <KindToIcon kind={k} />)}</span>
 			<time
-				datetime={date?.toISOString().split("T")[0]}
+				datetime={formattedDate?.toISOString().split("T")[0]}
 				transition:name={`blog-time-${id}`}
 			>
 				<span class="sr-only">Written on</span>
-				{date?.toLocaleDateString()}
+				{formattedDate?.toLocaleDateString()}
 			</time>
 		</div>
 		<div id="post-title" transition:name={`blog-title-${id}`}>
