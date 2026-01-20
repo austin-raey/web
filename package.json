@@ -1,16 +1,15 @@
 {
 	"dependencies": {
 		"@astrojs/mdx": "4.3.13",
-		"@astrojs/rss": "4.0.14",
-		"@astrojs/sitemap": "3.6.1",
+		"@astrojs/rss": "4.0.15",
+		"@astrojs/sitemap": "3.7.0",
 		"@astrolib/seo": "1.0.0-beta.8",
 		"@eslint/js": "9.39.2",
 		"@iconify-json/logos": "1.2.10",
 		"@iconify-json/ph": "1.2.2",
 		"@playform/compress": "0.2.1",
-		"@typescript-eslint/parser": "8.53.0",
-		"astro": "5.16.9",
-		"astro-capo": "0.0.1",
+		"@typescript-eslint/parser": "8.53.1",
+		"astro": "5.16.11",
 		"eslint": "9.39.2",
 		"eslint-config-prettier": "10.1.8",
 		"eslint-plugin-astro": "1.5.0",
@@ -20,9 +19,9 @@
 		"prettier": "3.8.0",
 		"prettier-plugin-astro": "0.14.1",
 		"typescript": "5.9.3",
-		"typescript-eslint": "8.53.0",
+		"typescript-eslint": "8.53.1",
 		"unplugin-icons": "23.0.1",
-		"wrangler": "4.59.2"
+		"wrangler": "4.59.3"
 	},
 	"engines": {
 		"node": ">=25",
@@ -33,7 +32,7 @@
 		"build": "astro build",
 		"check": "prettier . --write && eslint . --fix && tsc --noEmit",
 		"dev": "astro dev",
-		"preview": "bun run build && wrangler dev"
+		"preview": "pnpm build && wrangler dev"
 	},
 	"type": "module"
 }

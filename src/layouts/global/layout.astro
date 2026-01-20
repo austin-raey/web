@@ -1,12 +1,15 @@
 ---
-import { Head } from "astro-capo";
 import { ClientRouter } from "astro:transitions";
 
 import "./styles/index.css";
 ---
 
 <html lang="en">
-	<Head>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="light dark" name="color-scheme" />
+
 		<link
 			as="font"
 			crossorigin
@@ -22,9 +25,6 @@ import "./styles/index.css";
 		/>
 		<link as="image" href="/assets/bg.avif" rel="preload" type="image/avif" />
 
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="light dark" name="color-scheme" />
 		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 		<link href="/sitemap-index.xml" rel="sitemap" />
 		<link
@@ -33,10 +33,11 @@ import "./styles/index.css";
 			title="Austin Raey's Blog"
 			type="application/rss+xml"
 		/>
-		<ClientRouter />
 
 		<slot name="seo" />
-	</Head>
+
+		<ClientRouter />
+	</head>
 	<body>
 		<slot />
 	</body>
