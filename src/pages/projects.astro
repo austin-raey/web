@@ -83,11 +83,9 @@ const columns = splitAlternating(links, 2);
 		{
 			columns.map((column) => (
 				<div>
-					{
-						column.map((link) => (
-							<RichAnchor {...link} rel="me external noopener noreferrer" />
-						))
-					}
+					{column.map((link) => (
+						<RichAnchor {...link} rel="me external noopener noreferrer" />
+					))}
 				</div>
 			))
 		}

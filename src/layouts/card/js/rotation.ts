@@ -7,7 +7,7 @@ export interface RotationOptions {
 	y: number;
 }
 
-type PendingFrame = RotationOptions | null;
+type PendingFrame = null | RotationOptions;
 
 export class RotationManager {
 	#bounds?: DOMRectReadOnly;
@@ -82,6 +82,15 @@ export class RotationManager {
 		return this.#isRotatedViewport ? [-y, x] : [y, -x];
 	}
 
+	#flushFrame = () => {
+		const frame = this.#nextFrame;
+
+		this.#nextFrame = undefined;
+		this.#rafId = undefined;
+
+		this.#setTransform(frame ?? undefined);
+	};
+
 	#getCursorPosition(clientX: number, clientY: number): [number, number] {
 		const rect = this.#bounds ?? this.#root.getBoundingClientRect();
 
@@ -137,19 +146,6 @@ export class RotationManager {
 		}
 	}
 
-	#updateBounds = () => {
-		this.#bounds = this.#root.getBoundingClientRect();
-	};
-
-	#flushFrame = () => {
-		const frame = this.#nextFrame;
-
-		this.#nextFrame = undefined;
-		this.#rafId = undefined;
-
-		this.#setTransform(frame ?? undefined);
-	};
-
 	#scheduleTransform(frame: PendingFrame) {
 		this.#nextFrame = frame;
 
@@ -170,4 +166,8 @@ export class RotationManager {
 			options?.pointerY === undefined ? "50%" : `${options.pointerY}px`
 		);
 	}
+
+	#updateBounds = () => {
+		this.#bounds = this.#root.getBoundingClientRect();
+	};
 }

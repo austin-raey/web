@@ -8,7 +8,7 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit"
 	},
-	"editor.defaultFormatter": "prettier.prettier-vscode",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
 	"editor.insertSpaces": false,
@@ -29,9 +29,10 @@
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
+	"js/ts.tsdk.path": "./node_modules/typescript/lib",
+	"js/ts.tsdk.promptToUseWorkspaceVersion": true,
 	"mdx.server.enable": true,
 	"npm.packageManager": "pnpm",
-	"prettier.enable": true,
-	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"typescript.tsdk": "./node_modules/typescript/lib"
+	"oxc.enable": false,
+	"prettier.enable": true
 }
