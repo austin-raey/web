@@ -20,12 +20,11 @@ const { description = "", href, icons = [], title, ...rest } = Astro.props;
 		<div class="icons">
 			<span class="sr-only">Project relates to:</span>
 			{
-				icons.length > 0 &&
-					icons.map((icon) => (
-						<span title={icon.title}>
-							<icon.icon />
-						</span>
-					))
+				icons.map((icon) => (
+					<span title={icon.title}>
+						<icon.icon />
+					</span>
+				))
 			}
 		</div>
 

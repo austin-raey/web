@@ -7,10 +7,16 @@ export interface RotationOptions {
 	y: number;
 }
 
+type PendingFrame = RotationOptions | null;
+
 export class RotationManager {
+	#bounds?: DOMRectReadOnly;
+	#isInitialized: boolean;
 	#isLarge: boolean;
 	#isRotatedViewport: boolean;
+	#nextFrame?: PendingFrame;
 	#rafId?: number;
+	#resizeObserver?: ResizeObserver;
 	#root: AstroCard;
 	#rotateFactor: number;
 	#rotation: HTMLDivElement;
@@ -22,7 +28,9 @@ export class RotationManager {
 
 		this.#isLarge = component.size === "large";
 		this.#rotateFactor = this.#isLarge ? 256 : 64;
+		this.#isInitialized = false;
 		this.#isRotatedViewport = false;
+		this.#nextFrame = undefined;
 
 		if (this.#root.motionDisabled) return;
 
@@ -30,32 +38,43 @@ export class RotationManager {
 	}
 
 	cleanup() {
+		this.#isInitialized = false;
 		this.#removeEventListeners();
+		this.#resizeObserver?.disconnect();
+		this.#bounds = undefined;
+		this.#nextFrame = undefined;
 		this.#setTransform();
-		if (this.#rafId) {
+		if (this.#rafId !== undefined) {
 			cancelAnimationFrame(this.#rafId);
+			this.#rafId = undefined;
 		}
 	}
 
 	initialize() {
+		if (this.#isInitialized) return;
+
+		this.#isInitialized = true;
+		this.#updateBounds();
+		this.#resizeObserver ??= new ResizeObserver(this.#updateBounds);
+		this.#resizeObserver.observe(this.#root);
 		this.#addEventListeners();
 	}
 
 	#addEventListeners() {
 		const config = { passive: true };
+		this.#rotation.addEventListener("pointerenter", this.#updateBounds, config);
 		this.#rotation.addEventListener("pointermove", this.#onPointerMove, config);
 		this.#rotation.addEventListener(
 			"pointerleave",
 			this.#onPointerLeave,
 			config
 		);
-		this.#rotation.addEventListener("touchmove", this.#onPointerMove, config);
-		this.#rotation.addEventListener("touchend", this.#onPointerLeave, config);
 	}
 
 	#calculateRotation(cursorPosX: number, cursorPosY: number): [number, number] {
-		const halfWidth = this.#root.offsetWidth >> 1;
-		const halfHeight = this.#root.offsetHeight >> 1;
+		const rect = this.#bounds;
+		const halfWidth = (rect?.width ?? this.#root.offsetWidth) / 2;
+		const halfHeight = (rect?.height ?? this.#root.offsetHeight) / 2;
 
 		const x = (cursorPosX - halfWidth) / this.#rotateFactor;
 		const y = (cursorPosY - halfHeight) / this.#rotateFactor;
@@ -64,64 +83,79 @@ export class RotationManager {
 	}
 
 	#getCursorPosition(clientX: number, clientY: number): [number, number] {
+		const rect = this.#bounds ?? this.#root.getBoundingClientRect();
+
 		if (this.#isRotatedViewport) {
-			const rect = this.#root.getBoundingClientRect();
-			const centerX = rect.left + (rect.width >> 1);
-			const centerY = rect.top + (rect.height >> 1);
+			const centerX = rect.left + rect.width / 2;
+			const centerY = rect.top + rect.height / 2;
 
 			return [
-				clientY - centerY + (this.#root.offsetWidth >> 1),
-				-(clientX - centerX) + (this.#root.offsetHeight >> 1)
+				clientY - centerY + rect.width / 2,
+				-(clientX - centerX) + rect.height / 2
 			];
 		}
 
-		return [clientX - this.#root.offsetLeft, clientY - this.#root.offsetTop];
+		return [clientX - rect.left, clientY - rect.top];
 	}
 
 	#onPointerLeave = () => {
-		if (this.#root.motionDisabled || this.#rafId) return;
+		if (this.#root.motionDisabled) return;
 
-		this.#rafId = requestAnimationFrame(() => {
-			this.#setTransform();
-			this.#rafId = undefined;
-		});
+		this.#scheduleTransform(null);
 	};
 
-	#onPointerMove = (event: PointerEvent | TouchEvent) => {
-		if (
-			this.#rafId ||
-			this.#root.motionDisabled ||
-			(this.#isLarge && window.innerWidth < 768)
-		)
-			return;
+	#onPointerMove = (event: PointerEvent) => {
+		if (this.#root.motionDisabled) return;
 
-		const { clientX, clientY } = "touches" in event ? event.touches[0] : event;
+		if (this.#isLarge && window.innerWidth < 768) {
+			this.#scheduleTransform(null);
+			return;
+		}
+
+		const { clientX, clientY } = event;
 		this.#isRotatedViewport = !this.#isLarge && window.innerWidth <= 520;
 
 		const [cursorPosX, cursorPosY] = this.#getCursorPosition(clientX, clientY);
 		const [x, y] = this.#calculateRotation(cursorPosX, cursorPosY);
 
-		this.#rafId = requestAnimationFrame(() => {
-			this.#setTransform({
-				pointerX: clientX,
-				pointerY: clientY,
-				x,
-				y
-			});
-			this.#rafId = undefined;
+		this.#scheduleTransform({
+			pointerX: clientX,
+			pointerY: clientY,
+			x,
+			y
 		});
 	};
 
 	#removeEventListeners() {
+		this.#rotation.removeEventListener("pointerenter", this.#updateBounds);
 		this.#rotation.removeEventListener("pointermove", this.#onPointerMove);
 		this.#rotation.removeEventListener("pointerleave", this.#onPointerLeave);
-		this.#rotation.removeEventListener("touchmove", this.#onPointerMove);
-		this.#rotation.removeEventListener("touchend", this.#onPointerLeave);
 
-		if (this.#rafId) {
+		if (this.#rafId !== undefined) {
 			cancelAnimationFrame(this.#rafId);
 			this.#rafId = undefined;
 		}
+	}
+
+	#updateBounds = () => {
+		this.#bounds = this.#root.getBoundingClientRect();
+	};
+
+	#flushFrame = () => {
+		const frame = this.#nextFrame;
+
+		this.#nextFrame = undefined;
+		this.#rafId = undefined;
+
+		this.#setTransform(frame ?? undefined);
+	};
+
+	#scheduleTransform(frame: PendingFrame) {
+		this.#nextFrame = frame;
+
+		if (this.#rafId !== undefined) return;
+
+		this.#rafId = requestAnimationFrame(this.#flushFrame);
 	}
 
 	#setTransform(options?: RotationOptions) {

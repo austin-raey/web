@@ -8,6 +8,7 @@ export interface Props {
 }
 
 const { size = "default" } = Astro.props;
+const isLarge = size === "large";
 ---
 
 <LayoutGlobal>
@@ -29,21 +30,27 @@ const { size = "default" } = Astro.props;
 
 		<div class="rotate">
 			<div aria-hidden="true" class="shine overlay"></div>
-			<Image
-				alt=""
-				aria-hidden="true"
-				class="texture overlay"
-				fetchpriority="high"
-				height="643"
-				loading="eager"
-				src="/assets/texture.avif"
-				width="1024"
-			/>
+			{
+				!isLarge && (
+					<Image
+						alt=""
+						aria-hidden="true"
+						class="texture overlay"
+						decoding="async"
+						fetchpriority="low"
+						height="643"
+						loading="lazy"
+						src="/assets/texture.avif"
+						width="1024"
+					/>
+				)
+			}
 
 			<Image
 				alt=""
 				aria-hidden="true"
 				class="bg overlay"
+				decoding="async"
 				fetchpriority="high"
 				height="643"
 				loading="eager"
@@ -77,17 +84,23 @@ via the Component Script - so it is done below for a more predictable experience
 This does mean that in these style files, `:global` may be necessary for some styling needs.
 -->
 <script is:inline>
+	const MOTION_STORAGE_KEY = "astro-motion";
+	const MOTION_HANDLER_KEY = "__astroCardMotionHandlerRegistered";
+
 	function initializeMotion() {
-		const storage = globalThis.localStorage.getItem("astro-motion");
+		const storage = globalThis.localStorage.getItem(MOTION_STORAGE_KEY);
 		const value = storage === "true" || storage === null;
-		document
-			.querySelector("astro-card")
-			?.setAttribute("data-motion", value.toString());
+		document.querySelectorAll("astro-card").forEach((card) => {
+			card.setAttribute("data-motion", value.toString());
+		});
 	}
 
 	initializeMotion();
 
-	document.addEventListener("astro:after-swap", initializeMotion);
+	if (!globalThis[MOTION_HANDLER_KEY]) {
+		globalThis[MOTION_HANDLER_KEY] = true;
+		document.addEventListener("astro:after-swap", initializeMotion);
+	}
 </script>
 
 <script>

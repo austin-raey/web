@@ -56,6 +56,10 @@ astro-card[data-size="large"] {
 	}
 }
 
+astro-card[data-motion="true"] .rotate {
+	will-change: transform;
+}
+
 /* Large card rotate adjustments */
 astro-card[data-size="large"] .rotate {
 	margin: 2rem;
@@ -128,9 +132,5 @@ astro-card[data-size="large"] .texture {
 /* Large card content adjustments */
 astro-card[data-size="large"] .content {
 	scrollbar-gutter: stable;
-	overflow-y: scroll;
-
-	@media screen and (max-width: 768px) {
-		overflow-y: scroll;
-	}
+	overflow-y: auto;
 }

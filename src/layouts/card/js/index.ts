@@ -33,4 +33,6 @@ export class AstroCard extends HTMLElement {
 	}
 }
 
-customElements.define("astro-card", AstroCard);
+if (!customElements.get("astro-card")) {
+	customElements.define("astro-card", AstroCard);
+}

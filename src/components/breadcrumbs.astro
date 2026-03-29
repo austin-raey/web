@@ -12,6 +12,7 @@ import type { JSX } from "astro/jsx-runtime";
 import IconCaretRight from "~icons/ph/caret-right";
 
 const { crumbs = [] } = Astro.props;
+const lastIndex = crumbs.length - 1;
 ---
 
 <nav
@@ -21,13 +22,13 @@ const { crumbs = [] } = Astro.props;
 >
 	<ol>
 		{
-			crumbs.map((crumb) => (
+			crumbs.map((crumb, index) => (
 				<li>
 					<a href={crumb.href}>
 						{crumb.icon && <crumb.icon aria-hidden="true" />}
 						{crumb.label}
 					</a>
-					{crumbs.at(-1) !== crumb && <IconCaretRight aria-hidden="true" />}
+					{index < lastIndex && <IconCaretRight aria-hidden="true" />}
 				</li>
 			))
 		}

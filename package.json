@@ -25,9 +25,9 @@
 	},
 	"engines": {
 		"node": ">=25",
-		"pnpm": "10.27.0"
+		"pnpm": "10.33.0"
 	},
-	"packageManager": "pnpm@10.27.0",
+	"packageManager": "pnpm@10.33.0",
 	"scripts": {
 		"build": "astro build",
 		"check": "prettier . --write && eslint . --fix && tsc --noEmit",

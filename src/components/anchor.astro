@@ -12,14 +12,9 @@ let prefetchValue = "false";
 if (prefetch) {
 	prefetchValue = priority === "high" ? "viewport" : "hover";
 }
-
-const attributes: Props = {
-	"data-astro-prefetch": prefetchValue,
-	...rest
-};
 ---
 
-<a data-astro-prefetch={attributes["data-astro-prefetch"]} {...rest}>
+<a data-astro-prefetch={prefetchValue} {...rest}>
 	<slot />
 </a>
 
