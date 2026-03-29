@@ -42,20 +42,16 @@ const lastIndex = crumbs.length - 1;
 		overflow: hidden;
 		font-weight: 500;
 		flex-shrink: 0;
+	}
 
-		a:hover {
-			transition: all 0.1s ease-in-out;
-		}
+	a {
+		transition: color 0.1s ease-in-out;
 	}
 
 	ol {
 		display: flex;
 		align-items: center;
-		background: linear-gradient(
-			to right,
-			oklch(100% 0 0 / 0.66),
-			oklch(100% 0 0 / 0.33)
-		);
+		background: var(--glass-surface);
 		border: 1px solid oklch(0 0 0 / 0.1);
 		padding: var(--size-1) var(--size-3);
 		border-radius: var(--size-3);

@@ -14,3 +14,22 @@
 	white-space: nowrap;
 	width: 1px;
 }
+
+.split-grid {
+	display: grid;
+	gap: var(--size-2);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	max-width: 60ch;
+}
+
+.split-grid > * {
+	display: grid;
+	gap: var(--size-2);
+	grid-template-rows: max-content;
+}
+
+@media screen and (max-width: 640px) {
+	.split-grid {
+		grid-template-columns: 1fr;
+	}
+}

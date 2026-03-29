@@ -42,7 +42,6 @@ import IconClipboardText from "~icons/ph/clipboard-text";
 			border: 1px solid color-mix(in oklch, var(--color-text) 20%, transparent);
 			border-radius: var(--size-2);
 			transition: background 0.2s ease-in-out;
-			transform: scale(1) translateY(0);
 
 			&:hover {
 				background: linear-gradient(to bottom right, #f0f0f0, #e0e0e0);
@@ -51,12 +50,8 @@ import IconClipboardText from "~icons/ph/clipboard-text";
 	}
 
 	pre {
-		background: linear-gradient(
-			135deg,
-			oklch(100% 0 0 / 0.75),
-			oklch(100% 0 0 / 0.55)
-		) !important;
-		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
+		background: var(--glass-surface-strong) !important;
+		backdrop-filter: var(--glass-filter);
 		border: 1px solid oklch(0 0 0 / 0.1);
 		border-radius: 0.5rem;
 		padding: 0.5rem;
@@ -65,17 +60,9 @@ import IconClipboardText from "~icons/ph/clipboard-text";
 		scrollbar-width: thin;
 		max-width: max-content;
 		max-height: 30ch;
-		transition:
-			max-height 0.2s ease-in-out,
-			max-width 0.2s ease-in-out;
 
 		span {
 			text-shadow: none;
-		}
-
-		&.expanded {
-			max-height: none;
-			max-width: 100%;
 		}
 	}
 </style>

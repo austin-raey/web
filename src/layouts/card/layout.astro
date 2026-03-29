@@ -83,23 +83,41 @@ via the Component Script - so it is done below for a more predictable experience
 
 This does mean that in these style files, `:global` may be necessary for some styling needs.
 */}
+
 <script>
+	const LARGE_CARD_ATTR = "data-has-large-card";
 	const MOTION_STORAGE_KEY = "astro-motion";
 	const MOTION_HANDLER_KEY = "__astroCardMotionHandlerRegistered";
+	const CARD_LAYOUT_HANDLER_KEY = "__astroCardLayoutHandlerRegistered";
+	const runtimeState = globalThis as typeof globalThis & Record<string, boolean>;
 
 	function initializeMotion() {
 		const storage = globalThis.localStorage.getItem(MOTION_STORAGE_KEY);
 		const value = storage === "true" || storage === null;
-		for (const card of document.querySelectorAll("astro-card")) {
-		card.dataset.motion = value.toString();
+		for (const card of document.querySelectorAll<HTMLElement>("astro-card")) {
+			card.dataset.motion = value.toString();
+		}
 	}
+
+	function initializeCardLayout() {
+		const hasLargeCard =
+			document.querySelector('astro-card[data-size="large"]') !== null;
+
+		document.documentElement.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
+		document.body?.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
 	}
 
 	initializeMotion();
+	initializeCardLayout();
 
-	if (!globalThis[MOTION_HANDLER_KEY]) {
-		globalThis[MOTION_HANDLER_KEY] = true;
+	if (!runtimeState[MOTION_HANDLER_KEY]) {
+		runtimeState[MOTION_HANDLER_KEY] = true;
 		document.addEventListener("astro:after-swap", initializeMotion);
+	}
+
+	if (!runtimeState[CARD_LAYOUT_HANDLER_KEY]) {
+		runtimeState[CARD_LAYOUT_HANDLER_KEY] = true;
+		document.addEventListener("astro:after-swap", initializeCardLayout);
 	}
 </script>
 

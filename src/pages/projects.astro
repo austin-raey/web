@@ -79,7 +79,7 @@ const columns = splitAlternating(links, 2);
 		title="Austin Raey's projects"
 	/>
 
-	<nav>
+	<nav class="split-grid">
 		{
 			columns.map((column) => (
 				<div>
@@ -91,22 +91,3 @@ const columns = splitAlternating(links, 2);
 		}
 	</nav>
 </Layout>
-
-<style>
-	nav {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0.5rem;
-		max-width: 60ch;
-
-		> div {
-			display: grid;
-			grid-template-rows: max-content;
-			gap: 0.5rem;
-		}
-
-		@media screen and (max-width: 640px) {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>

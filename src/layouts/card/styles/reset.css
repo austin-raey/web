@@ -5,8 +5,7 @@
 }
 
 @media screen and (max-width: 768px) {
-	body:has(astro-card[data-size="large"]),
-	html:has(astro-card[data-size="large"]) {
+	:global(html[data-has-large-card], body[data-has-large-card]) {
 		overflow: initial;
 	}
 }
@@ -17,7 +16,7 @@
 }
 
 @media screen and (max-width: 768px) {
-	:global(body):has(astro-card[data-size="large"]) {
+	:global(body[data-has-large-card]) {
 		display: block;
 	}
 }

@@ -13,6 +13,9 @@
 html,
 body {
 	font-family: "Lexend", sans-serif;
+	letter-spacing: -0.0125rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -39,10 +42,4 @@ p,
 li {
 	line-height: 1.75;
 	font-weight: 400;
-}
-
-* {
-	letter-spacing: -0.0125rem;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }

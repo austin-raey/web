@@ -29,15 +29,16 @@ if (prefetch) {
 		font-weight: 600;
 		padding: var(--size-1) var(--size-2);
 
-		background: linear-gradient(
-			135deg,
-			oklch(100% 0 0 / 0.5),
-			oklch(100% 0 0 / 0.05)
-		);
-		backdrop-filter: blur(10px) saturate(200%) hue-rotate(30deg);
-		border: 1px solid oklch(0 0 0 / 0.125);
+		background: var(--glass-surface);
+		backdrop-filter: var(--glass-filter);
+		border: var(--glass-border);
 
-		transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		transition:
+			background 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+			border-color 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+			box-shadow 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+			color 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+			transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		transform: translateY(0) scale(1);
 		text-decoration: none;
 
@@ -46,11 +47,7 @@ if (prefetch) {
 
 	a:hover,
 	a:focus-within {
-		background: linear-gradient(
-			-135deg,
-			oklch(100% 0 0 / 0.75),
-			oklch(100% 0 0 / 0.25)
-		);
+		background: var(--glass-surface-hover);
 		border-color: color-mix(in oklch, var(--color-link), black 20%);
 		box-shadow: 0 4px 8px
 			color-mix(in oklch, var(--color-link), transparent 90%);
