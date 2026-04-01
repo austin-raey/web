@@ -8,12 +8,6 @@ export default defineConfig({
 	build: {
 		inlineStylesheets: "always"
 	},
-	experimental: {
-		clientPrerender: true,
-		queuedRendering: {
-			enabled: true
-		}
-	},
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		shikiConfig: {
@@ -24,10 +18,6 @@ export default defineConfig({
 		}
 	},
 	output: "static",
-	prefetch: {
-		prefetchAll: true,
-		defaultStrategy: "hover"
-	},
 	site: "https://raey.me",
 	trailingSlash: "never",
 	vite: {
