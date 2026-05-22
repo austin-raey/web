@@ -19,11 +19,11 @@ export default defineConfig({
 	],
 	integrations: [mdx(), sitemap()],
 	output: "static",
-	security: {
-		csp: {
-			algorithm: "SHA-512"
-		}
-	},
+	// security: {
+	// 	csp: {
+	// 		algorithm: "SHA-512"
+	// 	}
+	// },
 	site: "https://raey.me",
 	trailingSlash: "never",
 	vite: {
