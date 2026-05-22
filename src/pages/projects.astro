@@ -6,6 +6,7 @@ import IconBlueprint from "~icons/ph/blueprint-duotone";
 import IconLaptop from "~icons/ph/laptop-duotone";
 import IconPackage from "~icons/ph/package-duotone";
 import IconTerminal from "~icons/ph/terminal-duotone";
+import IconBird from "~icons/ph/bird-duotone";
 
 import RichAnchor from "~/components/rich-anchor.astro";
 import Layout from "~/layouts/landing/layout.astro";
@@ -14,6 +15,17 @@ import { splitAlternating } from "~/utils/layout";
 const CRUMBS = [{ href: "/projects", icon: IconBlueprint, label: "Projects" }];
 
 const links = [
+	{
+		description: "Coming soon!",
+		icons: [
+			{
+				icon: IconBird,
+				title: "Wren's logo"
+			}
+		],
+		href: "https://github.com/wrenjs/wren",
+		title: "wren"
+	},
 	{
 		description: "My personal dotfiles for macOS and Windows",
 		href: "https://github.com/austin-raey/dotfiles",

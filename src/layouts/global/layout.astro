@@ -1,22 +1,16 @@
 ---
 import { ClientRouter } from "astro:transitions";
-
+import { Font } from "astro:assets";
 import "./styles/index.css";
 ---
 
 <html lang="en">
 	<head>
+		<Font cssVariable="--font" preload />
+
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta content="light dark" name="color-scheme" />
-
-		<link
-			as="font"
-			crossorigin
-			href="/font.woff2"
-			rel="preload"
-			type="font/woff2"
-		/>
 
 		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 		<link href="/sitemap-index.xml" rel="sitemap" />

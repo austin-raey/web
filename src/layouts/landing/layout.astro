@@ -25,7 +25,7 @@ const { crumbs = [], description = "", title = "" } = Astro.props;
 
 	<header>
 		<div>
-			<h1>{title}</h1>
+			<h1 transition:name="title">{title}</h1>
 			<p>{description}</p>
 		</div>
 		<Breadcrumbs crumbs={[...CRUMBS, ...crumbs]} />

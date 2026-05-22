@@ -65,7 +65,8 @@ const isLarge = size === "large";
 	</astro-card>
 </LayoutGlobal>
 
-{/*
+{
+	/*
 NOTE / Observations on includes for scripts and styles:
 
 For page scripts (non-exhaustively):
@@ -82,30 +83,32 @@ Especially for *styles*, some of Astro's built-in scoping features are lost when
 via the Component Script - so it is done below for a more predictable experience.
 
 This does mean that in these style files, `:global` may be necessary for some styling needs.
-*/}
+*/
+}
 
 <script>
 	const LARGE_CARD_ATTR = "data-has-large-card";
 	const MOTION_STORAGE_KEY = "astro-motion";
 	const MOTION_HANDLER_KEY = "__astroCardMotionHandlerRegistered";
 	const CARD_LAYOUT_HANDLER_KEY = "__astroCardLayoutHandlerRegistered";
-	const runtimeState = globalThis as typeof globalThis & Record<string, boolean>;
-
-	function initializeMotion() {
-		const storage = globalThis.localStorage.getItem(MOTION_STORAGE_KEY);
-		const value = storage === "true" || storage === null;
-		for (const card of document.querySelectorAll<HTMLElement>("astro-card")) {
-			card.dataset.motion = value.toString();
-		}
-	}
+	const runtimeState = globalThis as Record<string, boolean> &
+	typeof globalThis;
 
 	function initializeCardLayout() {
-		const hasLargeCard =
-			document.querySelector('astro-card[data-size="large"]') !== null;
+	const hasLargeCard =
+		document.querySelector('astro-card[data-size="large"]') !== null;
 
-		document.documentElement.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
-		document.body?.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
+	document.documentElement.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
+	document.body?.toggleAttribute(LARGE_CARD_ATTR, hasLargeCard);
+}
+
+function initializeMotion() {
+	const storage = globalThis.localStorage.getItem(MOTION_STORAGE_KEY);
+	const value = storage === "true" || storage === null;
+	for (const card of document.querySelectorAll<HTMLElement>("astro-card")) {
+		card.dataset.motion = value.toString();
 	}
+}
 
 	initializeMotion();
 	initializeCardLayout();
