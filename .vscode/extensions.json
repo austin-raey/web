@@ -2,6 +2,5 @@
 	"recommendations": [
 		"astro-build.astro-vscode",
 		"dbaeumer.vscode-eslint",
-		"esenb.prettier-vscode"
 	]
 }

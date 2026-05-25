@@ -21,7 +21,7 @@
 		"typescript-eslint": "8.59.4",
 		"unplugin-icons": "23.0.1"
 	},
-	"packageManager": "pnpm@11.2.2",
+	"packageManager": "pnpm@11.3.0",
 	"scripts": {
 		"build": "astro build",
 		"check": "prettier . --write && eslint . --fix && tsc --noEmit",
