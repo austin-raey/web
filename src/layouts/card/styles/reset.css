@@ -1,7 +1,8 @@
 /* Global styles */
-:global(html, body) {
+html,
+body {
 	overflow: hidden;
-	min-height: 100svh;
+	height: 100dvh;
 }
 
 @media screen and (max-width: 768px) {

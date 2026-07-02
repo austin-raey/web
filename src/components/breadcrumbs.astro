@@ -25,8 +25,7 @@ const lastIndex = crumbs.length - 1;
 			crumbs.map((crumb, index) => (
 				<li>
 					<a href={crumb.href}>
-						{crumb.icon && <crumb.icon aria-hidden="true" />}
-						{crumb.label}
+						{crumb.icon && <crumb.icon aria-hidden="true" />} {crumb.label}
 					</a>
 					{index < lastIndex && <IconCaretRight aria-hidden="true" />}
 				</li>
