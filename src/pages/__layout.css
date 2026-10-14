@@ -1,0 +1,22 @@
+wren-card {
+  --r-x: 0deg;
+  --r-y: 0deg;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+}
+
+.shine {
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    oklch(0.9327 0.0115 97.42 / 45%) 0%,
+    oklch(0.5153 0.0292 229.65 / 45%) 100%,
+    oklch(0 0 0 / 0.9) 175%
+  );
+  mix-blend-mode: hard-light;
+  opacity: 0.75;
+  z-index: 3;
+}
+
+.rotate {
+  transform: rotateX(var(--r-x)) rotateY(var(--r-y)) translateZ(0);
+}

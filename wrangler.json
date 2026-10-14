@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "assets": {
+    "directory": "./dist/client"
+  },
+  "compatibility_date": "2026-10-14",
+  "name": "austin-raey",
+  "placement": {
+    "mode": "smart"
+  }
+}

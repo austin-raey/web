@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - "@wren-js/core@0.1.4"
+  - "@wren-js/ssx@0.1.4"
