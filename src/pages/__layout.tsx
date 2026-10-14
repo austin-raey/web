@@ -9,15 +9,17 @@ export default function Layout({ children }: { children: JSX.Children }) {
             <img
               alt=""
               class=":uno: rounded-inherit opacity-20 size-full inset-0 absolute blur-4"
+              fetchpriority="high"
               src="/bg.avif"
             />
             <img
               alt=""
-              class=":uno: rounded-inherit opacity-25 size-full inset-0 absolute z-2 mix-blend-luminosity"
+              class=":uno: rounded-inherit opacity-25 size-full inset-0 absolute mix-blend-luminosity"
+              fetchpriority="high"
               src="/texture.avif"
             />
           </div>
-          <div class=":uno: p-4.3 rounded-inherit h-full relative z-1">{children}</div>
+          <div class=":uno: p-4.3 rounded-inherit h-full relative">{children}</div>
         </div>
       </wren-card>
       <script async src="./__layout.script.ts" type="module" />

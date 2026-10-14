@@ -10,7 +10,7 @@ const PROFICIENCIES = [
   "Docker",
   "CI / CD",
   "GraphQL",
-  "CMS Systems",
+  "CMS Specialist",
   "SEO",
   "Accessibility",
 ];
@@ -42,15 +42,16 @@ export const SOCIALS = [
 ];
 export default function IndexPage() {
   return (
-    <div class=":uno: text-4 flex flex-col gap-3 h-full relative">
+    <div class=":uno: text-4 flex flex-col gap-2 h-full relative">
       <header>
         <figure>
           <img
             alt="Austin's profile picture"
-            class=":uno: rounded-6 size-24 right-0 top-0 absolute"
+            class=":uno: rounded-6 opacity-75 size-28 right-0 top-0 absolute z-0 mix-blend-darken -m-2"
+            fetchpriority="high"
             src="./pfp.avif"
           />
-          <figcaption>
+          <figcaption class=":uno: mix-blend-luminosity">
             <h1 class=":uno: text-9 flex flex-col">
               <span class=":uno: text-7 leading-none tracking-tight font-normal">Austin</span>
               <span class=":uno: leading-none tracking-tight font-extrabold">Raey</span>
@@ -59,7 +60,7 @@ export default function IndexPage() {
         </figure>
       </header>
 
-      <main class=":uno: flex grow basis-full flex-col gap-2">
+      <main class=":uno: flex grow basis-full flex-col gap-2 mix-blend-luminosity">
         <section class=":uno: font-semibold flex flex-col gap-2">
           <p>
             <i class=":uno: i-lucide-map-pin" inert="true" />
@@ -75,7 +76,7 @@ export default function IndexPage() {
             <dt class=":uno: sr-only">Specializing in:</dt>
             {SPECIALIZATIONS.map((specialization) => (
               <dd
-                class=":uno: text-3.25 leading-tight px-1.5 py-1 border border-black/25 rounded-2 border-solid bg-white/30 inline-block backdrop-blur-1"
+                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1"
                 key={specialization}
               >
                 {specialization}
@@ -84,7 +85,7 @@ export default function IndexPage() {
             <dt class=":uno: sr-only">Proficient in:</dt>
             {PROFICIENCIES.map((proficiency) => (
               <dd
-                class=":uno: text-3.25 leading-tight px-1.5 py-1 border border-black/25 rounded-2 border-solid bg-white/30 inline-block backdrop-blur-1"
+                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1"
                 key={proficiency}
               >
                 {proficiency}
@@ -94,12 +95,12 @@ export default function IndexPage() {
         </section>
       </main>
 
-      <footer class=":uno: mb-8 flex grow basis-full items-end">
-        <nav className="flex flex-wrap gap-1">
+      <footer class=":uno: mb-8 flex grow basis-full items-end mix-blend-luminosity">
+        <nav className=":uno: flex flex-wrap gap-1">
           <h2 class=":uno: sr-only">Social Links</h2>
           {SOCIALS.map((social) => (
             <Link
-              className=":uno: leading-none font-semibold px-2.5 py-1.5 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/25 inline-block backdrop-blur-1"
+              className=":uno: leading-none font-semibold px-2 py-1.25 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2"
               href={social.url}
               rel="noopener noreferrer"
               target="_blank"
