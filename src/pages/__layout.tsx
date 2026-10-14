@@ -9,12 +9,14 @@ export default function Layout({ children }: { children: JSX.Children }) {
             <img
               alt=""
               class=":uno: rounded-inherit opacity-20 size-full inset-0 absolute blur-4"
+              decoding="async"
               fetchpriority="high"
               src="/bg.avif"
             />
             <img
               alt=""
               class=":uno: rounded-inherit opacity-25 size-full inset-0 absolute mix-blend-luminosity"
+              decoding="async"
               fetchpriority="high"
               src="/texture.avif"
             />

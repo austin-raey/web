@@ -96,11 +96,11 @@ export default function IndexPage() {
       </main>
 
       <footer class=":uno: mb-8 flex grow basis-full items-end mix-blend-luminosity">
-        <nav className=":uno: flex flex-wrap gap-1">
+        <nav className=":uno: flex flex-wrap gap-2">
           <h2 class=":uno: sr-only">Social Links</h2>
           {SOCIALS.map((social) => (
             <Link
-              className=":uno: leading-none font-semibold px-2 py-1.25 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2"
+              className=":uno: leading-none font-semibold px-2.5 py-1.75 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2"
               href={social.url}
               rel="noopener noreferrer"
               target="_blank"
