@@ -10,8 +10,14 @@ export default function RootLayout({ children }: { children: JSX.Children }) {
         <meta content="light dark" name="color-scheme" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <link href="/sitemap-index.xml" rel="sitemap" />
-        <link as="image" href="/bg.avif" rel="preload" type="image/avif" />
-        <link as="image" href="/texture.avif" rel="preload" type="image/avif" />
+        <link as="image" fetchpriority="high" href="/bg.avif" rel="preload" type="image/avif" />
+        <link
+          as="image"
+          fetchpriority="high"
+          href="/texture.avif"
+          rel="preload"
+          type="image/avif"
+        />
         <link as="image" href="/pfp.svg" rel="preload" type="image/svg+xml" />
 
         <link
