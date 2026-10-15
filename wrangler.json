@@ -4,9 +4,18 @@
     "binding": "ASSETS",
     "directory": "./dist/client"
   },
-  "compatibility_date": "2026-10-14",
+  "compatibility_date": "2026-10-12",
   "name": "austin-raey",
   "placement": {
     "mode": "smart"
-  }
+  },
+  "preview_urls": false,
+  "routes": [
+    {
+      "custom_domain": true,
+      "enabled": true,
+      "pattern": "raey.me",
+      "previews_enabled": false
+    }
+  ]
 }
