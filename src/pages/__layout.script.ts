@@ -47,6 +47,7 @@ export class WrenCard extends HTMLElement {
     document.addEventListener("pointerenter", this.#updateBounds, LISTENER_OPTIONS);
     document.addEventListener("pointermove", this.#onPointerMove, LISTENER_OPTIONS);
     document.addEventListener("pointerleave", this.#onPointerLeave, LISTENER_OPTIONS);
+    document.addEventListener("touchmove", this.#onPointerMove, LISTENER_OPTIONS);
   }
 
   #cancelFrame() {
@@ -104,13 +105,18 @@ export class WrenCard extends HTMLElement {
     this.#scheduleTransform(undefined);
   };
 
-  #onPointerMove = (event: PointerEvent) => {
+  #onPointerMove = (event: PointerEvent | TouchEvent) => {
     if (!this.#isMotionViewport) {
       this.#scheduleTransform(undefined);
       return;
     }
 
-    this.#scheduleTransform(this.#computeFrame(event.clientX, event.clientY));
+    this.#scheduleTransform(
+      this.#computeFrame(
+        "clientX" in event ? event.clientX : event.touches[0].clientX,
+        "clientY" in event ? event.clientY : event.touches[0].clientY,
+      ),
+    );
   };
 
   #removeEventListeners() {

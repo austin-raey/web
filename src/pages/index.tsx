@@ -47,7 +47,7 @@ export default function IndexPage() {
         <figure>
           <img
             alt="Austin's profile picture"
-            class=":uno: rounded-6 opacity-75 size-28 right-0 top-0 absolute z-0 mix-blend-darken -m-2"
+            class=":uno: rounded-6 opacity-75 size-28 right-0 top-0 absolute z-0 mix-blend-darken -m-2 dark:mix-blend-multiply"
             fetchpriority="high"
             src="./pfp.avif"
           />
@@ -76,7 +76,7 @@ export default function IndexPage() {
             <dt class=":uno: sr-only">Specializing in:</dt>
             {SPECIALIZATIONS.map((specialization) => (
               <dd
-                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1"
+                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1 dark:border-white/30 dark:bg-black/30"
                 key={specialization}
               >
                 {specialization}
@@ -85,7 +85,7 @@ export default function IndexPage() {
             <dt class=":uno: sr-only">Proficient in:</dt>
             {PROFICIENCIES.map((proficiency) => (
               <dd
-                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1"
+                class=":uno: text-3 leading-tight px-1.5 py-1 border border-black/20 rounded-2.5 border-solid bg-white/30 inline-block backdrop-blur-1 dark:border-white/30 dark:bg-black/30"
                 key={proficiency}
               >
                 {proficiency}
@@ -95,12 +95,12 @@ export default function IndexPage() {
         </section>
       </main>
 
-      <footer class=":uno: mb-8 flex grow basis-full items-end mix-blend-luminosity">
+      <footer class=":uno: mb-8 flex grow basis-full items-end mix-blend-luminosity dark:mix-blend-luminosity">
         <nav className=":uno: flex flex-wrap gap-2">
           <h2 class=":uno: sr-only">Social Links</h2>
           {SOCIALS.map((social) => (
             <Link
-              className=":uno: leading-none font-semibold px-2.5 py-1.75 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2"
+              className=":uno: leading-none font-semibold px-2.5 py-1.75 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2 dark:border-black/30 dark:bg-black/40"
               href={social.url}
               rel="noopener noreferrer"
               target="_blank"

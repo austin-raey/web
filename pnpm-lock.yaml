@@ -179,11 +179,11 @@ importers:
         specifier: 66.11.0
         version: 66.11.0(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@7.0.2)
       '@wren-js/core':
-        specifier: 0.1.5
-        version: 0.1.5(esbuild@0.28.2)(jiti@2.7.0)
+        specifier: 0.2.0
+        version: 0.2.0(esbuild@0.28.2)(jiti@2.7.0)
       '@wren-js/ssx':
-        specifier: 0.1.5
-        version: 0.1.5(@lumeland/ssx@0.1.15)(esbuild@0.28.2)(jiti@2.7.0)
+        specifier: 0.2.0
+        version: 0.2.0(@lumeland/ssx@0.1.15)(@wren-js/core@0.2.0(esbuild@0.28.2)(jiti@2.7.0))(esbuild@0.28.2)(jiti@2.7.0)
       eslint-plugin-perfectionist:
         specifier: 5.12.1
         version: 5.12.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@7.0.2)
@@ -1461,14 +1461,15 @@ packages:
     peerDependencies:
       vite: ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0 || ^8.0.0-0
 
-  '@wren-js/core@0.1.5':
-    resolution: {integrity: sha512-D3CzcCAYjV8YnZXhCCupSolfFMKCuWPzm2dh5MV/xusbFifTewWr3hufi9meBwokC2qrWNrGhhcErZ189JTMhg==}
+  '@wren-js/core@0.2.0':
+    resolution: {integrity: sha512-SybNqW11yK+VA2bseEQRtJN144K7OoPQhOIdz0p1YnoHEfaKrJgHmst4SXocVSTxjKhjBFBv3wlvTq4MAfy36A==}
     hasBin: true
 
-  '@wren-js/ssx@0.1.5':
-    resolution: {integrity: sha512-fDykj7XO08eQ0h91Yua4OcMWWvHcQFSUkn4hkQqH0m8aeEMhTojMgkGleyxgp/o18RyuQeQHl7unQkILjykTpg==}
+  '@wren-js/ssx@0.2.0':
+    resolution: {integrity: sha512-rKYv6Uz2RxqmEAAUAHjO2WiVc3oBJlILgW5ypPLcBedI2rjrpIEfymK/HKNJ7/nVqxhK0zlZLsyPCFe2S35KGw==}
     peerDependencies:
       '@lumeland/ssx': ^0.1.15
+      '@wren-js/core': '*'
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -3207,7 +3208,7 @@ snapshots:
       - ocache
       - srvx
 
-  '@wren-js/core@0.1.5(esbuild@0.28.2)(jiti@2.7.0)':
+  '@wren-js/core@0.2.0(esbuild@0.28.2)(jiti@2.7.0)':
     dependencies:
       vite: 8.3.4(esbuild@0.28.2)(jiti@2.7.0)
     transitivePeerDependencies:
@@ -3224,10 +3225,10 @@ snapshots:
       - tsx
       - yaml
 
-  '@wren-js/ssx@0.1.5(@lumeland/ssx@0.1.15)(esbuild@0.28.2)(jiti@2.7.0)':
+  '@wren-js/ssx@0.2.0(@lumeland/ssx@0.1.15)(@wren-js/core@0.2.0(esbuild@0.28.2)(jiti@2.7.0))(esbuild@0.28.2)(jiti@2.7.0)':
     dependencies:
       '@lumeland/ssx': 0.1.15
-      '@wren-js/core': 0.1.5(esbuild@0.28.2)(jiti@2.7.0)
+      '@wren-js/core': 0.2.0(esbuild@0.28.2)(jiti@2.7.0)
       vite: 8.3.4(esbuild@0.28.2)(jiti@2.7.0)
     transitivePeerDependencies:
       - '@types/node'
