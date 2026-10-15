@@ -1,5 +1,3 @@
-import Link from "@wren-js/core/link";
-
 const SPECIALIZATIONS = ["Frontend", "Full-Stack", "DevOps"];
 const PROFICIENCIES = [
   "JavaScript",
@@ -96,18 +94,18 @@ export default function IndexPage() {
       </main>
 
       <footer class=":uno: mb-8 flex grow basis-full items-end mix-blend-luminosity dark:mix-blend-luminosity">
-        <nav className=":uno: flex flex-wrap gap-2">
+        <nav class=":uno: flex flex-wrap gap-2">
           <h2 class=":uno: sr-only">Social Links</h2>
           {SOCIALS.map((social) => (
-            <Link
-              className=":uno: leading-none font-semibold px-2.5 py-1.75 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2 dark:border-black/30 dark:bg-black/40"
+            <a
+              class=":uno: leading-none font-semibold px-2.5 py-1.75 border-[1.5px] border-white/50 rounded-3 border-solid bg-white/40 inline-block backdrop-blur-2 dark:border-black/30 dark:bg-black/40"
               href={social.url}
               rel="noopener noreferrer"
               target="_blank"
               title={social.alt}
             >
               <i class={social.icon} inert="true" /> {social.name}
-            </Link>
+            </a>
           ))}
         </nav>
       </footer>
