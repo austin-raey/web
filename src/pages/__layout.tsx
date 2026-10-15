@@ -21,6 +21,7 @@ export default function Layout({ children }: { children: JSX.Children }) {
               src="/texture.avif"
             />
           </div>
+          <div class=":uno: shine inset-0 absolute mix-blend-hard-light" inert="true" />
           <div class=":uno: p-4.3 rounded-inherit h-full relative">{children}</div>
         </div>
       </wren-card>

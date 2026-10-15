@@ -47,9 +47,9 @@ export default function IndexPage() {
         <figure>
           <img
             alt="Austin's profile picture"
-            class=":uno: rounded-6 opacity-75 size-28 right-0 top-0 absolute z-0 mix-blend-darken -m-2 dark:mix-blend-multiply"
+            class=":uno: rounded-6 opacity-75 size-28 right-0 top-0 absolute z-0 mix-blend-color-burn -mr-2 dark:mix-blend-overlay"
             fetchpriority="high"
-            src="./pfp.avif"
+            src="./pfp-bw.svg"
           />
           <figcaption class=":uno: mix-blend-luminosity">
             <h1 class=":uno: text-9 flex flex-col">

@@ -9,7 +9,7 @@
     "lint": "oxfmt && oxlint --fix --fix-suggestions"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "1.2.143",
+    "@iconify-json/lucide": "1.2.144",
     "@iconify-json/simple-icons": "1.2.100",
     "@lumeland/ssx": "0.1.15",
     "@unocss/eslint-plugin": "66.11.0",
@@ -21,7 +21,7 @@
     "oxlint-tsgolint": "7.0.2004",
     "typescript": "7.0.2",
     "unocss": "66.11.0",
-    "wrangler": "4.150.0"
+    "wrangler": "4.151.0"
   },
   "devEngines": {
     "packageManager": {

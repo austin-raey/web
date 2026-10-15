@@ -12,9 +12,6 @@ wren-card {
     oklch(0.5153 0.0292 229.65 / 45%) 100%,
     oklch(0 0 0 / 0.9) 175%
   );
-  mix-blend-mode: hard-light;
-  opacity: 0.75;
-  z-index: 3;
 }
 
 .rotate {
