@@ -1,6 +1,7 @@
 import { defineConfig } from "@wren-js/core/config";
 import ssx from "@wren-js/ssx";
 import uno from "unocss/vite";
+
 export default defineConfig({
   build: {
     inlineCSS: true,
@@ -11,7 +12,7 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      uno({ mode: "dist-chunk" }),
+      uno(),
       {
         apply: "build",
         load(id) {

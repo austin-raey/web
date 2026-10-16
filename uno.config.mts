@@ -12,6 +12,9 @@ export default defineConfig({
     presetWind4({
       dark: "media",
       preflights: {
+        property: {
+          parent: false,
+        },
         reset: false,
       },
       variablePrefix: "",
