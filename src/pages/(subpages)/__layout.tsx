@@ -13,7 +13,7 @@ export default function LayoutSubpages({ children }: { children: JSX.Children })
     <>
       <Glass
         as="nav"
-        class=":uno: m-4.3 px-2 inline-flex gap-2 items-center right-0 top-0 absolute z-2 view-transition-breadcrumb [&>wren-link,&>span]:(p-2 flex)"
+        class=":uno: m-4.3 px-2 inline-flex gap-2 items-center bottom-0 right-0 absolute z-2 view-transition-breadcrumb [&>wren-link,&>span]:(p-2 flex) dsk:top-0"
       >
         <Link href="/">Home</Link>
         <Icon icon="i-lucide:chevron-right" />
