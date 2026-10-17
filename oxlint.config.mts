@@ -20,5 +20,6 @@ export default defineConfig({
   rules: {
     ...perfectionist.configs["recommended-natural"].rules,
     ...unocss.configs.flat.rules,
+    "unocss/enforce-class-compile": "error",
   },
 });

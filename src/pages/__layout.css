@@ -17,3 +17,73 @@ wren-card {
 .rotate {
   transform: rotateX(var(--r-x)) rotateY(var(--r-y)) translateZ(0);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-group(heading) {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(heading),
+  ::view-transition-new(heading) {
+    height: 100%;
+    animation-duration: 300ms;
+  }
+
+  ::view-transition-group(breadcrumb) {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(breadcrumb),
+  ::view-transition-new(breadcrumb) {
+    height: 100%;
+    animation-duration: 300ms;
+  }
+
+  ::view-transition-group(description) {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(description),
+  ::view-transition-new(description) {
+    height: 100%;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+  }
+
+  ::view-transition-old(description) {
+    animation-name: card-slide-up;
+  }
+
+  ::view-transition-new(description) {
+    animation-name: card-slide-in;
+  }
+
+  @keyframes card-slide-up {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-24px);
+    }
+  }
+
+  @keyframes card-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

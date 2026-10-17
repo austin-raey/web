@@ -3,7 +3,7 @@ import "./__layout.css";
 export default function Layout({ children }: { children: JSX.Children }) {
   return (
     <>
-      <wren-card class=":uno: rounded-6 w-[326px] aspect-[54/86] block perspective-[85dvw] isolate touch-manipulation dsk:w-[520px] dsk:aspect-[86/54]">
+      <wren-card class=":uno: rounded-6 w-[326px] aspect-[54/86] block perspective-[85dvw] relative isolate touch-manipulation dsk:w-[520px] dsk:aspect-[86/54]">
         <div class=":uno: rotate border border-black/20 rounded-inherit border-solid bg-white h-full shadow-lg relative overflow-hidden dark:border-white/20 dark:bg-black">
           <div class=":uno: rounded-inherit size-full inset-0 absolute" inert="true">
             <img

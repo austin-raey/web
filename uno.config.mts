@@ -1,4 +1,10 @@
-import { defineConfig, presetIcons, presetWind4, transformerCompileClass } from "unocss";
+import {
+  defineConfig,
+  presetIcons,
+  presetWind4,
+  transformerCompileClass,
+  transformerVariantGroup,
+} from "unocss";
 
 export default defineConfig({
   outputToCssLayers: false,
@@ -33,5 +39,6 @@ export default defineConfig({
     transformerCompileClass({
       classPrefix: "",
     }),
+    transformerVariantGroup(),
   ],
 });
